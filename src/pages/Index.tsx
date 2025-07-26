@@ -507,7 +507,7 @@ const Index = () => {
                         <ToothLocationIcon className="w-8 h-8 text-primary mt-1 flex-shrink-0" color="hsl(var(--primary))" />
                         <div>
                           <h3 className="font-bold text-lg mb-2 text-foreground">Locate EVERY canal with confidence</h3>
-                          <p className="text-muted-foreground">Our proven 3-step system works every time</p>
+                          <p className="text-muted-foreground">Our scientifically backed system works every time</p>
                         </div>
                       </div>
                     </CardContent>
