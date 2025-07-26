@@ -1551,7 +1551,7 @@ ${name}`);
                 <div className="lg:w-2/3 space-y-6">
                   <div>
                     <h3 className="text-3xl font-bold text-foreground mb-2">Dr. Roitman, DDS</h3>
-                    <p className="text-lg text-primary font-semibold mb-4">Board Certified Endodontist • International Speaker • Published Author</p>
+                    <p className="text-lg text-primary font-semibold mb-4">Endodontist • Head of Endodontics DSO • Instrument Inventor</p>
                     <p className="text-muted-foreground leading-relaxed">
                       Dr. Roitman is a world-renowned endodontist with over 20 years of experience in the field. 
                       He has developed proven canal localization techniques and has trained dental 
