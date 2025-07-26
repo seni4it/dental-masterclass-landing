@@ -29,14 +29,8 @@ const Index = () => {
 
   // Available time slots for September 6, 2025
   const timeSlots = [
-    { time: "14:00", label: "2:00 PM", available: true },
-    { time: "15:00", label: "3:00 PM", available: true },
-    { time: "16:00", label: "4:00 PM", available: true },
-    { time: "17:00", label: "5:00 PM", available: true },
-    { time: "18:00", label: "6:00 PM", available: true },
-    { time: "19:00", label: "7:00 PM", available: true },
-    { time: "20:00", label: "8:00 PM", available: true },
-    { time: "21:00", label: "9:00 PM", available: true },
+    { time: "13:00", label12h: "1:00 PM", timezone: "CEST (UTC+2)", note: "Early afternoon", available: true },
+    { time: "20:00", label12h: "8:00 PM", timezone: "CEST (UTC+2)", note: "Evening", available: true },
   ];
 
   const handleTimeSlotSelect = (time: string) => {
@@ -2023,30 +2017,47 @@ ${name}`);
               </button>
             </div>
             <div className="p-6">
-              <div className="text-center mb-4">
+              <div className="text-center mb-6">
                 <h3 className="text-lg font-semibold text-foreground mb-2">September 6, 2025</h3>
                 <p className="text-sm text-muted-foreground">Select your preferred time slot for the masterclass</p>
               </div>
-              <div className="grid grid-cols-2 gap-3">
+              
+              {/* Table Header */}
+              <div className="grid grid-cols-4 gap-2 mb-3 p-3 bg-muted/30 rounded-lg text-xs font-semibold text-muted-foreground">
+                <div>Time (24h)</div>
+                <div>Time (12h)</div>
+                <div>Time Zone</div>
+                <div>Note</div>
+              </div>
+              
+              {/* Time Slot Rows */}
+              <div className="space-y-2">
                 {timeSlots.map((slot) => (
                   <button
                     key={slot.time}
                     onClick={() => handleTimeSlotSelect(slot.time)}
                     disabled={!slot.available}
-                    className={`p-3 rounded-lg border text-sm font-medium transition-colors ${
+                    className={`w-full grid grid-cols-4 gap-2 p-3 rounded-lg border text-sm transition-colors text-left ${
                       slot.available 
-                        ? 'border-primary bg-primary/5 hover:bg-primary/10 text-primary hover:border-primary/80' 
+                        ? 'border-primary bg-primary/5 hover:bg-primary/10 hover:border-primary/80 hover:shadow-sm' 
                         : 'border-muted bg-muted text-muted-foreground cursor-not-allowed'
                     }`}
                   >
-                    {slot.label}
+                    <div className="font-medium flex items-center gap-2">
+                      <span className="inline-block w-4 h-3 rounded-sm overflow-hidden border border-gray-300">
+                        <div className="w-full h-full flex">
+                          <div className="w-1/3 bg-green-600"></div>
+                          <div className="w-1/3 bg-white"></div>
+                          <div className="w-1/3 bg-red-600"></div>
+                        </div>
+                      </span>
+                      {slot.time}
+                    </div>
+                    <div className="font-medium">{slot.label12h}</div>
+                    <div className="text-muted-foreground">{slot.timezone}</div>
+                    <div className="text-muted-foreground">{slot.note}</div>
                   </button>
                 ))}
-              </div>
-              <div className="mt-4 p-3 bg-muted/50 rounded-lg">
-                <p className="text-xs text-muted-foreground text-center">
-                  All times are in Central European Time (CET)
-                </p>
               </div>
             </div>
           </div>
