@@ -208,7 +208,7 @@ const Index = () => {
                     });
                   }
                 }}
-                className="bg-orange-500 hover:bg-orange-600 text-white"
+                className="bg-orange-500 hover:bg-orange-600 text-white font-semibold"
               >
                 Book Now
               </Button>
@@ -235,7 +235,7 @@ const Index = () => {
                     });
                   }
                 }}
-                className="bg-orange-500 hover:bg-orange-600 text-white h-8 px-3"
+                className="bg-orange-500 hover:bg-orange-600 text-white font-semibold h-8 px-3"
               >
                 Book Now
               </Button>
