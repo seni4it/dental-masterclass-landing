@@ -1562,23 +1562,6 @@ ${name}`);
               </div>
               
               
-              <div className="bg-primary/5 border border-primary/20 rounded-lg p-6">
-                <h4 className="text-xl font-bold text-foreground mb-4">Professional Experience</h4>
-                <div className="space-y-4 text-muted-foreground">
-                  <p>
-                    <strong className="text-foreground">2000-Present:</strong> Private Practice in Advanced Endodontics
-                  </p>
-                  <p>
-                    <strong className="text-foreground">2005-Present:</strong> International Lecturer and Course Director
-                  </p>
-                  <p>
-                    <strong className="text-foreground">2010-Present:</strong> Founder of LearnEndo.io Educational Platform
-                  </p>
-                  <p>
-                    <strong className="text-foreground">2015-Present:</strong> Research Director for Canal Localization Studies
-                  </p>
-                </div>
-              </div>
               
               <div className="bg-accent/5 border border-accent/20 rounded-lg p-6">
                 <h4 className="text-xl font-bold text-foreground mb-4">Philosophy & Mission</h4>
