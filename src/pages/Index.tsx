@@ -612,8 +612,8 @@ const Index = () => {
                       <span className="font-bold text-foreground">Achievements</span>
                     </div>
                     <p className="text-muted-foreground">
-                      50+ published papers, Keynote speaker at 30+ international conferences, 
-                      Innovation awards
+                      80K Instagram followers, Inventor of endodontic instruments, 
+                      Head of Endodontic Committee in Primo Italia
                     </p>
                   </Card>
                 </div>
@@ -1581,10 +1581,10 @@ ${name}`);
                     <h4 className="text-xl font-bold text-foreground">Achievements</h4>
                   </div>
                   <ul className="space-y-2 text-muted-foreground">
-                    <li>• 50+ published research papers</li>
-                    <li>• Keynote speaker at 30+ international conferences</li>
-                    <li>• Innovation awards in endodontics</li>
-                    <li>• Developer of revolutionary canal location techniques</li>
+                    <li>• 80,000 Instagram followers</li>
+                    <li>• Inventor of endodontic instruments</li>
+                    <li>• Head of Endodontic Committee in Primo Italia</li>
+                    <li>• Continuous education and training since graduation</li>
                   </ul>
                 </Card>
               </div>
