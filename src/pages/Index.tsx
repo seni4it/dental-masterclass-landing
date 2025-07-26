@@ -1561,33 +1561,6 @@ ${name}`);
                 </div>
               </div>
               
-              <div className="grid md:grid-cols-2 gap-6">
-                <Card className="p-6">
-                  <div className="flex items-center gap-3 mb-4">
-                    <GraduationCap className="w-8 h-8 text-primary" />
-                    <h4 className="text-xl font-bold text-foreground">Education & Training</h4>
-                  </div>
-                  <ul className="space-y-2 text-muted-foreground">
-                    <li>• University of Pavia - Dental Faculty</li>
-                    <li>• Head of Endodontics for DSO with 160 clinics</li>
-                    <li>• Endodontics tutor since graduation</li>
-                    <li>• Continuous teaching and training experience</li>
-                  </ul>
-                </Card>
-                
-                <Card className="p-6">
-                  <div className="flex items-center gap-3 mb-4">
-                    <Award className="w-8 h-8 text-accent" />
-                    <h4 className="text-xl font-bold text-foreground">Achievements</h4>
-                  </div>
-                  <ul className="space-y-2 text-muted-foreground">
-                    <li>• 80,000 Instagram followers</li>
-                    <li>• Inventor of endodontic instruments</li>
-                    <li>• Head of Endodontic Committee in Primo Italia</li>
-                    <li>• Continuous education and training since graduation</li>
-                  </ul>
-                </Card>
-              </div>
               
               <div className="bg-primary/5 border border-primary/20 rounded-lg p-6">
                 <h4 className="text-xl font-bold text-foreground mb-4">Professional Experience</h4>
