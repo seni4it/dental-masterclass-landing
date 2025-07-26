@@ -1165,7 +1165,7 @@ ${name}`);
               
               <div className="max-w-3xl mx-auto mb-12">
                 <p className="text-xl lg:text-2xl text-white font-medium mb-6">
-                  Join dentists who have transformed their practice with our proven system
+                  Join dentists who have gained confidence in canal location with our proven methods
                 </p>
                 
                 <div className="bg-white/15 backdrop-blur-md rounded-2xl p-8 border border-white/20 max-w-md mx-auto mb-8">
