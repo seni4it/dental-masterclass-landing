@@ -590,7 +590,7 @@ const Index = () => {
                     </Badge>
                   </div>
                   <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                    Dr. Roitman has trained over 10,000 dental professionals worldwide and is recognized as one of the leading experts in canal localization. His innovative techniques have revolutionized how dentists approach complex endodontic cases.
+                    Dr. Roitman has trained dental professionals and built a following of 80,000 subscribers on Instagram. He is recognized as a leading expert in endodontics. His proven techniques work each and every time - in countless live demonstrations, following the canal localization rules has never resulted in a missed canal or perforation.
                   </p>
                 </div>
                 
@@ -887,7 +887,7 @@ const Index = () => {
                 Master the <span className="text-primary">3-Step System</span>
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Learn the exact techniques that have helped 2,000+ dentists eliminate missed canals forever
+                Learn the exact techniques that help dentists eliminate missed canals forever
               </p>
             </div>
             
@@ -1165,7 +1165,7 @@ ${name}`);
               
               <div className="max-w-3xl mx-auto mb-12">
                 <p className="text-xl lg:text-2xl text-white font-medium mb-6">
-                  Join 2,000+ dentists who have transformed their practice with our proven system
+                  Join dentists who have transformed their practice with our proven system
                 </p>
                 
                 <div className="bg-white/15 backdrop-blur-md rounded-2xl p-8 border border-white/20 max-w-md mx-auto mb-8">
@@ -1509,7 +1509,7 @@ ${name}`);
               
               <div className="bg-accent/5 border border-accent/20 rounded-lg p-4">
                 <h4 className="font-semibold text-foreground mb-2">Why We Offer This Guarantee</h4>
-                <p>Dr. Roitman has trained over 2,000 dentists worldwide with a 98% success rate. We're confident that our proven techniques will transform your endodontic practice. This guarantee removes any risk from your investment in professional development.</p>
+                <p>Dr. Roitman's proven techniques have a 100% success rate in live demonstrations. We're confident that our scientifically backed methods will transform your endodontic practice. This guarantee removes any risk from your investment in professional development.</p>
               </div>
               
               <div className="text-sm text-muted-foreground">
@@ -1554,7 +1554,7 @@ ${name}`);
                     <p className="text-lg text-primary font-semibold mb-4">Board Certified Endodontist • International Speaker • Published Author</p>
                     <p className="text-muted-foreground leading-relaxed">
                       Dr. Roitman is a world-renowned endodontist with over 20 years of experience in the field. 
-                      He has revolutionized canal localization techniques and has trained more than 10,000 dental 
+                      He has developed proven canal localization techniques and has trained dental 
                       professionals worldwide.
                     </p>
                   </div>
