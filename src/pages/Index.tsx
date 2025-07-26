@@ -1270,7 +1270,7 @@ ${name}`);
                     Choose Your Time Slot
                   </CardTitle>
                   <CardDescription className="text-muted-foreground mb-4">
-                    Canal Localization Masterclass - September 6, 2025
+                    September 6, 2025 - Select your preferred time
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="p-0">
@@ -2093,8 +2093,8 @@ ${name}`);
             </div>
             <div className="p-6">
               <div className="text-center mb-6">
-                <h3 className="text-lg font-semibold text-foreground mb-2">Canal Localization Masterclass</h3>
-                <p className="text-sm text-muted-foreground">September 6, 2025 - Select your preferred time slot</p>
+                <h3 className="text-lg font-semibold text-foreground mb-2">September 6, 2025</h3>
+                <p className="text-sm text-muted-foreground">Select your preferred time slot</p>
               </div>
               
               {/* Table Header */}
