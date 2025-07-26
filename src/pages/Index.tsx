@@ -601,8 +601,8 @@ const Index = () => {
                       <span className="font-bold text-foreground">Education</span>
                     </div>
                     <p className="text-muted-foreground">
-                      Harvard School of Dental Medicine, Advanced Endodontic Residency, 
-                      Multiple board certifications
+                      University of Pavia - Dental Faculty Graduate, 
+                      Head of Endodontics for DSO with 160 clinics
                     </p>
                   </Card>
                   
@@ -1568,10 +1568,10 @@ ${name}`);
                     <h4 className="text-xl font-bold text-foreground">Education & Training</h4>
                   </div>
                   <ul className="space-y-2 text-muted-foreground">
-                    <li>• Harvard School of Dental Medicine</li>
-                    <li>• Advanced Endodontic Residency</li>
-                    <li>• Multiple board certifications</li>
-                    <li>• Continuing education in microscopic endodontics</li>
+                    <li>• University of Pavia - Dental Faculty</li>
+                    <li>• Head of Endodontics for DSO with 160 clinics</li>
+                    <li>• Endodontics tutor since graduation</li>
+                    <li>• Continuous teaching and training experience</li>
                   </ul>
                 </Card>
                 
