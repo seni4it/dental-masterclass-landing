@@ -732,7 +732,7 @@ const Index = () => {
                   </div>
                 </div>
                 <p className="text-muted-foreground italic mb-4">
-                  "The systematic approach taught in this masterclass is brilliant. My treatment time has improved while my success rate has increased dramatically."
+                  "The systematic approach taught in this masterclass is brilliant. Simple to the point and useful. Definitely recommend."
                 </p>
                 <div className="flex text-yellow-500 text-lg">
                   {"★★★★★".split("").map((star, i) => <span key={i}>{star}</span>)}
