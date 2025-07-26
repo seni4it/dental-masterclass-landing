@@ -12,6 +12,9 @@
     "check-badge": "grep -n 'bg-destructive.*LIMITED TIME' src/pages/Index.tsx || echo 'WARNING: LIMITED TIME badge missing red background!'",
     "post-edit": "npm run check-badge && echo 'Badge check complete. Starting dev server...' && npm run dev"
   },
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
     "@radix-ui/react-accordion": "^1.2.0",
