@@ -590,7 +590,7 @@ const Index = () => {
                     </Badge>
                   </div>
                   <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                    Dr. Roitman has trained dental professionals and built a following of 80,000 subscribers on Instagram. He is recognized as a leading expert in endodontics. His proven techniques work each and every time - in countless live demonstrations, following the canal localization rules has never resulted in a missed canal or perforation.
+                    Dr. Roitman has trained many dental professionals in Italy and online, and has built a following of 80,000 subscribers on Instagram. He is recognized as a leading expert in endodontics. He applies established canal localization techniques with perfect consistency - in every live demonstration, following these principles has never failed.
                   </p>
                 </div>
                 
