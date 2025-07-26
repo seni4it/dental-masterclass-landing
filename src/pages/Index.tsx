@@ -25,6 +25,25 @@ const Index = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showCookieConsent, setShowCookieConsent] = useState(false);
   const [cookiesAccepted, setCookiesAccepted] = useState(false);
+  const [showTimeSlots, setShowTimeSlots] = useState(false);
+
+  // Available time slots for September 6, 2025
+  const timeSlots = [
+    { time: "14:00", label: "2:00 PM", available: true },
+    { time: "15:00", label: "3:00 PM", available: true },
+    { time: "16:00", label: "4:00 PM", available: true },
+    { time: "17:00", label: "5:00 PM", available: true },
+    { time: "18:00", label: "6:00 PM", available: true },
+    { time: "19:00", label: "7:00 PM", available: true },
+    { time: "20:00", label: "8:00 PM", available: true },
+    { time: "21:00", label: "9:00 PM", available: true },
+  ];
+
+  const handleTimeSlotSelect = (time: string) => {
+    const calendlyUrl = `https://calendly.com/endoclub/new-meeting-1/2025-09-06T${time}:00+02:00?month=2025-09&date=2025-09-06`;
+    window.open(calendlyUrl, '_blank');
+    setShowTimeSlots(false);
+  };
 
   // Countdown timer effect
   useEffect(() => {
@@ -187,7 +206,7 @@ const Index = () => {
               <Button 
                 size="sm"
                 onClick={() => {
-                  window.open('https://calendly.com/endoclub/new-meeting-1/2025-09-06T20:00:00+02:00?month=2025-09&date=2025-09-06', '_blank');
+                  setShowTimeSlots(true);
                   if (cookiesAccepted && (window as any).gtag) {
                     (window as any).gtag('event', 'click', {
                       event_category: 'navigation',
@@ -214,7 +233,7 @@ const Index = () => {
               <Button 
                 size="sm"
                 onClick={() => {
-                  window.open('https://calendly.com/endoclub/new-meeting-1/2025-09-06T20:00:00+02:00?month=2025-09&date=2025-09-06', '_blank');
+                  setShowTimeSlots(true);
                   if (cookiesAccepted && (window as any).gtag) {
                     (window as any).gtag('event', 'click', {
                       event_category: 'navigation',
@@ -298,7 +317,7 @@ const Index = () => {
               </button>
               <button 
                 onClick={() => {
-                  window.open('https://calendly.com/endoclub/new-meeting-1/2025-09-06T20:00:00+02:00?month=2025-09&date=2025-09-06', '_blank');
+                  setShowTimeSlots(true);
                   setShowMobileMenu(false);
                 }}
                 className="text-left text-sm font-medium text-primary hover:text-primary/80 hover:bg-primary/10 transition-colors py-3 px-3 rounded font-semibold flex items-center gap-3"
@@ -325,7 +344,7 @@ const Index = () => {
               <Badge 
                 className="mb-6 bg-accent text-accent-foreground border-accent px-6 py-3 text-base font-bold animate-pulse-glow cursor-pointer hover:bg-accent/90 transition-colors"
                 onClick={() => {
-                  window.open('https://calendly.com/endoclub/new-meeting-1/2025-09-06T20:00:00+02:00?month=2025-09&date=2025-09-06', '_blank');
+                  setShowTimeSlots(true);
                   // Track masterclass button click
                   if (cookiesAccepted && (window as any).gtag) {
                     (window as any).gtag('event', 'click', {
@@ -407,7 +426,7 @@ const Index = () => {
                 </div>
                 
                 <Button variant="cta" size="xl" className="w-full text-sm sm:text-lg font-bold transition-all duration-300 ease-in-out hover:scale-[1.02] hover:shadow-xl hover:bg-accent/90 mb-4 px-4 sm:px-8 py-3 sm:py-4" onClick={() => {
-                  window.open('https://calendly.com/endoclub/new-meeting-1/2025-09-06T20:00:00+02:00?month=2025-09&date=2025-09-06', '_blank');
+                  setShowTimeSlots(true);
                   // Track CTA button click
                   if (cookiesAccepted && (window as any).gtag) {
                     (window as any).gtag('event', 'click', {
@@ -1978,6 +1997,56 @@ ${name}`);
                 >
                   Decline
                 </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Time Slots Modal */}
+      {showTimeSlots && (
+        <div 
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          onClick={() => setShowTimeSlots(false)}
+        >
+          <div 
+            className="bg-white rounded-lg max-w-md w-full"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="sticky top-0 bg-white border-b border-border p-6 flex items-center justify-between rounded-t-lg">
+              <h2 className="text-xl font-bold text-foreground">Choose Your Time Slot</h2>
+              <button 
+                onClick={() => setShowTimeSlots(false)}
+                className="p-2 hover:bg-muted rounded-full transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <div className="p-6">
+              <div className="text-center mb-4">
+                <h3 className="text-lg font-semibold text-foreground mb-2">September 6, 2025</h3>
+                <p className="text-sm text-muted-foreground">Select your preferred time slot for the masterclass</p>
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                {timeSlots.map((slot) => (
+                  <button
+                    key={slot.time}
+                    onClick={() => handleTimeSlotSelect(slot.time)}
+                    disabled={!slot.available}
+                    className={`p-3 rounded-lg border text-sm font-medium transition-colors ${
+                      slot.available 
+                        ? 'border-primary bg-primary/5 hover:bg-primary/10 text-primary hover:border-primary/80' 
+                        : 'border-muted bg-muted text-muted-foreground cursor-not-allowed'
+                    }`}
+                  >
+                    {slot.label}
+                  </button>
+                ))}
+              </div>
+              <div className="mt-4 p-3 bg-muted/50 rounded-lg">
+                <p className="text-xs text-muted-foreground text-center">
+                  All times are in Central European Time (CET)
+                </p>
               </div>
             </div>
           </div>
