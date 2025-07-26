@@ -678,7 +678,7 @@ const Index = () => {
                   </div>
                 </div>
                 <p className="text-muted-foreground italic mb-4">
-                  "I've eliminated missed canals completely and my confidence has skyrocketed. Best investment I've made for my practice."
+                  "I didn't expect to learn anything new about canal location, but this masterclass changed my entire approach. Less stress, fewer doubts, and significantly more confidence."
                 </p>
                 <div className="flex text-yellow-500 text-lg">
                   {"★★★★★".split("").map((star, i) => <span key={i}>{star}</span>)}
