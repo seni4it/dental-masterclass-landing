@@ -678,7 +678,7 @@ const Index = () => {
                   </div>
                 </div>
                 <p className="text-muted-foreground italic mb-4">
-                  "My success rate went from 78% to 96% in just 30 days! I've eliminated missed canals completely and my confidence has skyrocketed. Best investment I've made for my practice."
+                  "I've eliminated missed canals completely and my confidence has skyrocketed. Best investment I've made for my practice."
                 </p>
                 <div className="flex text-yellow-500 text-lg">
                   {"★★★★★".split("").map((star, i) => <span key={i}>{star}</span>)}
@@ -732,7 +732,7 @@ const Index = () => {
                   </div>
                 </div>
                 <p className="text-muted-foreground italic mb-4">
-                  "The systematic approach taught in this masterclass is brilliant. My treatment time has decreased by 40% while my success rate has improved dramatically."
+                  "The systematic approach taught in this masterclass is brilliant. My treatment time has improved while my success rate has increased dramatically."
                 </p>
                 <div className="flex text-yellow-500 text-lg">
                   {"★★★★★".split("").map((star, i) => <span key={i}>{star}</span>)}
