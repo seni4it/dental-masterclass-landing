@@ -1244,7 +1244,7 @@ ${name}`);
                     Choose Your Time Slot
                   </CardTitle>
                   <CardDescription className="text-muted-foreground mb-4">
-                    September 6, 2025 - Select your preferred time for the masterclass
+                    Canal Localization Masterclass - September 6, 2025
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="p-0">
@@ -2057,7 +2057,7 @@ ${name}`);
             onClick={(e) => e.stopPropagation()}
           >
             <div className="sticky top-0 bg-white border-b border-border p-6 flex items-center justify-between rounded-t-lg">
-              <h2 className="text-xl font-bold text-foreground">Choose Your Time Slot</h2>
+              <h2 className="text-xl font-bold text-foreground">Canal Localization Masterclass</h2>
               <button 
                 onClick={() => setShowTimeSlots(false)}
                 className="p-2 hover:bg-muted rounded-full transition-colors"
@@ -2067,8 +2067,8 @@ ${name}`);
             </div>
             <div className="p-6">
               <div className="text-center mb-6">
-                <h3 className="text-lg font-semibold text-foreground mb-2">September 6, 2025</h3>
-                <p className="text-sm text-muted-foreground">Select your preferred time slot for the masterclass</p>
+                <h3 className="text-lg font-semibold text-foreground mb-2">Canal Localization Masterclass</h3>
+                <p className="text-sm text-muted-foreground">September 6, 2025 - Select your preferred time slot</p>
               </div>
               
               {/* Table Header */}
