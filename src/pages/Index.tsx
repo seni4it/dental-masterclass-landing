@@ -7,7 +7,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Calendar, Clock, Users, Video, RotateCcw, CheckCircle, Award, Target, AlertTriangle, Microscope, GraduationCap, FileText, Phone, Timer, Shield, TrendingUp, Star, ArrowRight, Play, Zap, MessageCircle, Instagram, Send, X } from "lucide-react";
-import CalendlyWidget from "@/components/CalendlyWidget";
 import { ToothLocationIcon, ToothSettingsIcon, ToothKeyIcon, ToothCareIcon } from "@/components/DentalIcons";
 
 const Index = () => {
@@ -1237,19 +1236,61 @@ ${name}`);
               </div>
             </div>
             
-            {/* Calendly Widget */}
-            <div id="calendar" className="max-w-4xl mx-auto">
-              <Card className="p-4 sm:p-8 bg-white/95 backdrop-blur-sm border border-white/20">
-                <CardHeader className="text-center pb-4 sm:pb-6">
+            {/* Time Slots Selection */}
+            <div id="calendar" className="max-w-2xl mx-auto">
+              <Card className="p-6 sm:p-8 bg-white/95 backdrop-blur-sm border border-white/20">
+                <CardHeader className="text-center pb-6">
                   <CardTitle className="text-xl sm:text-2xl font-bold text-foreground mb-2">
-                    <span>Choose Your Time Slot</span>
+                    Choose Your Time Slot
                   </CardTitle>
-                  <CardDescription className="text-muted-foreground text-sm sm:text-base">
-                    <span>Select the time that works best for your schedule</span>
+                  <CardDescription className="text-muted-foreground mb-4">
+                    September 6, 2025 - Select your preferred time for the masterclass
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="p-0">
-                  <CalendlyWidget url="https://calendly.com/endoclub/new-meeting-1" className="min-h-[600px] sm:min-h-[700px] w-full" />
+                  {/* Table Header */}
+                  <div className="grid grid-cols-4 gap-2 mb-4 p-3 bg-muted/30 rounded-lg text-xs font-semibold text-muted-foreground">
+                    <div>Time (24h)</div>
+                    <div>Time (12h)</div>
+                    <div>Time Zone</div>
+                    <div>Note</div>
+                  </div>
+                  
+                  {/* Time Slot Rows */}
+                  <div className="space-y-3">
+                    {timeSlots.map((slot) => (
+                      <button
+                        key={slot.time}
+                        onClick={() => handleTimeSlotSelect(slot.time)}
+                        disabled={!slot.available}
+                        className={`w-full grid grid-cols-4 gap-2 p-4 rounded-lg border text-sm transition-colors text-left ${
+                          slot.available 
+                            ? 'border-primary bg-primary/5 hover:bg-primary/10 hover:border-primary/80 hover:shadow-md' 
+                            : 'border-muted bg-muted text-muted-foreground cursor-not-allowed'
+                        }`}
+                      >
+                        <div className="font-medium flex items-center gap-2">
+                          <span className="inline-block w-4 h-3 rounded-sm overflow-hidden border border-gray-300">
+                            <div className="w-full h-full flex">
+                              <div className="w-1/3 bg-green-600"></div>
+                              <div className="w-1/3 bg-white"></div>
+                              <div className="w-1/3 bg-red-600"></div>
+                            </div>
+                          </span>
+                          {slot.time}
+                        </div>
+                        <div className="font-medium">{slot.label12h}</div>
+                        <div className="text-muted-foreground">{slot.timezone}</div>
+                        <div className="text-muted-foreground">{slot.note}</div>
+                      </button>
+                    ))}
+                  </div>
+                  
+                  <div className="mt-6 p-4 bg-primary/5 rounded-lg border border-primary/20">
+                    <p className="text-sm text-center text-primary font-medium">
+                      ✨ Click any time slot above to book your spot instantly
+                    </p>
+                  </div>
                 </CardContent>
               </Card>
             </div>
