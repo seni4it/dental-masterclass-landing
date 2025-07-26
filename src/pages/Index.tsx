@@ -750,7 +750,7 @@ const Index = () => {
                   </div>
                 </div>
                 <p className="text-muted-foreground italic mb-4">
-                  "Exceptional training! The perforation prevention techniques alone saved me thousands in potential complications. Worth every penny and more."
+                  "Exceptional training! The techniques I learned alone saved me thousands in potential complications. Worth every penny and more."
                 </p>
                 <div className="flex text-yellow-500 text-lg">
                   {"★★★★★".split("").map((star, i) => <span key={i}>{star}</span>)}
