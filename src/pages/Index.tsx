@@ -143,11 +143,19 @@ const Index = () => {
       <div className="bg-destructive text-destructive-foreground text-center py-3 px-4">
         <div className="container mx-auto">
           <div className="flex items-center justify-center gap-4 text-sm">
-            <Badge className="bg-white text-destructive font-bold animate-pulse">
+            <Badge 
+              className="bg-white text-destructive font-bold animate-pulse cursor-pointer hover:bg-gray-100 transition-colors"
+              onClick={() => setShowTimeSlots(true)}
+            >
               ONLY 47 SPOTS LEFT
             </Badge>
             <span>•</span>
-            <span className="font-semibold">72% OFF ENDS SOON!</span>
+            <span 
+              className="font-semibold cursor-pointer hover:text-orange-400 transition-colors"
+              onClick={() => setShowTimeSlots(true)}
+            >
+              72% OFF ENDS SOON!
+            </span>
           </div>
         </div>
       </div>
@@ -383,7 +391,12 @@ const Index = () => {
                 <div className="text-center mb-6">
                   <div className="flex items-center justify-center gap-2 text-lg font-bold mb-4">
                     <Timer className="w-5 h-5" />
-                    <span className="text-white">🔥 LIMITED TIME OFFER ENDS IN:</span>
+                    <span 
+                      className="text-white cursor-pointer hover:text-orange-300 transition-colors"
+                      onClick={() => setShowTimeSlots(true)}
+                    >
+                      🔥 LIMITED TIME OFFER ENDS IN:
+                    </span>
                   </div>
                   <div className="flex gap-3 text-xl font-black justify-center mb-4">
                     <div className="bg-white/20 px-3 py-2 rounded-lg min-w-[50px]">
@@ -406,7 +419,12 @@ const Index = () => {
                   
                   {/* Limited time badge */}
                   <div className="flex justify-center mb-2">
-                    <Badge className="bg-destructive text-destructive-foreground animate-pulse font-medium">🔥 LIMITED TIME</Badge>
+                    <Badge 
+                      className="bg-destructive text-destructive-foreground animate-pulse font-medium cursor-pointer hover:bg-destructive/80 transition-colors"
+                      onClick={() => setShowTimeSlots(true)}
+                    >
+                      🔥 LIMITED TIME
+                    </Badge>
                   </div>
                   
                   {/* Spots remaining centered */}
@@ -1174,7 +1192,10 @@ ${name}`);
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <Badge className="mb-6 bg-destructive text-destructive-foreground px-6 py-3 text-base font-bold animate-pulse">
+              <Badge 
+                className="mb-6 bg-destructive text-destructive-foreground px-6 py-3 text-base font-bold animate-pulse cursor-pointer hover:bg-destructive/80 transition-colors"
+                onClick={() => setShowTimeSlots(true)}
+              >
                 🚨 LIMITED TIME: 72% OFF EARLY BIRD SPECIAL
               </Badge>
               
@@ -1199,7 +1220,12 @@ ${name}`);
                       <span className="text-2xl text-white/60 line-through">€97</span>
                       <span className="text-5xl font-black text-accent-glow">€27</span>
                     </div>
-                    <p className="text-white/90 font-medium">Early Bird Special Ends Soon!</p>
+                    <p 
+                      className="text-white/90 font-medium cursor-pointer hover:text-orange-300 transition-colors"
+                      onClick={() => setShowTimeSlots(true)}
+                    >
+                      Early Bird Special Ends Soon!
+                    </p>
                   </div>
                   
                   <div className="space-y-3 text-white text-sm">
