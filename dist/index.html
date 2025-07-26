@@ -7,13 +7,41 @@
     <meta name="description" content="Master Canal Localization with Dr. Roitman" />
     <meta name="author" content="LearnEndo.io" />
     
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GWBDNMRWFS"></script>
+    <!-- Google Analytics - Conditional Loading -->
     <script>
+      // Initialize dataLayer and gtag function regardless of consent
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-GWBDNMRWFS');
+      
+      // Function to load Google Analytics
+      function loadGoogleAnalytics() {
+        if (!document.querySelector('script[src*="gtag/js"]')) {
+          const script = document.createElement('script');
+          script.async = true;
+          script.src = 'https://www.googletagmanager.com/gtag/js?id=G-GWBDNMRWFS';
+          document.head.appendChild(script);
+          
+          script.onload = function() {
+            gtag('js', new Date());
+            gtag('config', 'G-GWBDNMRWFS', {
+              'anonymize_ip': true,
+              'respect_dnt': true
+            });
+            console.log('Google Analytics loaded with consent');
+          };
+        }
+      }
+      
+      // Check for existing consent on page load
+      document.addEventListener('DOMContentLoaded', function() {
+        const cookieConsent = localStorage.getItem('cookieConsent');
+        if (cookieConsent === 'accepted' || cookieConsent === 'essentials-plus-analytics') {
+          loadGoogleAnalytics();
+        }
+      });
+      
+      // Global function to enable analytics (called by React components)
+      window.enableGoogleAnalytics = loadGoogleAnalytics;
     </script>
 
     <meta property="og:title" content="endo-elevate-hub" />
@@ -24,8 +52,8 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@lovable_dev" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-    <script type="module" crossorigin src="/assets/index-BbQp40tV.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-BDTbyOUr.css">
+    <script type="module" crossorigin src="/assets/index-xmq1WFa_.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DCdygNqC.css">
   </head>
 
   <body>
