@@ -606,7 +606,7 @@ const Index = () => {
                   />
                   <div className="absolute -bottom-4 -right-4 bg-primary text-primary-foreground rounded-full w-20 h-20 flex items-center justify-center">
                     <div className="text-center">
-                      <div className="text-2xl font-bold">20+</div>
+                      <div className="text-2xl font-bold">10</div>
                       <div className="text-xs">Years</div>
                     </div>
                   </div>
