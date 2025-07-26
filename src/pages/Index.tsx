@@ -39,6 +39,14 @@ const Index = () => {
     setShowTimeSlots(false);
   };
 
+  // Check for URL parameter to auto-open time slots
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('book') === 'true') {
+      setShowTimeSlots(true);
+    }
+  }, []);
+
   // Countdown timer effect
   useEffect(() => {
     const timer = setInterval(() => {
