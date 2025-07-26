@@ -618,13 +618,16 @@ const Index = () => {
                   <h3 className="text-3xl font-bold text-foreground mb-4">Dr. Roitman, DDS</h3>
                   <div className="flex flex-wrap gap-2 mb-6">
                     <Badge variant="secondary" className="text-primary font-semibold">
-                      Board Certified Endodontist
+                      Endodontist
+                    </Badge>
+                    <Badge variant="secondary" className="text-primary font-semibold">
+                      Head of Endodontic Department
                     </Badge>
                     <Badge variant="secondary" className="text-primary font-semibold">
                       International Speaker
                     </Badge>
                     <Badge variant="secondary" className="text-primary font-semibold">
-                      Published Author
+                      Inventor
                     </Badge>
                   </div>
                   <p className="text-lg text-muted-foreground leading-relaxed mb-6">
