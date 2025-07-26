@@ -887,7 +887,7 @@ const Index = () => {
                 Master the <span className="text-primary">3-Step System</span>
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Learn the exact techniques that help dentists eliminate missed canals forever
+                Master the methods that ensure successful canal location
               </p>
             </div>
             
