@@ -350,7 +350,7 @@ const Index = () => {
               
               <div className="max-w-4xl mx-auto mb-8">
                 <p className="text-2xl lg:text-3xl text-white font-bold mb-4">
-                  <span className="text-orange-500">STOP</span> fearing <span className="text-orange-500">ENDO</span> Master the canal localization today!!
+                  <span className="text-orange-500">STOP</span> fearing <span className="text-orange-500">ENDO</span>! Master canal localization today!
                 </p>
                 <p className="text-xl text-white/90 mb-6">
                   Eliminate missed canals • Prevent perforations • Boost confidence
