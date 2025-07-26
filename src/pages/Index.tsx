@@ -884,7 +884,7 @@ const Index = () => {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-foreground">
-                Master the <span className="text-primary">3-Step System</span>
+                Master the <span className="text-primary">Proven System</span>
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
                 Master the methods that ensure successful canal location
