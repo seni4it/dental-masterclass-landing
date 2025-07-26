@@ -696,7 +696,7 @@ const Index = () => {
                   </div>
                 </div>
                 <p className="text-muted-foreground italic mb-4">
-                  "Dr. Roitman's techniques for calcified canals are game-changing. I now handle cases I used to consider impossible. My referral income has increased by 60%."
+                  "Dr. Roitman's techniques for calcified canals are game-changing. I now handle cases I used to consider impossible."
                 </p>
                 <div className="flex text-yellow-500 text-lg">
                   {"★★★★★".split("").map((star, i) => <span key={i}>{star}</span>)}
