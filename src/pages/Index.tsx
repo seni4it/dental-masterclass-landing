@@ -187,7 +187,7 @@ const Index = () => {
               <Button 
                 size="sm"
                 onClick={() => {
-                  document.getElementById('calendar')?.scrollIntoView({ behavior: 'smooth' });
+                  window.open('https://calendly.com/endoclub/new-meeting-1/2025-09-06T20:00:00+02:00?month=2025-09&date=2025-09-06', '_blank');
                   if (cookiesAccepted && (window as any).gtag) {
                     (window as any).gtag('event', 'click', {
                       event_category: 'navigation',
@@ -214,7 +214,7 @@ const Index = () => {
               <Button 
                 size="sm"
                 onClick={() => {
-                  document.getElementById('calendar')?.scrollIntoView({ behavior: 'smooth' });
+                  window.open('https://calendly.com/endoclub/new-meeting-1/2025-09-06T20:00:00+02:00?month=2025-09&date=2025-09-06', '_blank');
                   if (cookiesAccepted && (window as any).gtag) {
                     (window as any).gtag('event', 'click', {
                       event_category: 'navigation',
@@ -298,7 +298,7 @@ const Index = () => {
               </button>
               <button 
                 onClick={() => {
-                  document.getElementById('calendar')?.scrollIntoView({ behavior: 'smooth' });
+                  window.open('https://calendly.com/endoclub/new-meeting-1/2025-09-06T20:00:00+02:00?month=2025-09&date=2025-09-06', '_blank');
                   setShowMobileMenu(false);
                 }}
                 className="text-left text-sm font-medium text-primary hover:text-primary/80 hover:bg-primary/10 transition-colors py-3 px-3 rounded font-semibold flex items-center gap-3"
@@ -325,7 +325,7 @@ const Index = () => {
               <Badge 
                 className="mb-6 bg-accent text-accent-foreground border-accent px-6 py-3 text-base font-bold animate-pulse-glow cursor-pointer hover:bg-accent/90 transition-colors"
                 onClick={() => {
-                  document.getElementById('calendar')?.scrollIntoView({ behavior: 'smooth' });
+                  window.open('https://calendly.com/endoclub/new-meeting-1/2025-09-06T20:00:00+02:00?month=2025-09&date=2025-09-06', '_blank');
                   // Track masterclass button click
                   if (cookiesAccepted && (window as any).gtag) {
                     (window as any).gtag('event', 'click', {
@@ -407,7 +407,7 @@ const Index = () => {
                 </div>
                 
                 <Button variant="cta" size="xl" className="w-full text-sm sm:text-lg font-bold transition-all duration-300 ease-in-out hover:scale-[1.02] hover:shadow-xl hover:bg-accent/90 mb-4 px-4 sm:px-8 py-3 sm:py-4" onClick={() => {
-                  document.getElementById('calendar')?.scrollIntoView({ behavior: 'smooth' });
+                  window.open('https://calendly.com/endoclub/new-meeting-1/2025-09-06T20:00:00+02:00?month=2025-09&date=2025-09-06', '_blank');
                   // Track CTA button click
                   if (cookiesAccepted && (window as any).gtag) {
                     (window as any).gtag('event', 'click', {
