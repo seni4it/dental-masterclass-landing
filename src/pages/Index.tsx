@@ -590,7 +590,7 @@ const Index = () => {
                 Meet Your <span className="text-primary">Expert Instructor</span>
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Learn from a world-renowned endodontist with 20+ years of experience
+                Learn from an expert endodontist with 10 years of experience
               </p>
             </div>
             
@@ -658,8 +658,8 @@ const Index = () => {
                 
                 <div className="p-8 bg-primary/10 rounded-xl border border-primary/20">
                   <p className="text-foreground text-lg font-medium italic mb-4">
-                    "After 20 years of perfecting these techniques, I'm excited to share the exact system 
-                    that has helped thousands of dentists eliminate missed canals forever. This isn't theory – 
+                    "After 10 years of perfecting these techniques, I'm excited to share the exact system 
+                    that has helped many dentists eliminate missed canals forever. This isn't theory – 
                     it's practical, proven methods you can use immediately."
                   </p>
                   <p className="text-primary font-bold">— Dr. Roitman</p>
