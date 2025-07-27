@@ -121,9 +121,12 @@ const Index = () => {
     setCookiesAccepted(accepted);
     setShowCookieConsent(false);
     
-    // Enable Google Analytics if consent is given
+    // Enable Google Analytics and Meta Pixel if consent is given
     if (accepted && (window as any).enableGoogleAnalytics) {
       (window as any).enableGoogleAnalytics();
+    }
+    if (accepted && (window as any).enableMetaPixel) {
+      (window as any).enableMetaPixel();
     }
   };
 
@@ -132,9 +135,12 @@ const Index = () => {
     setCookiesAccepted(true);
     setShowCookieConsent(false);
     
-    // Enable Google Analytics for essentials + analytics
+    // Enable Google Analytics and Meta Pixel for essentials + analytics
     if ((window as any).enableGoogleAnalytics) {
       (window as any).enableGoogleAnalytics();
+    }
+    if ((window as any).enableMetaPixel) {
+      (window as any).enableMetaPixel();
     }
   };
   
