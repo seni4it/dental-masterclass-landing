@@ -2045,37 +2045,14 @@ ${name}`);
                 Choose Only Essentials
               </Button>
               
-              <div className="flex gap-2">
-                <Button 
-                  variant="ghost" 
-                  onClick={() => setShowCookiePolicy(true)}
-                  className="flex-1 text-xs p-1 h-auto"
-                  size="sm"
-                >
-                  Details
-                </Button>
-                <Button 
-                  variant="ghost" 
-                  onClick={() => {
-                    // Show additional decline options to make it more complex
-                    const confirmDecline = confirm(
-                      "Are you sure you want to decline cookies? This may limit website functionality and prevent us from improving your experience. You can change your preferences later in our Cookie Policy."
-                    );
-                    if (confirmDecline) {
-                      const reallyDecline = confirm(
-                        "Declining cookies means we can't:\n• Remember your preferences\n• Analyze what content helps dentists most\n• Provide personalized recommendations\n• Improve the masterclass experience\n\nContinue to decline?"
-                      );
-                      if (reallyDecline) {
-                        handleCookieConsent(false);
-                      }
-                    }
-                  }}
-                  className="flex-1 text-xs p-1 h-auto text-muted-foreground"
-                  size="sm"
-                >
-                  Decline
-                </Button>
-              </div>
+              <Button 
+                variant="ghost" 
+                onClick={() => setShowCookiePolicy(true)}
+                className="w-full text-xs mt-2"
+                size="sm"
+              >
+                View Cookie Policy
+              </Button>
             </div>
           </div>
         </div>
