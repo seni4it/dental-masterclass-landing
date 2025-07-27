@@ -11,7 +11,7 @@
     <link rel="icon" type="image/x-icon" href="https://d1yei2z3i6k35z.cloudfront.net/11922468/67ec02d73e2cb_459061577_884924966845685_6646581295662297536_n.jpg" />
     <link rel="apple-touch-icon" href="https://d1yei2z3i6k35z.cloudfront.net/11922468/67ec02d73e2cb_459061577_884924966845685_6646581295662297536_n.jpg" />
     
-    <!-- Meta Pixel Code - Base Setup for Detection -->
+    <!-- Meta Pixel Code -->
     <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -21,10 +21,8 @@
     t.src=v;s=b.getElementsByTagName(e)[0];
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
-    
-    // Initialize but don't track until consent
     fbq('init', '735975949298040');
-    // We'll track PageView only after consent
+    fbq('track', 'PageView');
     </script>
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=735975949298040&ev=PageView&noscript=1"
@@ -67,11 +65,11 @@
       // Global function to enable analytics (called by React components)
       window.enableGoogleAnalytics = loadGoogleAnalytics;
       
-      // Function to track with Meta Pixel after consent
+      // Function to enable additional Meta Pixel tracking after consent
       function loadMetaPixel() {
         if (window.fbq) {
-          fbq('track', 'PageView');
-          console.log('Meta Pixel PageView tracked with consent');
+          // Additional tracking events can be added here when user consents
+          console.log('Meta Pixel additional tracking enabled with consent');
         }
       }
       
