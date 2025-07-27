@@ -11,6 +11,25 @@
     <link rel="icon" type="image/x-icon" href="https://d1yei2z3i6k35z.cloudfront.net/11922468/67ec02d73e2cb_459061577_884924966845685_6646581295662297536_n.jpg" />
     <link rel="apple-touch-icon" href="https://d1yei2z3i6k35z.cloudfront.net/11922468/67ec02d73e2cb_459061577_884924966845685_6646581295662297536_n.jpg" />
     
+    <!-- Meta Pixel Code - Base Setup for Detection -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    
+    // Initialize but don't track until consent
+    fbq('init', '735975949298040');
+    // We'll track PageView only after consent
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=735975949298040&ev=PageView&noscript=1"
+    /></noscript>
+    
     <!-- Google Analytics - Conditional Loading -->
     <script>
       // Initialize dataLayer and gtag function regardless of consent
@@ -48,31 +67,17 @@
       // Global function to enable analytics (called by React components)
       window.enableGoogleAnalytics = loadGoogleAnalytics;
       
-      // Function to load Meta Pixel
+      // Function to track with Meta Pixel after consent
       function loadMetaPixel() {
-        if (!window.fbq) {
-          !function(f,b,e,v,n,t,s)
-          {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-          n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-          n.queue=[];t=b.createElement(e);t.async=!0;
-          t.src=v;s=b.getElementsByTagName(e)[0];
-          s.parentNode.insertBefore(t,s)}(window, document,'script',
-          'https://connect.facebook.net/en_US/fbevents.js');
-          fbq('init', '735975949298040');
+        if (window.fbq) {
           fbq('track', 'PageView');
-          console.log('Meta Pixel loaded with consent');
+          console.log('Meta Pixel PageView tracked with consent');
         }
       }
       
       // Global function to enable Meta Pixel (called by React components)
       window.enableMetaPixel = loadMetaPixel;
     </script>
-    
-    <!-- Meta Pixel NoScript -->
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=735975949298040&ev=PageView&noscript=1"
-    /></noscript>
 
     <meta property="og:title" content="endo-elevate-hub" />
     <meta property="og:description" content="Lovable Generated Project" />
