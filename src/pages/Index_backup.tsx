@@ -772,15 +772,6 @@ const Index = () => {
                 </AccordionContent>
               </AccordionItem>
               
-              <AccordionItem value="credits" className="border border-border rounded-lg px-6">
-                <AccordionTrigger className="text-left font-semibold text-lg">
-                  <EditableText isEditing={isEditing} as="span">Will I receive CE credits for attending?</EditableText>
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground text-base leading-relaxed">
-                  <EditableText isEditing={isEditing} as="span">Yes! This masterclass provides 1.5 hours of continuing education credits. You'll receive your CE certificate immediately after completing the session. The course is approved by major dental education bodies.</EditableText>
-                </AccordionContent>
-              </AccordionItem>
-              
               <AccordionItem value="recording" className="border border-border rounded-lg px-6">
                 <AccordionTrigger className="text-left font-semibold text-lg">
                   <EditableText isEditing={isEditing} as="span">What if I can't attend the live session?</EditableText>
