@@ -1515,7 +1515,7 @@ ${name}`);
             onClick={(e) => e.stopPropagation()}
           >
             <div className="sticky top-0 bg-white border-b border-border p-6 flex items-center justify-between">
-              <h2 className="text-2xl font-bold text-foreground">100% Money-Back Guarantee</h2>
+              <h2 className="text-2xl font-bold text-foreground">30‑Day Fair‑Use Money‑Back Guarantee</h2>
               <button 
                 onClick={() => setShowMoneyBackGuarantee(false)}
                 className="p-2 hover:bg-muted rounded-full transition-colors"
@@ -1523,91 +1523,134 @@ ${name}`);
                 <X className="w-5 h-5" />
               </button>
             </div>
-            <div className="p-6 space-y-6 text-muted-foreground">
-              <div className="bg-primary/5 border border-primary/20 rounded-lg p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <Shield className="w-8 h-8 text-primary" />
-                  <h3 className="text-xl font-bold text-foreground">Our Promise to You</h3>
-                </div>
-                <p className="text-lg text-foreground">We're so confident in the value of our Canal Localization Masterclass that we offer a complete 100% money-back guarantee.</p>
+            <div className="p-6 space-y-6 text-muted-foreground prose prose-sm max-w-none">
+              <p className="text-sm italic text-muted-foreground">Effective 29 July 2025</p>
+              
+              <p>We believe—based on years of live demonstrations—that Dr Roitman's <strong>Canal Localization Masterclass</strong> delivers measurable clinical value. If, after genuine participation and application, you feel the programme has not met its stated learning objectives, you may request a refund under the terms below.</p>
+              
+              <hr className="my-6" />
+              
+              <h3 className="text-lg font-semibold text-foreground">1. Scope of the Guarantee</h3>
+              <div className="overflow-x-auto">
+                <table className="w-full border border-border rounded-lg">
+                  <thead>
+                    <tr className="bg-muted/50">
+                      <th className="border-b border-border p-3 text-left font-semibold text-foreground">Item</th>
+                      <th className="border-b border-border p-3 text-left font-semibold text-foreground">Details</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="border-b border-border p-3 font-semibold">Coverage</td>
+                      <td className="border-b border-border p-3">100% of the masterclass fee (€27 Early‑Bird or €57 standard).</td>
+                    </tr>
+                    <tr>
+                      <td className="border-b border-border p-3 font-semibold">Period</td>
+                      <td className="border-b border-border p-3">30 calendar days from the purchase date ("Guarantee Period").</td>
+                    </tr>
+                    <tr>
+                      <td className="border-b border-border p-3 font-semibold">Format</td>
+                      <td className="border-b border-border p-3">Applies equally to live attendance and recorded replay access.</td>
+                    </tr>
+                    <tr>
+                      <td className="border-b border-border p-3 font-semibold">Legal Framework</td>
+                      <td className="border-b border-border p-3">This policy complements—and does not limit—your statutory rights under the EU Consumer Rights Directive and other applicable consumer‑protection laws.</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
               
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">How It Works</h3>
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <div className="bg-primary text-primary-foreground rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm mt-1">1</div>
-                    <div>
-                      <h4 className="font-semibold text-foreground">Attend the Masterclass</h4>
-                      <p>Participate in the live session or watch the recording within 30 days of purchase.</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="bg-primary text-primary-foreground rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm mt-1">2</div>
-                    <div>
-                      <h4 className="font-semibold text-foreground">Try the Techniques</h4>
-                      <p>Apply what you've learned in your practice and see the results for yourself.</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="bg-primary text-primary-foreground rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm mt-1">3</div>
-                    <div>
-                      <h4 className="font-semibold text-foreground">Not Satisfied? Get Your Money Back</h4>
-                      <p>If you're not completely satisfied within 30 days, contact us for a full refund.</p>
-                    </div>
-                  </div>
-                </div>
+              <hr className="my-6" />
+              
+              <h3 className="text-lg font-semibold text-foreground">2. Eligibility Requirements</h3>
+              
+              <h4 className="font-semibold text-foreground">1. Active Engagement</h4>
+              <ul className="list-disc list-inside space-y-1 ml-4">
+                <li>Attend the live session <strong>or</strong> watch the full recording within the Guarantee Period.</li>
+                <li>Make a reasonable attempt to implement at least one of the techniques taught (e.g., in a clinical simulation or patient case).</li>
+              </ul>
+              
+              <h4 className="font-semibold text-foreground">2. Feedback for Improvement</h4>
+              <ul className="list-disc list-inside space-y-1 ml-4">
+                <li>When requesting a refund, provide concise feedback explaining <strong>why</strong> the masterclass fell short for you. Your insights help us refine the curriculum and guard against misuse.</li>
+              </ul>
+              
+              <h4 className="font-semibold text-foreground">3. Timely Request</h4>
+              <ul className="list-disc list-inside space-y-1 ml-4">
+                <li>Submit your request <strong>within</strong> the 30‑day window. Requests received after that date are not eligible.</li>
+              </ul>
+              
+              <hr className="my-6" />
+              
+              <h3 className="text-lg font-semibold text-foreground">3. How to Request a Refund</h3>
+              <p>Contact us through <strong>one</strong> of the channels below and include:</p>
+              <ul className="list-disc list-inside space-y-1 ml-4">
+                <li>Your full name</li>
+                <li>The e‑mail address you used for registration</li>
+                <li>Order ID or transaction reference</li>
+                <li>Your feedback (3–5 sentences is sufficient)</li>
+              </ul>
+              
+              <div className="overflow-x-auto">
+                <table className="w-full border border-border rounded-lg">
+                  <thead>
+                    <tr className="bg-muted/50">
+                      <th className="border-b border-border p-3 text-left font-semibold text-foreground">Channel</th>
+                      <th className="border-b border-border p-3 text-left font-semibold text-foreground">How to reach us</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="border-b border-border p-3 font-semibold">Website</td>
+                      <td className="border-b border-border p-3">Use the <strong>"Contact Us"</strong> form linked at the bottom of our website.</td>
+                    </tr>
+                    <tr>
+                      <td className="border-b border-border p-3 font-semibold">Instagram</td>
+                      <td className="border-b border-border p-3">Send us a direct message.</td>
+                    </tr>
+                    <tr>
+                      <td className="border-border p-3 font-semibold">Email</td>
+                      <td className="border-border p-3">Write to the support e‑mail address published on our website.</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
               
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">What's Covered</h3>
-                <ul className="space-y-2 list-disc list-inside">
-                  <li>Full refund of the masterclass fee (€27 Early Bird Special or €57 regular price)</li>
-                  <li>No questions asked policy - your satisfaction is our priority</li>
-                  <li>Valid for 30 days from the date of purchase</li>
-                  <li>Applies to both live attendance and recorded access</li>
-                </ul>
-              </div>
+              <hr className="my-6" />
               
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">How to Request a Refund</h3>
-                <div className="bg-muted/50 rounded-lg p-4">
-                  <p className="mb-4">To request your refund, simply contact us using any of these methods:</p>
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-2">
-                      <FileText className="w-4 h-4 text-primary" />
-                      <button 
-                        onClick={() => window.location.href = 'mailto:DRsroitman@gmail.com'} 
-                        className="text-primary hover:underline"
-                      >
-                        Email Support
-                      </button>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Send className="w-4 h-4 text-blue-500" />
-                      <span>Telegram: <a href="https://t.me/drroitman" className="text-primary hover:underline">@drroitman</a></span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Instagram className="w-4 h-4 text-purple-500" />
-                      <span>Instagram: <a href="https://www.instagram.com/dr.roitman/" className="text-primary hover:underline">@dr.roitman</a></span>
-                    </div>
-                  </div>
-                  <p className="mt-4 text-sm">Include your name, email used for registration, and the reason for your refund request (optional).</p>
-                </div>
-              </div>
+              <h3 className="text-lg font-semibold text-foreground">4. Review & Decision Process</h3>
+              <ol className="list-decimal list-inside space-y-2">
+                <li><strong>Acknowledgement</strong> – We'll confirm receipt within <strong>24 hours</strong> (business days).</li>
+                <li><strong>Evaluation</strong> – A clinician from our faculty will review your feedback; we may request a brief video or phone conversation (max 15 minutes) to clarify details.</li>
+                <li><strong>Outcome</strong> – You will receive a written decision within <strong>5 business days</strong> of your complete submission.
+                  <em className="block mt-1 ml-4">If your claim is validated, we will authorise a full refund.</em>
+                </li>
+              </ol>
               
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">Processing Time</h3>
-                <p>Refunds are typically processed within 3-5 business days. You'll receive confirmation once the refund has been issued to your original payment method.</p>
-              </div>
+              <hr className="my-6" />
               
-              <div className="bg-accent/5 border border-accent/20 rounded-lg p-4">
-                <h4 className="font-semibold text-foreground mb-2">Why We Offer This Guarantee</h4>
-                <p>Dr. Roitman's proven techniques have a 100% success rate in live demonstrations. We're confident that our scientifically backed methods will transform your endodontic practice. This guarantee removes any risk from your investment in professional development.</p>
-              </div>
+              <h3 className="text-lg font-semibold text-foreground">5. Refund Execution</h3>
+              <ul className="list-disc list-inside space-y-1">
+                <li>Approved refunds are issued to the original payment method within <strong>3–5 business days</strong> of approval.</li>
+                <li>A confirmation e‑mail will be sent once funds are released.</li>
+              </ul>
               
-              <div className="text-sm text-muted-foreground">
-                <p>Last updated: January 2025</p>
+              <hr className="my-6" />
+              
+              <h3 className="text-lg font-semibold text-foreground">6. Anti‑Abuse Clause</h3>
+              <p>We reserve the right to refuse refunds in cases of:</p>
+              <ul className="list-disc list-inside space-y-1">
+                <li><strong>Evident misuse</strong> (e.g., multiple refund requests across successive cohorts).</li>
+                <li><strong>Failure to engage</strong> with the content (no attendance or view‑through data).</li>
+                <li><strong>Chargebacks</strong> initiated before following the process above.</li>
+              </ul>
+              <p>All decisions are made in good faith and in accordance with EU consumer‑protection standards.</p>
+              
+              <hr className="my-6" />
+              
+              <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
+                <h4 className="font-semibold text-foreground mb-2">Questions?</h4>
+                <p>Please reach out—our goal is to ensure you receive the educational value you expect <strong>and</strong> to learn from your constructive feedback.</p>
               </div>
             </div>
           </div>
