@@ -11,7 +11,7 @@ import CalendlyWidget from "@/components/CalendlyWidget";
 import { ToothLocationIcon, ToothSettingsIcon, ToothKeyIcon, ToothCareIcon } from "@/components/DentalIcons";
 const Index = () => {
   const [timeLeft, setTimeLeft] = useState({
-    days: 15,
+    days: 25,
     hours: 4,
     minutes: 32,
     seconds: 15
@@ -80,7 +80,7 @@ const Index = () => {
               ONLY 47 SPOTS LEFT
             </Badge>
             <span>•</span>
-            <span className="font-semibold">72% OFF ENDS SOON!</span>
+            <span className="font-semibold">53% OFF ENDS SOON!</span>
           </div>
         </div>
       </div>
@@ -198,10 +198,10 @@ const Index = () => {
                 
                 <div className="text-center mb-6">
                   <div className="flex items-center justify-center gap-4 mb-2">
-                    <span className="text-3xl text-red-400 line-through font-bold">€97</span>
+                    <span className="text-3xl text-red-400 line-through font-bold">€57</span>
                     <span className="text-5xl font-black text-accent-glow">€27</span>
                   </div>
-                  <p className="text-white/90 font-semibold">Early Bird Special (Save 72%)</p>
+                  <p className="text-white/90 font-semibold">Early Bird Special (Save 53%)</p>
                 </div>
                 
                 <Button variant="cta" size="xl" className="w-full text-lg font-bold animate-pulse-glow mb-4" onClick={() => document.getElementById('booking')?.scrollIntoView({
@@ -819,7 +819,7 @@ const Index = () => {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <Badge className="mb-6 bg-destructive text-destructive-foreground px-6 py-3 text-base font-bold animate-pulse">
-                🚨 LIMITED TIME: 72% OFF EARLY BIRD SPECIAL
+                🚨 LIMITED TIME: 53% OFF EARLY BIRD SPECIAL
               </Badge>
               
               <EditableText isEditing={isEditing} as="h2" className="text-4xl lg:text-6xl font-black text-white mb-8 leading-tight">
@@ -840,7 +840,7 @@ const Index = () => {
                     </div>
                     
                     <div className="flex items-center justify-center gap-2 mb-4">
-                      <span className="text-2xl text-white/60 line-through">€97</span>
+                      <span className="text-2xl text-white/60 line-through">€57</span>
                       <span className="text-5xl font-black text-accent-glow">€27</span>
                     </div>
                     <EditableText isEditing={isEditing} as="p" className="text-white/90 font-medium">Early Bird Special Ends Soon!</EditableText>

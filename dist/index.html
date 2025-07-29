@@ -11,6 +11,20 @@
     <link rel="icon" type="image/x-icon" href="https://d1yei2z3i6k35z.cloudfront.net/11922468/67ec02d73e2cb_459061577_884924966845685_6646581295662297536_n.jpg" />
     <link rel="apple-touch-icon" href="https://d1yei2z3i6k35z.cloudfront.net/11922468/67ec02d73e2cb_459061577_884924966845685_6646581295662297536_n.jpg" />
     
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '735975949298040');
+    fbq('track', 'PageView');
+    </script>
+    
     <!-- Google Analytics - Conditional Loading -->
     <script>
       // Initialize dataLayer and gtag function regardless of consent
@@ -41,26 +55,49 @@
         const cookieConsent = localStorage.getItem('cookieConsent');
         if (cookieConsent === 'accepted' || cookieConsent === 'essentials-plus-analytics') {
           loadGoogleAnalytics();
+          loadMetaPixel();
         }
       });
       
       // Global function to enable analytics (called by React components)
       window.enableGoogleAnalytics = loadGoogleAnalytics;
+      
+      // Function to enable additional Meta Pixel tracking after consent
+      function loadMetaPixel() {
+        if (window.fbq) {
+          // Additional tracking events can be added here when user consents
+          console.log('Meta Pixel additional tracking enabled with consent');
+        }
+      }
+      
+      // Global function to enable Meta Pixel (called by React components)
+      window.enableMetaPixel = loadMetaPixel;
     </script>
 
-    <meta property="og:title" content="endo-elevate-hub" />
-    <meta property="og:description" content="Lovable Generated Project" />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="Canal Localization Masterclass - Master Endodontics with Dr. Roitman" />
+    <meta property="og:description" content="Join Dr. Roitman's exclusive masterclass and learn advanced canal localization techniques. Transform your endodontic practice today." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta property="og:url" content="https://jovial-praline-17b667.netlify.app/" />
+    <meta property="og:image" content="YOUR_CUSTOM_IMAGE_URL_HERE" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-    <script type="module" crossorigin src="/assets/index-osJcpEDy.js"></script>
+    <meta name="twitter:title" content="Canal Localization Masterclass - Master Endodontics with Dr. Roitman" />
+    <meta name="twitter:description" content="Join Dr. Roitman's exclusive masterclass and learn advanced canal localization techniques. Transform your endodontic practice today." />
+    <meta name="twitter:image" content="YOUR_CUSTOM_IMAGE_URL_HERE" />
+    <script type="module" crossorigin src="/assets/index-DKs2eXqg.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-nkZHxhpU.css">
   </head>
 
   <body>
+    <!-- Facebook Pixel (noscript) -->
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=735975949298040&ev=PageView&noscript=1"
+    /></noscript>
+    
     <div id="root"></div>
   </body>
 </html>
