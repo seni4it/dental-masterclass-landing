@@ -1754,7 +1754,7 @@ ${name}`);
             onClick={(e) => e.stopPropagation()}
           >
             <div className="sticky top-0 bg-white border-b border-border p-6 flex items-center justify-between">
-              <h2 className="text-2xl font-bold text-foreground">Terms and Conditions</h2>
+              <h2 className="text-2xl font-bold text-foreground">Canal Localization Masterclass - Terms & Conditions</h2>
               <button 
                 onClick={() => setShowTermsConditions(false)}
                 className="p-2 hover:bg-muted rounded-full transition-colors"
@@ -1762,86 +1762,154 @@ ${name}`);
                 <X className="w-5 h-5" />
               </button>
             </div>
-            <div className="p-6 space-y-6 text-muted-foreground">
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">1. Acceptance of Terms</h3>
-                <p>By registering for and attending the Canal Localization Masterclass, you agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, please do not register for the course.</p>
+            <div className="p-6 space-y-6 text-muted-foreground prose prose-sm max-w-none">
+              <p className="text-sm italic text-muted-foreground">Effective 29 July 2025</p>
+              
+              <hr className="my-6" />
+              
+              <h3 className="text-lg font-semibold text-foreground">1  |  Acceptance of Terms</h3>
+              <p>By <strong>registering, purchasing, subscribing to, or attending</strong> the Canal Localization Masterclass ("Course"), you acknowledge that you have read, understood, and <strong>agree to be bound by these Terms & Conditions</strong>. If you disagree with any part of the Terms, <strong>do not proceed with registration or attendance</strong>.</p>
+              
+              <hr className="my-6" />
+              
+              <h3 className="text-lg font-semibold text-foreground">2  |  Registration & Payment</h3>
+              <ol className="list-decimal list-inside space-y-2">
+                <li><strong>Confirmation</strong> – Your seat is secured only after full payment is received.</li>
+                <li><strong>Pricing</strong> – Early‑Bird rates are limited‑time offers and subject to seat availability. All fees are quoted in euros (€); <strong>VAT or other applicable taxes may be added at checkout unless expressly stated otherwise</strong>.</li>
+                <li><strong>Secure Processing</strong> – Payments are handled exclusively by authorised providers; we do not store card details on our servers.</li>
+              </ol>
+              
+              <hr className="my-6" />
+              
+              <h3 className="text-lg font-semibold text-foreground">3  |  Course Content & Access</h3>
+              <ul className="list-disc list-inside space-y-1">
+                <li>Live, instructor‑led masterclass with interactive Q&A.</li>
+                <li><strong>Recording automatically delivered</strong> to all registrants; lifetime streaming access included.</li>
+                <li>Downloadable resources (e.g., slides, checklists).</li>
+                <li>Content is licensed for your personal professional use only; redistribution is prohibited (see Section 4).</li>
+              </ul>
+              
+              <hr className="my-6" />
+              
+              <h3 className="text-lg font-semibold text-foreground">4  |  Intellectual Property</h3>
+              <p>All videos, images, hand‑outs, software, and techniques are the intellectual property of Dr Roitman and LearnEndo.io. Any reproduction, distribution, public display, or commercial exploitation without <strong>prior written consent</strong> is strictly forbidden.</p>
+              
+              <hr className="my-6" />
+              
+              <h3 className="text-lg font-semibold text-foreground">5  |  Professional Use & Disclaimer</h3>
+              <ul className="list-disc list-inside space-y-1">
+                <li>Materials are provided for educational purposes; local laws and professional guidelines take precedence.</li>
+                <li>You remain solely responsible for patient outcomes and clinical decisions.</li>
+                <li>No representation is made that specific clinical results are guaranteed.</li>
+              </ul>
+              
+              <hr className="my-6" />
+              
+              <h3 className="text-lg font-semibold text-foreground">6  |  Anti‑Abuse Clause</h3>
+              <p>We reserve the right to refuse refunds in cases of:</p>
+              <ul className="list-disc list-inside space-y-1">
+                <li><strong>Evident misuse</strong> (e.g., multiple refund requests across successive cohorts).</li>
+                <li><strong>Failure to engage</strong> with the content (no attendance or view‑through data).</li>
+                <li><strong>Chargebacks</strong> initiated before following the refund process described in Section 7.</li>
+              </ul>
+              <p>All decisions are made in good faith and in accordance with EU consumer‑protection standards.</p>
+              
+              <hr className="my-6" />
+              
+              <h3 className="text-lg font-semibold text-foreground">7  |  30‑Day <strong>Fair‑Use Money‑Back Guarantee</strong></h3>
+              <p>We stand behind the Course. If, after <strong>active participation</strong> and a <strong>good‑faith attempt</strong> to apply at least one taught technique, you believe the programme failed to deliver its stated learning objectives, you may request a full refund under the conditions below. <em>(For circumstances that may void eligibility, see Section 6 Anti‑Abuse Clause.)</em></p>
+              
+              <div className="overflow-x-auto">
+                <table className="w-full border border-border rounded-lg">
+                  <thead>
+                    <tr className="bg-muted/50">
+                      <th className="border-b border-border p-3 text-left font-semibold text-foreground">Item</th>
+                      <th className="border-b border-border p-3 text-left font-semibold text-foreground">Guarantee Details</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="border-b border-border p-3 font-semibold">Coverage</td>
+                      <td className="border-b border-border p-3">100% of the Course fee (€27 Early‑Bird / €57 standard).</td>
+                    </tr>
+                    <tr>
+                      <td className="border-b border-border p-3 font-semibold">Window</td>
+                      <td className="border-b border-border p-3">30 calendar days from purchase date.</td>
+                    </tr>
+                    <tr>
+                      <td className="border-b border-border p-3 font-semibold">Process</td>
+                      <td className="border-b border-border p-3">Submit your request via the <strong>Contact Us</strong> form (bottom of our website) <em>or</em> direct message on our official Instagram <em>or</em> the email address listed on the website. Include your name, registration email, order ID, and 3–5 sentences of constructive feedback.</td>
+                    </tr>
+                    <tr>
+                      <td className="border-b border-border p-3 font-semibold">Review</td>
+                      <td className="border-b border-border p-3">We acknowledge within 24 business hours and issue a written decision within 5 business days.</td>
+                    </tr>
+                    <tr>
+                      <td className="border-border p-3 font-semibold">Payment of Refund</td>
+                      <td className="border-border p-3">Approved refunds are returned to the original payment method within 3–5 business days of approval.</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
               
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">2. Course Registration and Payment</h3>
-                <ul className="space-y-2 list-disc list-inside">
-                  <li>Registration is confirmed upon receipt of payment</li>
-                  <li>Early Bird pricing is subject to availability and time limits</li>
-                  <li>All prices are in Euros and include applicable taxes</li>
-                  <li>Payment is processed securely through our authorized payment providers</li>
-                </ul>
+              <p>This guarantee supplements—without limiting—your statutory rights under EU consumer‑protection law.</p>
+              
+              <hr className="my-6" />
+              
+              <h3 className="text-lg font-semibold text-foreground">8  |  Cancellation, Rescheduling & Force Majeure</h3>
+              
+              <div className="overflow-x-auto">
+                <table className="w-full border border-border rounded-lg">
+                  <thead>
+                    <tr className="bg-muted/50">
+                      <th className="border-b border-border p-3 text-left font-semibold text-foreground">Scenario</th>
+                      <th className="border-b border-border p-3 text-left font-semibold text-foreground">Policy</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="border-b border-border p-3 font-semibold">Learner‑initiated cancellation</td>
+                      <td className="border-b border-border p-3">You may cancel <strong>no later than 24 hours before</strong> the scheduled start time of the live session ("Cancellation Window"). Cancellations received after this window are treated as attended enrolments: you will still receive the recording and all materials, but <strong>no refund is issued for late cancellations</strong>. (You may still claim under the Fair‑Use Money‑Back Guarantee in Section 7 if you meet its conditions and are not excluded under Section 6.)</td>
+                    </tr>
+                    <tr>
+                      <td className="border-b border-border p-3 font-semibold">Rescheduling or force majeure</td>
+                      <td className="border-b border-border p-3">We may reschedule or modify delivery due to events beyond our control (e.g., platform outages, instructor illness, natural disasters). If rescheduling is not feasible, a full refund will be provided.</td>
+                    </tr>
+                    <tr>
+                      <td className="border-border p-3 font-semibold">Technical failures on our side</td>
+                      <td className="border-border p-3">Documented technical issues that prevent your access will be remedied promptly or refunded in full.</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
               
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">3. Course Content and Access</h3>
-                <ul className="space-y-2 list-disc list-inside">
-                  <li>The masterclass includes live instruction and Q&A session</li>
-                  <li>Recorded version provided for lifetime access</li>
-                  <li>Downloadable resources and materials included</li>
-                  <li>CE credits provided upon completion</li>
-                  <li>Content is for personal professional use only</li>
-                </ul>
-              </div>
+              <hr className="my-6" />
               
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">4. Intellectual Property</h3>
-                <p>All course materials, including but not limited to videos, presentations, handouts, and techniques, are the intellectual property of Dr. Roitman and LearnEndo.io. Reproduction, distribution, or commercial use without written permission is prohibited.</p>
-              </div>
+              <h3 className="text-lg font-semibold text-foreground">9  |  Privacy & Data Protection</h3>
+              <p>We collect only the data necessary for course delivery, certification, and compliance. Data are never sold. Third‑party processors (e.g., payment gateways, scheduling tools) receive only the information required to perform their contracted services, subject to EU GDPR.</p>
               
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">5. Professional Use and Disclaimer</h3>
-                <ul className="space-y-2 list-disc list-inside">
-                  <li>Course content is for educational purposes only</li>
-                  <li>Participants are responsible for ensuring techniques comply with local regulations</li>
-                  <li>Professional judgment should always be exercised in clinical situations</li>
-                  <li>No guarantee of specific clinical outcomes</li>
-                </ul>
-              </div>
+              <hr className="my-6" />
               
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">6. Cancellation and Refund Policy</h3>
-                <ul className="space-y-2 list-disc list-inside">
-                  <li>100% money-back guarantee within 30 days of purchase</li>
-                  <li>Refunds processed within 3-5 business days</li>
-                  <li>Force majeure events may result in course rescheduling</li>
-                  <li>Technical issues will be resolved or full refunds provided</li>
-                </ul>
-              </div>
+              <h3 className="text-lg font-semibold text-foreground">10  |  Technical Requirements</h3>
+              <ul className="list-disc list-inside space-y-1">
+                <li>Stable internet (≥ 3 Mbps down / 1 Mbps up) and a modern browser (Chrome, Edge, Safari, Firefox) are required.</li>
+                <li>If technical problems prevent live attendance, you will still receive the full recording and support.</li>
+              </ul>
               
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">7. Privacy and Data Protection</h3>
-                <p>We are committed to protecting your privacy. Registration information is used solely for course delivery and communication. We do not sell or share personal data with third parties except as necessary for course delivery (e.g., Calendly for scheduling).</p>
-              </div>
+              <hr className="my-6" />
               
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">8. Technical Requirements</h3>
-                <ul className="space-y-2 list-disc list-inside">
-                  <li>Stable internet connection required for live session</li>
-                  <li>Compatible with major browsers and devices</li>
-                  <li>Technical support provided for access issues</li>
-                  <li>Recording available if technical problems prevent live attendance</li>
-                </ul>
-              </div>
+              <h3 className="text-lg font-semibold text-foreground">11  |  Limitation of Liability</h3>
+              <p>To the maximum extent permitted by law, LearnEndo.io and Dr Roitman shall not be liable for indirect, incidental, or consequential damages arising from Course participation. Aggregate liability is capped at the amount you paid for the Course.</p>
               
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">9. Limitation of Liability</h3>
-                <p>LearnEndo.io and Dr. Roitman shall not be liable for any indirect, incidental, special, or consequential damages arising from course participation. Total liability is limited to the course registration fee.</p>
-              </div>
+              <hr className="my-6" />
               
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">10. Contact Information</h3>
-                <p>For questions about these terms or the course, please use our contact form or reach out through our official social media channels. Contact information is available in the Contact Us section of our website.</p>
-              </div>
+              <h3 className="text-lg font-semibold text-foreground">12  |  Contact</h3>
+              <p>Questions about these Terms or the Course? Please use the <strong>Contact Us</strong> form located at the bottom of our website or message us through our verified social media channels. We aim to respond within one business day.</p>
               
-              <div className="text-sm text-muted-foreground border-t border-border pt-4">
-                <p>Last updated: January 2025</p>
-                <p>These terms are governed by applicable law and any disputes shall be resolved through appropriate legal channels.</p>
+              <hr className="my-6" />
+              
+              <div className="text-sm text-muted-foreground border-t border-border pt-4 italic">
+                <p><em>These Terms & Conditions are governed by, and construed in accordance with, the laws of Italy and the European Union.</em></p>
               </div>
             </div>
           </div>
