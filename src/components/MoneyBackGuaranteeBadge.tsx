@@ -3,10 +3,14 @@ import { Shield, CheckCircle } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
 export const MoneyBackGuaranteeBadge = () => {
+  const handleClick = () => {
+    document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <div className="relative inline-block">
+    <div className="relative inline-block cursor-pointer" onClick={handleClick}>
       <div className="bg-gradient-to-br from-primary to-primary-glow p-6 rounded-2xl border-4 border-white shadow-lg brand-shadow transform hover:scale-105 transition-all duration-300">
-        <div className="flex flex-col items-center text-center text-white">
+        <div className="flex flex-col items-center justify-center text-center text-white">
           <div className="relative mb-4">
             <div className="absolute inset-0 bg-white/20 rounded-full blur-xl"></div>
             <Shield className="w-16 h-16 relative z-10 animate-pulse-glow" />
@@ -19,7 +23,7 @@ export const MoneyBackGuaranteeBadge = () => {
             <div className="text-3xl font-black text-accent-glow">
               GUARANTEE
             </div>
-            <div className="text-sm font-semibold opacity-90 max-w-48">
+            <div className="text-sm font-semibold opacity-90 max-w-48 text-center">
               If you're not completely satisfied, get your money back. No questions asked.
             </div>
           </div>
