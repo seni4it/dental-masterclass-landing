@@ -491,7 +491,7 @@ const Index = () => {
               
               {/* Money Back Guarantee Badge */}
               <div className="flex justify-center mt-12">
-                <MoneyBackGuaranteeBadge />
+                <MoneyBackGuaranteeBadge onBookClick={() => setShowTimeSlots(true)} />
               </div>
             </div>
           </div>

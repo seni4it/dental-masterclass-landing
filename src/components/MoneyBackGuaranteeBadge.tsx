@@ -2,9 +2,15 @@ import React from 'react';
 import { Shield, CheckCircle } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
-export const MoneyBackGuaranteeBadge = () => {
+interface MoneyBackGuaranteeBadgeProps {
+  onBookClick?: () => void;
+}
+
+export const MoneyBackGuaranteeBadge = ({ onBookClick }: MoneyBackGuaranteeBadgeProps) => {
   const handleClick = () => {
-    document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' });
+    if (onBookClick) {
+      onBookClick();
+    }
   };
 
   return (
