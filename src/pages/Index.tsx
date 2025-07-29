@@ -1072,7 +1072,7 @@ const Index = () => {
                   <span>Is there a money-back guarantee?</span>
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground text-base leading-relaxed">
-                  <span>Yes! We offer a 100% satisfaction guarantee. If you're not completely satisfied with the masterclass content, contact us within 30 days for a full refund. We're confident you'll find tremendous value in Dr. Roitman's proven techniques.</span>
+                  <span>Yes! We offer a 30-Day Fair-Use Money-Back Guarantee. If, after active participation and a good-faith attempt to apply at least one taught technique, you believe the programme failed to deliver its stated learning objectives, you may request a full refund within 30 days. Simply provide 3-5 sentences of constructive feedback about why the masterclass fell short for you. We're confident you'll find tremendous value in Dr. Roitman's proven techniques. *Terms and conditions apply.</span>
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
@@ -2268,6 +2268,15 @@ ${name}`);
               <div className="text-center text-muted-foreground">
                 <p className="mb-2">© 2025 LearnEndo.io. All rights reserved.</p>
                 <p className="text-sm">Transforming dental education worldwide</p>
+              </div>
+              
+              {/* Educational Disclaimer for Meta Pixel */}
+              <div className="mt-8 pt-8 border-t border-border text-center">
+                <p className="text-xs text-muted-foreground max-w-3xl mx-auto">
+                  <strong>Educational Disclaimer:</strong> This website provides professional dental education and training content exclusively for licensed dental professionals. 
+                  No patient data is collected or processed. All content is for educational purposes only and does not constitute medical advice. 
+                  This is a professional development platform for continuing dental education.
+                </p>
               </div>
             </div>
           </div>
