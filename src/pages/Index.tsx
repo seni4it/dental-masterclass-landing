@@ -401,7 +401,7 @@ const Index = () => {
                       className="text-white cursor-pointer hover:text-orange-300 transition-colors"
                       onClick={() => setShowTimeSlots(true)}
                     >
-                      🔥 LIMITED TIME OFFER ENDS IN:
+                      🔥 EARLY BIRD DISCOUNT ENDS IN:
                     </span>
                   </div>
                   <div className="flex gap-3 text-xl font-black justify-center mb-4">
@@ -429,7 +429,7 @@ const Index = () => {
                       className="bg-destructive text-destructive-foreground animate-pulse font-medium cursor-pointer hover:bg-destructive/80 transition-colors"
                       onClick={() => setShowTimeSlots(true)}
                     >
-                      🔥 LIMITED TIME
+                      🔥 EARLY BIRD DISCOUNT
                     </Badge>
                   </div>
                   
@@ -1196,7 +1196,7 @@ ${name}`);
                 className="mb-6 bg-destructive text-destructive-foreground px-6 py-3 text-base font-bold animate-pulse cursor-pointer hover:bg-destructive/80 transition-colors"
                 onClick={() => setShowTimeSlots(true)}
               >
-                🚨 LIMITED TIME: 53% OFF EARLY BIRD SPECIAL
+                🚨 EARLY BIRD DISCOUNT: 53% OFF SPECIAL
               </Badge>
               
               <h2 className="text-4xl lg:text-6xl font-black text-white mb-8 leading-tight">

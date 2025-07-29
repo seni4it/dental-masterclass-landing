@@ -161,7 +161,7 @@ const Index = () => {
                 <div className="text-center mb-6">
                   <div className="flex items-center justify-center gap-2 text-lg font-bold mb-4">
                     <Timer className="w-5 h-5" />
-                    <span className="text-white">🔥 LIMITED TIME OFFER ENDS IN:</span>
+                    <span className="text-white">🔥 EARLY BIRD DISCOUNT ENDS IN:</span>
                   </div>
                   <div className="flex gap-3 text-xl font-black justify-center mb-4">
                     <div className="bg-white/20 px-3 py-2 rounded-lg min-w-[50px]">
@@ -184,7 +184,7 @@ const Index = () => {
                   
                   {/* Limited time badge */}
                   <div className="flex justify-center mb-2">
-                    <Badge className="bg-destructive text-destructive-foreground animate-pulse font-medium">🔥 LIMITED TIME</Badge>
+                    <Badge className="bg-destructive text-destructive-foreground animate-pulse font-medium">🔥 EARLY BIRD DISCOUNT</Badge>
                   </div>
                   
                   {/* Spots remaining centered */}
@@ -819,7 +819,7 @@ const Index = () => {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <Badge className="mb-6 bg-destructive text-destructive-foreground px-6 py-3 text-base font-bold animate-pulse">
-                🚨 LIMITED TIME: 53% OFF EARLY BIRD SPECIAL
+                🚨 EARLY BIRD DISCOUNT: 53% OFF SPECIAL
               </Badge>
               
               <EditableText isEditing={isEditing} as="h2" className="text-4xl lg:text-6xl font-black text-white mb-8 leading-tight">
