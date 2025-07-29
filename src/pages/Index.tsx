@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Calendar, Clock, Users, Video, RotateCcw, CheckCircle, Award, Target, AlertTriangle, Microscope, GraduationCap, FileText, Phone, Timer, Shield, TrendingUp, Star, ArrowRight, Play, Zap, MessageCircle, Instagram, Send, X } from "lucide-react";
 import { ToothLocationIcon, ToothSettingsIcon, ToothKeyIcon, ToothCareIcon } from "@/components/DentalIcons";
+import { MoneyBackGuaranteeBadge } from "@/components/MoneyBackGuaranteeBadge";
 
 const Index = () => {
   const [timeLeft, setTimeLeft] = useState({
@@ -486,6 +487,11 @@ const Index = () => {
                     🎁 BONUS: Can't attend live? No problem! Full HD recording included for lifetime access
                   </p>
                 </div>
+              </div>
+              
+              {/* Money Back Guarantee Badge */}
+              <div className="flex justify-center mt-12">
+                <MoneyBackGuaranteeBadge />
               </div>
             </div>
           </div>
