@@ -23,8 +23,8 @@ export const MoneyBackGuaranteeBadge = () => {
             <div className="text-3xl font-black text-accent-glow">
               GUARANTEE
             </div>
-            <div className="text-sm font-semibold opacity-90 max-w-48 text-center">
-              If you're not completely satisfied, get your money back. No questions asked.
+            <div className="text-sm font-semibold opacity-90 max-w-52 text-center mx-auto">
+              If you're not completely satisfied, get your money back.
             </div>
           </div>
           
