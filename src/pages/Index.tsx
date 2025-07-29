@@ -11,7 +11,7 @@ import { ToothLocationIcon, ToothSettingsIcon, ToothKeyIcon, ToothCareIcon } fro
 
 const Index = () => {
   const [timeLeft, setTimeLeft] = useState({
-    days: 15,
+    days: 25,
     hours: 4,
     minutes: 32,
     seconds: 15
@@ -160,7 +160,7 @@ const Index = () => {
               className="font-semibold cursor-pointer hover:text-orange-400 transition-colors"
               onClick={() => setShowTimeSlots(true)}
             >
-              72% OFF ENDS SOON!
+              53% OFF ENDS SOON!
             </span>
           </div>
         </div>
@@ -444,10 +444,10 @@ const Index = () => {
                 
                 <div className="text-center mb-6">
                   <div className="flex items-center justify-center gap-4 mb-2">
-                    <span className="text-3xl text-red-400 line-through font-bold">€97</span>
+                    <span className="text-3xl text-red-400 line-through font-bold">€57</span>
                     <span className="text-5xl font-black text-accent-glow">€27</span>
                   </div>
-                  <p className="text-white/90 font-semibold">Early Bird Special (Save 72%)</p>
+                  <p className="text-white/90 font-semibold">Early Bird Special (Save 53%)</p>
                 </div>
                 
                 <Button variant="cta" size="xl" className="w-full text-sm sm:text-lg font-bold transition-all duration-300 ease-in-out hover:scale-[1.02] hover:shadow-xl hover:bg-accent/90 mb-4 px-4 sm:px-8 py-3 sm:py-4" onClick={() => {
@@ -1196,7 +1196,7 @@ ${name}`);
                 className="mb-6 bg-destructive text-destructive-foreground px-6 py-3 text-base font-bold animate-pulse cursor-pointer hover:bg-destructive/80 transition-colors"
                 onClick={() => setShowTimeSlots(true)}
               >
-                🚨 LIMITED TIME: 72% OFF EARLY BIRD SPECIAL
+                🚨 LIMITED TIME: 53% OFF EARLY BIRD SPECIAL
               </Badge>
               
               <h2 className="text-4xl lg:text-6xl font-black text-white mb-8 leading-tight">
@@ -1217,7 +1217,7 @@ ${name}`);
                     </div>
                     
                     <div className="flex items-center justify-center gap-2 mb-4">
-                      <span className="text-2xl text-white/60 line-through">€97</span>
+                      <span className="text-2xl text-white/60 line-through">€57</span>
                       <span className="text-5xl font-black text-accent-glow">€27</span>
                     </div>
                     <p 
@@ -1556,7 +1556,7 @@ ${name}`);
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-3">What's Covered</h3>
                 <ul className="space-y-2 list-disc list-inside">
-                  <li>Full refund of the masterclass fee (€27 Early Bird Special or €97 regular price)</li>
+                  <li>Full refund of the masterclass fee (€27 Early Bird Special or €57 regular price)</li>
                   <li>No questions asked policy - your satisfaction is our priority</li>
                   <li>Valid for 30 days from the date of purchase</li>
                   <li>Applies to both live attendance and recorded access</li>
