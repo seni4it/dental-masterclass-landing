@@ -9,7 +9,7 @@ export const MoneyBackGuaranteeBadge = () => {
 
   return (
     <div className="relative inline-block cursor-pointer" onClick={handleClick}>
-      <div className="bg-gradient-to-br from-primary to-primary-glow p-6 rounded-2xl border-4 border-white shadow-lg brand-shadow transform hover:scale-105 transition-all duration-300">
+      <div className="bg-gradient-to-br from-primary to-primary-glow p-6 rounded-2xl border-4 border-white/80 shadow-lg brand-shadow transform hover:scale-105 transition-all duration-300">
         <div className="flex flex-col items-center justify-center text-center text-white">
           <div className="relative mb-4">
             <div className="absolute inset-0 bg-white/20 rounded-full blur-xl"></div>
