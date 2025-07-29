@@ -38,6 +38,9 @@ export const MoneyBackGuaranteeBadge = ({ onBookClick }: MoneyBackGuaranteeBadge
             <CheckCircle className="w-5 h-5 text-accent-glow" />
             <span className="text-sm font-bold">30-DAY GUARANTEE</span>
           </div>
+          <div className="text-xs opacity-75 mt-2 text-center">
+            * terms and conditions apply
+          </div>
         </div>
       </div>
       
