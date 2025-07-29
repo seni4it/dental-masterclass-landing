@@ -701,7 +701,7 @@ const Index = () => {
             {/* Stats Row */}
             <div className="grid md:grid-cols-4 gap-8 mb-16">
               <Card className="p-6 text-center brand-shadow hover:scale-105 transition-all duration-300">
-                <div className="text-4xl font-black text-primary mb-2">2,000+</div>
+                <div className="text-4xl font-black text-primary mb-2">100+</div>
                 <p className="text-muted-foreground font-medium">Dentists Trained</p>
               </Card>
               <Card className="p-6 text-center brand-shadow hover:scale-105 transition-all duration-300">
