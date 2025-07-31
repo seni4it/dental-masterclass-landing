@@ -230,3 +230,17 @@ All colors MUST be HSL.
 .scroll-animate.animate-fade-scale {
   animation: fadeInScale 0.8s ease-out forwards;
 }
+
+/* Thank you page animation */
+@keyframes bounce-slow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 2s ease-in-out infinite;
+}

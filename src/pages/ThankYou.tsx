@@ -1,958 +1,159 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Button } from "@/components/ui/button";
-import toothLogo from "@/assets/tooth-logo.png";
-import drRoitman from "@/assets/dr-roitman.png";
-import toothQuestion from "/lovable-uploads/78edbdfc-906b-4b3f-b44f-5bcedbf2144c.png";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Calendar, Clock, Users, Video, RotateCcw, CheckCircle, Award, Target, AlertTriangle, Microscope, GraduationCap, FileText, Phone, Timer, Shield, TrendingUp, Star, ArrowRight, Play, Zap } from "lucide-react";
-import CalendlyWidget from "@/components/CalendlyWidget";
-import { ToothLocationIcon, ToothSettingsIcon, ToothKeyIcon, ToothCareIcon } from "@/components/DentalIcons";
-import { EditableText } from "@/components/EditableText";
-import { MoneyBackGuaranteeBadge } from "@/components/MoneyBackGuaranteeBadge";
+import { CheckCircle, Mail, Calendar, Clock, ArrowRight, Sparkles } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const ThankYou = () => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [timeLeft, setTimeLeft] = useState({
-    days: 15,
-    hours: 4,
-    minutes: 32,
-    seconds: 15
-  });
+  const navigate = useNavigate();
 
-  // Countdown timer effect
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft(prev => {
-        if (prev.seconds > 0) {
-          return {
-            ...prev,
-            seconds: prev.seconds - 1
-          };
-        } else if (prev.minutes > 0) {
-          return {
-            ...prev,
-            minutes: prev.minutes - 1,
-            seconds: 59
-          };
-        } else if (prev.hours > 0) {
-          return {
-            ...prev,
-            hours: prev.hours - 1,
-            minutes: 59,
-            seconds: 59
-          };
-        } else if (prev.days > 0) {
-          return {
-            ...prev,
-            days: prev.days - 1,
-            hours: 23,
-            minutes: 59,
-            seconds: 59
-          };
-        }
-        return prev;
-      });
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
-
-  // Scroll animation effect
-  useEffect(() => {
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate-slide-up');
-        }
-      });
-    }, observerOptions);
-    const scrollElements = document.querySelectorAll('.scroll-animate');
-    scrollElements.forEach(el => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
-  
-  return <div className="min-h-screen bg-background">
-      {/* Urgency Banner - Enhanced */}
-      <div className="bg-destructive text-destructive-foreground text-center py-4 px-4">
-        <div className="container mx-auto">
-          <div className="flex flex-col items-center justify-center gap-3">
-            <div className="flex items-center gap-2 text-lg font-bold">
-              <Timer className="w-5 h-5" />
-              <span>🔥 LIMITED TIME OFFER ENDS IN:</span>
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-accent/5">
+      <div className="container mx-auto px-4 py-20">
+        <div className="max-w-3xl mx-auto">
+          {/* Success Animation */}
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center justify-center w-24 h-24 bg-green-100 rounded-full mb-6 animate-bounce-slow">
+              <CheckCircle className="w-12 h-12 text-green-600" />
             </div>
-            <div className="flex gap-3 text-2xl font-black">
-              <div className="bg-white/20 px-4 py-2 rounded-lg min-w-[60px]">
-                <div>{timeLeft.days}</div>
-                <div className="text-xs font-normal">DAYS</div>
-              </div>
-              <div className="bg-white/20 px-4 py-2 rounded-lg min-w-[60px]">
-                <div>{timeLeft.hours}</div>
-                <div className="text-xs font-normal">HRS</div>
-              </div>
-              <div className="bg-white/20 px-4 py-2 rounded-lg min-w-[60px]">
-                <div>{timeLeft.minutes}</div>
-                <div className="text-xs font-normal">MIN</div>
-              </div>
-              <div className="bg-white/20 px-4 py-2 rounded-lg min-w-[60px]">
-                <div>{timeLeft.seconds}</div>
-                <div className="text-xs font-normal">SEC</div>
-              </div>
-            </div>
-            <div className="flex items-center gap-4 text-sm">
-              <Badge className="bg-white text-destructive font-bold animate-pulse">
-                ONLY 47 SPOTS LEFT
-              </Badge>
-              <span>•</span>
-              <span className="font-semibold">72% OFF ENDS SOON!</span>
-            </div>
+            
+            <h1 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
+              Thank You for Booking!
+            </h1>
+            
+            <p className="text-xl text-muted-foreground">
+              Your spot in the Canal Localization Masterclass is confirmed
+            </p>
           </div>
+
+          {/* Confirmation Details */}
+          <Card className="mb-8 border-2 border-primary/20 shadow-xl">
+            <CardHeader className="bg-primary/5">
+              <CardTitle className="text-2xl flex items-center gap-2">
+                <Sparkles className="w-6 h-6 text-primary" />
+                Booking Confirmed
+              </CardTitle>
+              <CardDescription className="text-base">
+                We've sent a confirmation email with all the details
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="pt-6">
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <Calendar className="w-5 h-5 text-primary mt-1" />
+                  <div>
+                    <p className="font-semibold text-foreground">Date</p>
+                    <p className="text-muted-foreground">September 6, 2025</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-3">
+                  <Clock className="w-5 h-5 text-primary mt-1" />
+                  <div>
+                    <p className="font-semibold text-foreground">Time</p>
+                    <p className="text-muted-foreground">Your selected time slot</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-3">
+                  <Mail className="w-5 h-5 text-primary mt-1" />
+                  <div>
+                    <p className="font-semibold text-foreground">Confirmation Email</p>
+                    <p className="text-muted-foreground">Check your inbox for Zoom link and resources</p>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* What's Next */}
+          <Card className="mb-8">
+            <CardHeader>
+              <CardTitle className="text-xl">What Happens Next?</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-primary font-bold">1</span>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-foreground">Check Your Email</p>
+                    <p className="text-sm text-muted-foreground">
+                      You'll receive a confirmation email with your Zoom meeting link and password
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-primary font-bold">2</span>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-foreground">Save the Date</p>
+                    <p className="text-sm text-muted-foreground">
+                      Add the masterclass to your calendar - September 6, 2025
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-primary font-bold">3</span>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-foreground">Prepare Your Questions</p>
+                    <p className="text-sm text-muted-foreground">
+                      Dr. Roitman will answer your questions during the live Q&A session
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Additional Info */}
+          <div className="bg-accent/10 rounded-lg p-6 mb-8 border border-accent/20">
+            <h3 className="font-bold text-lg mb-3 text-foreground">Remember:</h3>
+            <ul className="space-y-2 text-muted-foreground">
+              <li className="flex items-start gap-2">
+                <CheckCircle className="w-4 h-4 text-accent mt-0.5" />
+                <span>You'll get lifetime access to the recording if you can't attend live</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle className="w-4 h-4 text-accent mt-0.5" />
+                <span>CE credits will be provided after completion</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle className="w-4 h-4 text-accent mt-0.5" />
+                <span>100% money-back guarantee if you're not satisfied</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Contact Support */}
+          <Card className="text-center">
+            <CardContent className="pt-6">
+              <p className="text-muted-foreground mb-4">
+                Have questions? Need help?
+              </p>
+              <p className="font-semibold text-foreground mb-6">
+                Contact us at: support@learnendo.io
+              </p>
+              
+              <Button 
+                onClick={() => navigate('/')}
+                className="gap-2"
+              >
+                Return to Homepage
+                <ArrowRight className="w-4 h-4" />
+              </Button>
+            </CardContent>
+          </Card>
         </div>
       </div>
-
-      {/* Hero Section - Completely Redesigned */}
-      <section className="gradient-hero py-20 lg:py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-black/10"></div>
-        
-        {/* Logo Left */}
-        <div className="absolute top-8 left-8 z-20">
-          <svg viewBox="0 0 200 200" className="h-16 w-16 text-white" fill="currentColor">
-            <path d="M100 20C130 20 155 45 155 75C155 105 130 130 100 130C70 130 45 105 45 75C45 45 70 20 100 20ZM100 170C120 170 140 155 140 140C140 125 125 110 110 110H90C75 110 60 125 60 140C60 155 80 170 100 170Z" />
-          </svg>
-        </div>
-        
-        {/* Logo Right */}
-        <div className="absolute top-8 right-8 z-20">
-          <img src="/lovable-uploads/711d1ae8-8371-4a6b-bb15-341475f9ccff.png" alt="Company Logo" className="h-16 w-auto" />
-        </div>
-        
-        {/* Floating Elements */}
-        <div className="absolute top-20 left-10 w-32 h-32 bg-accent/10 rounded-full blur-3xl animate-pulse-glow"></div>
-        <div className="absolute bottom-20 right-10 w-48 h-48 bg-primary/10 rounded-full blur-3xl animate-pulse-glow delay-1000"></div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12 animate-slide-up">
-              <Badge 
-                className="mb-6 bg-accent text-accent-foreground border-accent px-6 py-3 text-base font-bold animate-pulse-glow cursor-pointer hover:bg-accent/90 transition-colors"
-                onClick={() => document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                🔥 LIVE MASTERCLASS • SEPTEMBER 6, 2025
-              </Badge>
-              
-              {/* Tooth with Question Mark Icon - Bigger and No Bounce */}
-              <div className="flex justify-center mb-8">
-                <img src={toothQuestion} alt="Tooth with Question Mark" className="w-40 h-40" />
-              </div>
-              
-              <h1 className="text-5xl lg:text-7xl font-black text-white mb-8 leading-tight">
-                <EditableText isEditing={true} as="span">NEVER MISS A</EditableText>
-                <EditableText isEditing={true} as="span" className="block text-accent-glow animate-pulse-glow">CANAL AGAIN</EditableText>
-              </h1>
-              
-              <div className="max-w-4xl mx-auto mb-8">
-                <EditableText isEditing={isEditing} as="p" className="text-2xl lg:text-3xl text-white font-bold mb-4">STOP fearing ENDO Master the canal localization today!!</EditableText>
-                <EditableText isEditing={isEditing} as="p" className="text-xl text-white/90 mb-6">
-                  Eliminate missed canals • Prevent perforations • Boost confidence
-                </EditableText>
-              </div>
-              
-              {/* Value Proposition Cards */}
-              <div className="grid md:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto">
-                <Card className="bg-white/10 backdrop-blur-sm border-white/20 text-white">
-                  <CardContent className="p-6 text-center">
-                    <TrendingUp className="w-12 h-12 text-accent mx-auto mb-3" />
-                     <EditableText isEditing={isEditing} as="p" className="font-bold text-lg">98% Success Rate</EditableText>
-                     <EditableText isEditing={isEditing} as="p" className="text-white/80 text-sm">Among participants</EditableText>
-                  </CardContent>
-                </Card>
-                <Card className="bg-white/10 backdrop-blur-sm border-white/20 text-white">
-                  <CardContent className="p-6 text-center">
-                    <Users className="w-12 h-12 text-accent mx-auto mb-3" />
-                     <EditableText isEditing={isEditing} as="p" className="font-bold text-lg">2,000+ Dentists</EditableText>
-                     <EditableText isEditing={isEditing} as="p" className="text-white/80 text-sm">Already trained</EditableText>
-                  </CardContent>
-                </Card>
-                <Card className="bg-white/10 backdrop-blur-sm border-white/20 text-white">
-                  <CardContent className="p-6 text-center">
-                    <Award className="w-12 h-12 text-accent mx-auto mb-3" />
-                     <EditableText isEditing={isEditing} as="p" className="font-bold text-lg">4.9/5 Rating</EditableText>
-                     <EditableText isEditing={isEditing} as="p" className="text-white/80 text-sm">Average satisfaction</EditableText>
-                  </CardContent>
-                </Card>
-              </div>
-              
-              {/* Main CTA Section - Enhanced */}
-              <div className="bg-white/15 backdrop-blur-md rounded-2xl p-8 border border-white/20 max-w-2xl mx-auto mb-8">
-                <div className="flex items-center justify-center gap-2 mb-4">
-                  <Badge className="bg-destructive text-destructive-foreground animate-pulse">🔥 LIMITED TIME</Badge>
-                  <span className="text-white font-medium">Only 47 spots remaining</span>
-                </div>
-                
-                <div className="text-center mb-6">
-                  <div className="flex items-center justify-center gap-2 mb-2">
-                    <span className="text-2xl text-white/60 line-through">€97</span>
-                    <span className="text-4xl font-black text-accent-glow">€27</span>
-                  </div>
-                  <p className="text-white/90 font-semibold">Early Bird Special (Save 72%)</p>
-                </div>
-                
-                <Button variant="cta" size="xl" className="w-full text-lg font-bold animate-pulse-glow mb-4" onClick={() => document.getElementById('booking')?.scrollIntoView({
-                behavior: 'smooth'
-              })}>
-                  <Zap className="w-5 h-5 mr-2" />
-                  SECURE YOUR SPOT NOW
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </Button>
-                
-                {/* Enhanced Benefits */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm text-white/90">
-                  <div className="flex items-center gap-2 justify-center p-3 bg-white/10 rounded-lg">
-                    <Shield className="w-4 h-4 text-accent" />
-                    <span className="font-semibold">100% Money-Back Guarantee</span>
-                  </div>
-                  <div className="flex items-center gap-2 justify-center p-3 bg-accent/20 rounded-lg border border-accent/30">
-                    <Video className="w-4 h-4 text-accent" />
-                    <span className="font-bold">🎥 RECORDING INCLUDED</span>
-                  </div>
-                  <div className="flex items-center gap-2 justify-center p-3 bg-white/10 rounded-lg">
-                    <RotateCcw className="w-4 h-4 text-accent" />
-                    <span className="font-semibold">Lifetime Access</span>
-                  </div>
-                </div>
-                
-                <div className="mt-4 p-3 bg-white/10 rounded-lg border border-white/20 text-center">
-                  <p className="text-white font-bold text-sm">
-                    🎁 BONUS: Can't attend live? No problem! Full HD recording included for lifetime access
-                  </p>
-                </div>
-              </div>
-              
-              {/* Money Back Guarantee Badge */}
-              <div className="flex justify-center mt-12">
-                <MoneyBackGuaranteeBadge />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Problem/Solution Section - NEW */}
-      <section className="py-20 bg-gradient-to-b from-background to-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <div className="scroll-animate">
-               <EditableText isEditing={isEditing} as="h2" className="text-4xl lg:text-5xl font-bold mb-8 text-foreground">
-                 Are You Tired of...
-               </EditableText>
-                <div className="space-y-6">
-                  <Card className="border-l-4 border-l-destructive bg-destructive/5">
-                    <CardContent className="p-6">
-                      <div className="flex items-start gap-4">
-                        <AlertTriangle className="w-6 h-6 text-destructive mt-1 flex-shrink-0" />
-                        <div>
-                           <EditableText isEditing={isEditing} as="h3" className="font-bold text-lg mb-2 text-foreground">Missing canals during treatment?</EditableText>
-                           <EditableText isEditing={isEditing} as="p" className="text-muted-foreground">Leading to failed treatments and unhappy patients</EditableText>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                  
-                  <Card className="border-l-4 border-l-destructive bg-destructive/5">
-                    <CardContent className="p-6">
-                      <div className="flex items-start gap-4">
-                        <AlertTriangle className="w-6 h-6 text-destructive mt-1 flex-shrink-0" />
-                        <div>
-                           <EditableText isEditing={isEditing} as="h3" className="font-bold text-lg mb-2 text-foreground">Fear of perforations?</EditableText>
-                           <EditableText isEditing={isEditing} as="p" className="text-muted-foreground">Hesitating during canal exploration due to perforation anxiety</EditableText>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                  
-                  <Card className="border-l-4 border-l-destructive bg-destructive/5">
-                    <CardContent className="p-6">
-                      <div className="flex items-start gap-4">
-                        <AlertTriangle className="w-6 h-6 text-destructive mt-1 flex-shrink-0" />
-                        <div>
-                          <h3 className="font-bold text-lg mb-2 text-foreground">Referring easy cases?</h3>
-                          <p className="text-muted-foreground">Lost revenue from referring cases you could handle yourself</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-              </div>
-              
-              <div className="scroll-animate">
-                 <EditableText isEditing={isEditing} as="h2" className="text-4xl lg:text-5xl font-bold mb-8 text-primary">
-                   Here's the Solution!
-                 </EditableText>
-                <div className="space-y-6">
-                  <Card className="border-l-4 border-l-primary bg-primary/5">
-                    <CardContent className="p-6">
-                      <div className="flex items-start gap-4">
-                        <ToothLocationIcon className="w-8 h-8 text-primary mt-1 flex-shrink-0" color="hsl(var(--primary))" />
-                        <div>
-                          <h3 className="font-bold text-lg mb-2 text-foreground">Locate EVERY canal with confidence</h3>
-                          <p className="text-muted-foreground">Our proven 3-step system works every time</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                  
-                  <Card className="border-l-4 border-l-primary bg-primary/5">
-                    <CardContent className="p-6">
-                      <div className="flex items-start gap-4">
-                        <ToothCareIcon className="w-8 h-8 text-primary mt-1 flex-shrink-0" color="hsl(var(--primary))" />
-                        <div>
-                          <h3 className="font-bold text-lg mb-2 text-foreground">Prevent perforations completely</h3>
-                          <p className="text-muted-foreground">Learn the warning signs and prevention techniques</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                  
-                  <Card className="border-l-4 border-l-primary bg-primary/5">
-                    <CardContent className="p-6">
-                      <div className="flex items-start gap-4">
-                        <ToothKeyIcon className="w-8 h-8 text-primary mt-1 flex-shrink-0" color="hsl(var(--primary))" />
-                        <div>
-                          <h3 className="font-bold text-lg mb-2 text-foreground">Keep more cases in-house</h3>
-                          <p className="text-muted-foreground">Increase revenue by handling your own endodontics</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* About Dr. Roitman - Redesigned */}
-      <section className="py-20 bg-muted/50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-foreground">
-                Meet Your <span className="text-primary">Expert Instructor</span>
-              </h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Learn from a world-renowned endodontist with 20+ years of experience
-              </p>
-            </div>
-            
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <div className="text-center lg:text-left">
-                <div className="relative inline-block">
-                  <img src="https://d1yei2z3i6k35z.cloudfront.net/11922468/67ec02d73e2cb_459061577_884924966845685_6646581295662297536_n.jpg" alt="Dr. Roitman - Expert Endodontist" className="w-80 h-80 rounded-2xl mx-auto lg:mx-0 brand-shadow object-cover" />
-                  <div className="absolute -bottom-4 -right-4 bg-primary text-primary-foreground rounded-full w-20 h-20 flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="text-2xl font-bold">20+</div>
-                      <div className="text-xs">Years</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="space-y-8">
-                <div>
-                  <h3 className="text-3xl font-bold text-foreground mb-4">Dr. Roitman, DDS</h3>
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    <Badge variant="secondary" className="text-primary font-semibold">
-                      Board Certified Endodontist
-                    </Badge>
-                    <Badge variant="secondary" className="text-primary font-semibold">
-                      International Speaker
-                    </Badge>
-                    <Badge variant="secondary" className="text-primary font-semibold">
-                      Published Author
-                    </Badge>
-                  </div>
-                  <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                    Dr. Roitman has trained over 10,000 dental professionals worldwide and is recognized 
-                    as one of the leading experts in canal localization. His innovative techniques have 
-                    revolutionized how dentists approach complex endodontic cases.
-                  </p>
-                </div>
-                
-                <div className="grid md:grid-cols-2 gap-6">
-                  <Card className="p-6 border-l-4 border-l-primary">
-                    <div className="flex items-center gap-3 mb-3">
-                      <GraduationCap className="w-6 h-6 text-primary" />
-                      <span className="font-bold text-foreground">Education</span>
-                    </div>
-                    <p className="text-muted-foreground">
-                      Harvard School of Dental Medicine, Advanced Endodontic Residency, 
-                      Multiple board certifications
-                    </p>
-                  </Card>
-                  
-                  <Card className="p-6 border-l-4 border-l-accent">
-                    <div className="flex items-center gap-3 mb-3">
-                      <Award className="w-6 h-6 text-accent" />
-                      <span className="font-bold text-foreground">Achievements</span>
-                    </div>
-                    <p className="text-muted-foreground">
-                      50+ published papers, Keynote speaker at 30+ international conferences, 
-                      Innovation awards
-                    </p>
-                  </Card>
-                </div>
-                
-                <div className="p-8 bg-primary/10 rounded-xl border border-primary/20">
-                  <p className="text-foreground text-lg font-medium italic mb-4">
-                    "After 20 years of perfecting these techniques, I'm excited to share the exact system 
-                    that has helped thousands of dentists eliminate missed canals forever. This isn't theory – 
-                    it's practical, proven methods you can use immediately."
-                  </p>
-                  <p className="text-primary font-bold">— Dr. Roitman</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Social Proof - Enhanced Testimonials */}
-      <section className="py-20 bg-gradient-to-b from-background to-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-foreground">
-                Success Stories from <span className="text-primary">Real Dentists</span>
-              </h2>
-              <p className="text-xl text-muted-foreground">
-                See how our masterclass has transformed dental practices worldwide
-              </p>
-            </div>
-            
-            {/* Stats Row */}
-            <div className="grid md:grid-cols-4 gap-8 mb-16">
-              <Card className="p-6 text-center brand-shadow hover:scale-105 transition-all duration-300">
-                <div className="text-4xl font-black text-primary mb-2">2,000+</div>
-                <p className="text-muted-foreground font-medium">Dentists Trained</p>
-              </Card>
-              <Card className="p-6 text-center brand-shadow hover:scale-105 transition-all duration-300">
-                <div className="text-4xl font-black text-primary mb-2">98%</div>
-                <p className="text-muted-foreground font-medium">Success Rate</p>
-              </Card>
-              <Card className="p-6 text-center brand-shadow hover:scale-105 transition-all duration-300">
-                <div className="text-4xl font-black text-primary mb-2">15+</div>
-                <p className="text-muted-foreground font-medium">Countries</p>
-              </Card>
-              <Card className="p-6 text-center brand-shadow hover:scale-105 transition-all duration-300">
-                <div className="text-4xl font-black text-primary mb-2">4.9/5</div>
-                <p className="text-muted-foreground font-medium">Average Rating</p>
-              </Card>
-            </div>
-            
-            {/* Testimonials Grid */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <Card className="p-6 brand-shadow hover:scale-105 transition-all duration-300">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                    <span className="text-primary font-bold text-lg">SM</span>
-                  </div>
-                  <div>
-                    <p className="font-bold text-foreground">Dr. Sarah Martinez</p>
-                    <p className="text-sm text-muted-foreground">General Dentist, Spain</p>
-                  </div>
-                </div>
-                <p className="text-muted-foreground italic mb-4">
-                  "My success rate went from 78% to 96% in just 30 days! I've eliminated missed canals completely 
-                  and my confidence has skyrocketed. Best investment I've made for my practice."
-                </p>
-                <div className="flex text-yellow-500 text-lg">
-                  {"★★★★★".split("").map((star, i) => <span key={i}>{star}</span>)}
-                </div>
-              </Card>
-              
-              <Card className="p-6 brand-shadow hover:scale-105 transition-all duration-300">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                    <span className="text-primary font-bold text-lg">MW</span>
-                  </div>
-                  <div>
-                    <p className="font-bold text-foreground">Dr. Michael Wong</p>
-                    <p className="text-sm text-muted-foreground">Endodontist, Canada</p>
-                  </div>
-                </div>
-                <p className="text-muted-foreground italic mb-4">
-                  "Dr. Roitman's techniques for calcified canals are game-changing. I now handle cases 
-                  I used to consider impossible. My referral income has increased by 60%."
-                </p>
-                <div className="flex text-yellow-500 text-lg">
-                  {"★★★★★".split("").map((star, i) => <span key={i}>{star}</span>)}
-                </div>
-              </Card>
-              
-              <Card className="p-6 brand-shadow hover:scale-105 transition-all duration-300">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                    <span className="text-primary font-bold text-lg">LP</span>
-                  </div>
-                  <div>
-                    <p className="font-bold text-foreground">Dr. Lisa Patel</p>
-                    <p className="text-sm text-muted-foreground">General Dentist, Australia</p>
-                  </div>
-                </div>
-                <p className="text-muted-foreground italic mb-4">
-                  "I was nervous about endodontics before this course. Now I confidently locate MB2 canals 
-                  and haven't had a single perforation in 6 months. Patients notice the difference!"
-                </p>
-                <div className="flex text-yellow-500 text-lg">
-                  {"★★★★★".split("").map((star, i) => <span key={i}>{star}</span>)}
-                </div>
-              </Card>
-              
-              <Card className="p-6 brand-shadow hover:scale-105 transition-all duration-300">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                    <span className="text-primary font-bold text-lg">AR</span>
-                  </div>
-                  <div>
-                    <p className="font-bold text-foreground">Dr. Ahmed Rahman</p>
-                    <p className="text-sm text-muted-foreground">Endodontist, India</p>
-                  </div>
-                </div>
-                <p className="text-muted-foreground italic mb-4">
-                  "The systematic approach taught in this masterclass is brilliant. My treatment time has 
-                  decreased by 40% while my success rate has improved dramatically."
-                </p>
-                <div className="flex text-yellow-500 text-lg">
-                  {"★★★★★".split("").map((star, i) => <span key={i}>{star}</span>)}
-                </div>
-              </Card>
-              
-              <Card className="p-6 brand-shadow hover:scale-105 transition-all duration-300">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                    <span className="text-primary font-bold text-lg">GR</span>
-                  </div>
-                  <div>
-                    <p className="font-bold text-foreground">Dr. Giovanni Rossi</p>
-                    <p className="text-sm text-muted-foreground">General Dentist, Italy</p>
-                  </div>
-                </div>
-                <p className="text-muted-foreground italic mb-4">
-                  "Exceptional training! The perforation prevention techniques alone saved me thousands 
-                  in potential complications. Worth every penny and more."
-                </p>
-                <div className="flex text-yellow-500 text-lg">
-                  {"★★★★★".split("").map((star, i) => <span key={i}>{star}</span>)}
-                </div>
-              </Card>
-              
-              <Card className="p-6 brand-shadow hover:scale-105 transition-all duration-300">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                    <span className="text-primary font-bold text-lg">EJ</span>
-                  </div>
-                  <div>
-                    <p className="font-bold text-foreground">Dr. Emma Johnson</p>
-                    <p className="text-sm text-muted-foreground">Dental Resident, UK</p>
-                  </div>
-                </div>
-                <p className="text-muted-foreground italic mb-4">
-                  "As a recent graduate, this masterclass gave me the confidence I needed. The techniques 
-                  are clear, practical, and immediately applicable. Highly recommended!"
-                </p>
-                <div className="flex text-yellow-500 text-lg">
-                  {"★★★★★".split("").map((star, i) => <span key={i}>{star}</span>)}
-                </div>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Who Is This Course For Section - NEW */}
-      <section className="py-20 bg-muted/50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-foreground">
-                Who Is This <span className="text-primary">Course For?</span>
-              </h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Our proven system works for dentists at every stage of their career
-              </p>
-            </div>
-            
-            <div className="grid lg:grid-cols-3 gap-8 mb-16">
-              {/* Dental Students */}
-              <Card className="p-8 text-center hover:scale-105 transition-all duration-300 brand-shadow bg-gradient-to-b from-primary/5 to-primary/10">
-                <div className="mb-6">
-                  <div className="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <GraduationCap className="w-10 h-10 text-primary" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-foreground mb-4">Dental Students</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    About to start practicing and want to build confidence in endodontics from day one. 
-                    Get the foundation you need to succeed.
-                  </p>
-                </div>
-                <div className="space-y-3 text-sm">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                    <span>Build confidence early</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                    <span>Learn proper techniques</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                    <span>Avoid common mistakes</span>
-                  </div>
-                </div>
-              </Card>
-
-              {/* Beginner Dentists */}
-              <Card className="p-8 text-center hover:scale-105 transition-all duration-300 brand-shadow bg-gradient-to-b from-accent/5 to-accent/10">
-                <div className="mb-6">
-                  <div className="w-20 h-20 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Target className="w-10 h-10 text-accent" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-foreground mb-4">Beginner Dentists</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    In your first 5 years of practice and want to master endodontics quickly. 
-                    Perfect your technique and boost your confidence.
-                  </p>
-                </div>
-                <div className="space-y-3 text-sm">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-accent flex-shrink-0" />
-                    <span>Accelerate your learning</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-accent flex-shrink-0" />
-                    <span>Reduce treatment time</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-accent flex-shrink-0" />
-                    <span>Increase success rates</span>
-                  </div>
-                </div>
-              </Card>
-
-              {/* Experienced Dentists */}
-              <Card className="p-8 text-center hover:scale-105 transition-all duration-300 brand-shadow bg-gradient-to-b from-primary/5 to-primary/10">
-                <div className="mb-6">
-                  <div className="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Award className="w-10 h-10 text-primary" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-foreground mb-4">Experienced Dentists</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Many years of experience but using older techniques. Ready to modernize your approach 
-                    and reduce stress in your practice.
-                  </p>
-                </div>
-                <div className="space-y-3 text-sm">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                    <span>Modern techniques</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                    <span>Reduce stress</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                    <span>Stay current</span>
-                  </div>
-                </div>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* What You'll Learn - Redesigned */}
-      <section className="py-20 bg-muted/50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-foreground">
-                Master the <span className="text-primary">3-Step System</span>
-              </h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Learn the exact techniques that have helped 2,000+ dentists eliminate missed canals forever
-              </p>
-            </div>
-            
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <div className="space-y-8">
-                <Card className="p-8 border-l-4 border-l-primary bg-primary/5 hover:scale-105 transition-all duration-300">
-                  <div className="flex items-start gap-6">
-                    <div className="bg-primary text-primary-foreground rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl">
-                      1
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold mb-3 text-foreground">Systematic Canal Location</h3>
-                      <p className="text-muted-foreground leading-relaxed">
-                        Master the proven 3-step approach to locate every canal, including the challenging MB2. 
-                        Never miss a canal again with our systematic methodology.
-                      </p>
-                    </div>
-                  </div>
-                </Card>
-                
-                <Card className="p-8 border-l-4 border-l-accent bg-accent/5 hover:scale-105 transition-all duration-300">
-                  <div className="flex items-start gap-6">
-                    <div className="bg-accent text-accent-foreground rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl">
-                      2
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold mb-3 text-foreground">Perforation Prevention</h3>
-                      <p className="text-muted-foreground leading-relaxed">
-                        Learn to recognize early warning signs and implement proven prevention strategies. 
-                        Eliminate the fear of perforations once and for all.
-                      </p>
-                    </div>
-                  </div>
-                </Card>
-                
-                <Card className="p-8 border-l-4 border-l-primary bg-primary/5 hover:scale-105 transition-all duration-300">
-                  <div className="flex items-start gap-6">
-                    <div className="bg-primary text-primary-foreground rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl">
-                      3
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold mb-3 text-foreground">Calcification Management</h3>
-                      <p className="text-muted-foreground leading-relaxed">
-                        Advanced techniques for navigating the most challenging calcified canals and 
-                        complex anatomical variations with confidence.
-                      </p>
-                    </div>
-                  </div>
-                </Card>
-              </div>
-              
-              <div className="text-center">
-                <div className="relative">
-                  <img src="https://d1yei2z3i6k35z.cloudfront.net/11922468/687672e4434d1_version4-min.png" alt="Dr. Roitman teaching endodontics" className="rounded-2xl brand-shadow max-w-full h-auto" />
-                  
-                  {/* Play Button Overlay */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <Button size="lg" className="rounded-full w-20 h-20 bg-primary/90 hover:bg-primary text-primary-foreground animate-pulse-glow">
-                      <Play className="w-8 h-8" />
-                    </Button>
-                  </div>
-                  
-                  {/* Instructor Badge */}
-                  <div className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-sm rounded-xl p-4 brand-shadow">
-                    <div className="flex items-center gap-3">
-                      <img src="https://d1yei2z3i6k35z.cloudfront.net/11922468/67ec02d73e2cb_459061577_884924966845685_6646581295662297536_n.jpg" alt="Dr. Roitman" className="w-12 h-12 rounded-full" />
-                      <div>
-                        <p className="font-bold text-foreground">Dr. Roitman</p>
-                        <p className="text-sm text-primary">Live Training</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section - Enhanced */}
-      <section className="py-20 bg-gradient-to-b from-background to-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-foreground">
-                Frequently Asked <span className="text-primary">Questions</span>
-              </h2>
-              <p className="text-xl text-muted-foreground">
-                Everything you need to know about the masterclass
-              </p>
-            </div>
-            
-            <Accordion type="single" collapsible className="space-y-4">
-              <AccordionItem value="experience" className="border border-border rounded-lg px-6">
-                <AccordionTrigger className="text-left font-semibold text-lg">
-                  What level of experience is required for this masterclass?
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground text-base leading-relaxed">
-                  This masterclass is designed for dentists of all experience levels. Whether you're a recent graduate 
-                  or an experienced practitioner, you'll learn valuable techniques. The content is structured to be 
-                  accessible for beginners while providing advanced insights for experienced dentists.
-                </AccordionContent>
-              </AccordionItem>
-              
-              <AccordionItem value="recording" className="border border-border rounded-lg px-6">
-                <AccordionTrigger className="text-left font-semibold text-lg">
-                  What if I can't attend the live session?
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground text-base leading-relaxed">
-                  No problem! Every session is recorded and you'll have lifetime access to the recording. 
-                  You can watch at your own pace and refer back to the material whenever needed. 
-                  The recording will be available within 24 hours of the live session.
-                </AccordionContent>
-              </AccordionItem>
-              
-              <AccordionItem value="equipment" className="border border-border rounded-lg px-6">
-                <AccordionTrigger className="text-left font-semibold text-lg">
-                  What equipment or materials do I need?
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground text-base leading-relaxed">
-                  You just need a computer, tablet, or smartphone with internet access to join the Zoom session. 
-                  We'll provide downloadable resources including procedure checklists, reference guides, 
-                  and step-by-step protocols that you can use in your practice.
-                </AccordionContent>
-              </AccordionItem>
-              
-              <AccordionItem value="questions" className="border border-border rounded-lg px-6">
-                <AccordionTrigger className="text-left font-semibold text-lg">
-                  Can I ask questions during the masterclass?
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground text-base leading-relaxed">
-                  Absolutely! The last 30 minutes are dedicated to Q&A where Dr. Roitman personally answers 
-                  your questions. You can submit questions throughout the presentation via chat, 
-                  and there will be opportunities for live discussion.
-                </AccordionContent>
-              </AccordionItem>
-              
-              <AccordionItem value="guarantee" className="border border-border rounded-lg px-6">
-                <AccordionTrigger className="text-left font-semibold text-lg">
-                  Is there a money-back guarantee?
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground text-base leading-relaxed">
-                  Yes! We offer a 100% satisfaction guarantee. If you're not completely satisfied with the 
-                  masterclass content, contact us within 30 days for a full refund. We're confident you'll 
-                  find tremendous value in Dr. Roitman's proven techniques.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA Section with Booking */}
-      <section id="booking" className="py-20 gradient-hero relative overflow-hidden">
-        <div className="absolute inset-0 bg-black/10"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <Badge className="mb-6 bg-destructive text-destructive-foreground px-6 py-3 text-base font-bold animate-pulse">
-                🚨 LIMITED TIME: 72% OFF EARLY BIRD SPECIAL
-              </Badge>
-              
-              <h2 className="text-4xl lg:text-6xl font-black text-white mb-8 leading-tight">
-                Don't Miss This
-                <span className="block text-accent-glow">Opportunity!</span>
-              </h2>
-              
-              <div className="max-w-3xl mx-auto mb-12">
-                <p className="text-xl lg:text-2xl text-white font-medium mb-6">
-                  Join 2,000+ dentists who have transformed their practice with our proven system
-                </p>
-                
-                <div className="bg-white/15 backdrop-blur-md rounded-2xl p-8 border border-white/20 max-w-md mx-auto mb-8">
-                  <div className="text-center mb-6">
-                    <div className="flex items-center justify-center gap-2 mb-4">
-                      <Timer className="w-6 h-6 text-accent" />
-                      <span className="text-white font-bold">Only 47 spots remaining!</span>
-                    </div>
-                    
-                    <div className="flex items-center justify-center gap-2 mb-4">
-                      <span className="text-2xl text-white/60 line-through">€97</span>
-                      <span className="text-5xl font-black text-accent-glow">€27</span>
-                    </div>
-                    <p className="text-white/90 font-medium">Early Bird Special Ends Soon!</p>
-                  </div>
-                  
-                  <div className="space-y-3 text-white text-sm">
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-accent flex-shrink-0" />
-                      <span>60-minute live masterclass</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-accent flex-shrink-0" />
-                      <span>30-minute Q&A session</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-accent flex-shrink-0" />
-                      <span>Lifetime access to recording</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-accent flex-shrink-0" />
-                      <span>Downloadable resources</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-accent flex-shrink-0" />
-                      <span>CE credits included</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Shield className="w-4 h-4 text-accent flex-shrink-0" />
-                      <span>100% money-back guarantee</span>
-                    </div>
-                  </div>
-                </div>
-                
-                <p className="text-2xl lg:text-3xl text-white font-bold">
-                  Select your preferred time slot below and secure your spot now!
-                </p>
-              </div>
-            </div>
-            
-            {/* Calendly Widget */}
-            <div className="max-w-4xl mx-auto">
-              <Card className="p-8 bg-white/95 backdrop-blur-sm border border-white/20">
-                <CardHeader className="text-center pb-6">
-                  <CardTitle className="text-2xl font-bold text-foreground mb-2">
-                    Choose Your Time Slot
-                  </CardTitle>
-                  <CardDescription className="text-muted-foreground">
-                    Select the time that works best for your schedule
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <CalendlyWidget url="https://calendly.com/endoclub/new-meeting-1" className="min-h-[700px] w-full" />
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-muted py-12">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center">
-              <div className="flex items-center justify-center gap-3 mb-6">
-                <img src="https://d1yei2z3i6k35z.cloudfront.net/11922468/67ec02d73e2cb_459061577_884924966845685_6646581295662297536_n.jpg" alt="LearnEndo.io Logo" className="w-12 h-12 rounded-full" />
-                <span className="text-2xl font-bold text-foreground">LearnEndo.io</span>
-              </div>
-              
-              <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground mb-8">
-                <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
-                <span>•</span>
-                <a href="#" className="hover:text-primary transition-colors">Cookie Policy</a>
-                <span>•</span>
-                <a href="#" className="hover:text-primary transition-colors">Terms and Conditions</a>
-              </div>
-              
-              <div className="text-center text-muted-foreground">
-                <p className="mb-2">© 2025 LearnEndo.io. All rights reserved.</p>
-                <p className="text-sm">Transforming dental education worldwide</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </div>;
+    </div>
+  );
 };
 
 export default ThankYou;
