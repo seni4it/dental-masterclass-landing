@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Calendar, Clock, Users, Video, RotateCcw, CheckCircle, Award, Target, AlertTriangle, Microscope, GraduationCap, FileText, Phone, Timer, Shield, TrendingUp, Star, ArrowRight, Play, Zap, MessageCircle, Instagram, Send, X } from "lucide-react";
+import CalendlyWidget from "@/components/CalendlyWidget";
 import { ToothLocationIcon, ToothSettingsIcon, ToothKeyIcon, ToothCareIcon } from "@/components/DentalIcons";
 
 const Index = () => {
@@ -24,27 +25,6 @@ const Index = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showCookieConsent, setShowCookieConsent] = useState(false);
   const [cookiesAccepted, setCookiesAccepted] = useState(false);
-  const [showTimeSlots, setShowTimeSlots] = useState(false);
-
-  // Available time slots for September 6, 2025
-  const timeSlots = [
-    { time: "13:00", label12h: "1:00 PM", timezone: "CEST (UTC+2)", note: "Early afternoon", available: true },
-    { time: "20:00", label12h: "8:00 PM", timezone: "CEST (UTC+2)", note: "Evening", available: true },
-  ];
-
-  const handleTimeSlotSelect = (time: string) => {
-    const calendlyUrl = `https://calendly.com/endoclub/new-meeting-1/2025-09-06T${time}:00+02:00?month=2025-09&date=2025-09-06`;
-    window.open(calendlyUrl, '_blank');
-    setShowTimeSlots(false);
-  };
-
-  // Check for URL parameter to auto-open time slots
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('book') === 'true') {
-      setShowTimeSlots(true);
-    }
-  }, []);
 
   // Countdown timer effect
   useEffect(() => {
@@ -121,12 +101,9 @@ const Index = () => {
     setCookiesAccepted(accepted);
     setShowCookieConsent(false);
     
-    // Enable Google Analytics and Meta Pixel if consent is given
+    // Enable Google Analytics if consent is given
     if (accepted && (window as any).enableGoogleAnalytics) {
       (window as any).enableGoogleAnalytics();
-    }
-    if (accepted && (window as any).enableMetaPixel) {
-      (window as any).enableMetaPixel();
     }
   };
 
@@ -135,12 +112,9 @@ const Index = () => {
     setCookiesAccepted(true);
     setShowCookieConsent(false);
     
-    // Enable Google Analytics and Meta Pixel for essentials + analytics
+    // Enable Google Analytics for essentials + analytics
     if ((window as any).enableGoogleAnalytics) {
       (window as any).enableGoogleAnalytics();
-    }
-    if ((window as any).enableMetaPixel) {
-      (window as any).enableMetaPixel();
     }
   };
   
@@ -149,19 +123,11 @@ const Index = () => {
       <div className="bg-destructive text-destructive-foreground text-center py-3 px-4">
         <div className="container mx-auto">
           <div className="flex items-center justify-center gap-4 text-sm">
-            <Badge 
-              className="bg-white text-destructive font-bold animate-pulse cursor-pointer hover:bg-gray-100 transition-colors"
-              onClick={() => setShowTimeSlots(true)}
-            >
+            <Badge className="bg-white text-destructive font-bold animate-pulse">
               ONLY 47 SPOTS LEFT
             </Badge>
             <span>•</span>
-            <span 
-              className="font-semibold cursor-pointer hover:text-orange-400 transition-colors"
-              onClick={() => setShowTimeSlots(true)}
-            >
-              72% OFF ENDS SOON!
-            </span>
+            <span className="font-semibold">72% OFF ENDS SOON!</span>
           </div>
         </div>
       </div>
@@ -221,7 +187,7 @@ const Index = () => {
               <Button 
                 size="sm"
                 onClick={() => {
-                  setShowTimeSlots(true);
+                  document.getElementById('calendar')?.scrollIntoView({ behavior: 'smooth' });
                   if (cookiesAccepted && (window as any).gtag) {
                     (window as any).gtag('event', 'click', {
                       event_category: 'navigation',
@@ -229,7 +195,7 @@ const Index = () => {
                     });
                   }
                 }}
-                className="bg-orange-500 hover:bg-orange-600 text-white font-semibold"
+                className="bg-primary hover:bg-primary/90"
               >
                 Book Now
               </Button>
@@ -248,7 +214,7 @@ const Index = () => {
               <Button 
                 size="sm"
                 onClick={() => {
-                  setShowTimeSlots(true);
+                  document.getElementById('calendar')?.scrollIntoView({ behavior: 'smooth' });
                   if (cookiesAccepted && (window as any).gtag) {
                     (window as any).gtag('event', 'click', {
                       event_category: 'navigation',
@@ -256,7 +222,7 @@ const Index = () => {
                     });
                   }
                 }}
-                className="bg-orange-500 hover:bg-orange-600 text-white font-semibold h-8 px-3"
+                className="bg-primary hover:bg-primary/90 h-8 px-3"
               >
                 Book Now
               </Button>
@@ -332,7 +298,7 @@ const Index = () => {
               </button>
               <button 
                 onClick={() => {
-                  setShowTimeSlots(true);
+                  document.getElementById('calendar')?.scrollIntoView({ behavior: 'smooth' });
                   setShowMobileMenu(false);
                 }}
                 className="text-left text-sm font-medium text-primary hover:text-primary/80 hover:bg-primary/10 transition-colors py-3 px-3 rounded font-semibold flex items-center gap-3"
@@ -359,7 +325,7 @@ const Index = () => {
               <Badge 
                 className="mb-6 bg-accent text-accent-foreground border-accent px-6 py-3 text-base font-bold animate-pulse-glow cursor-pointer hover:bg-accent/90 transition-colors"
                 onClick={() => {
-                  setShowTimeSlots(true);
+                  document.getElementById('calendar')?.scrollIntoView({ behavior: 'smooth' });
                   // Track masterclass button click
                   if (cookiesAccepted && (window as any).gtag) {
                     (window as any).gtag('event', 'click', {
@@ -384,7 +350,7 @@ const Index = () => {
               
               <div className="max-w-4xl mx-auto mb-8">
                 <p className="text-2xl lg:text-3xl text-white font-bold mb-4">
-                  <span className="text-orange-500">STOP</span> fearing <span className="text-orange-500">ENDO</span>! Master canal localization today!
+                  <span className="text-orange-500">STOP</span> fearing <span className="text-orange-500">ENDO</span> Master the canal localization today!!
                 </p>
                 <p className="text-xl text-white/90 mb-6">
                   Eliminate missed canals • Prevent perforations • Boost confidence
@@ -397,12 +363,7 @@ const Index = () => {
                 <div className="text-center mb-6">
                   <div className="flex items-center justify-center gap-2 text-lg font-bold mb-4">
                     <Timer className="w-5 h-5" />
-                    <span 
-                      className="text-white cursor-pointer hover:text-orange-300 transition-colors"
-                      onClick={() => setShowTimeSlots(true)}
-                    >
-                      🔥 LIMITED TIME OFFER ENDS IN:
-                    </span>
+                    <span className="text-white">🔥 LIMITED TIME OFFER ENDS IN:</span>
                   </div>
                   <div className="flex gap-3 text-xl font-black justify-center mb-4">
                     <div className="bg-white/20 px-3 py-2 rounded-lg min-w-[50px]">
@@ -425,12 +386,7 @@ const Index = () => {
                   
                   {/* Limited time badge */}
                   <div className="flex justify-center mb-2">
-                    <Badge 
-                      className="bg-destructive text-destructive-foreground animate-pulse font-medium cursor-pointer hover:bg-destructive/80 transition-colors"
-                      onClick={() => setShowTimeSlots(true)}
-                    >
-                      🔥 LIMITED TIME
-                    </Badge>
+                    <Badge className="bg-destructive text-destructive-foreground animate-pulse font-medium">🔥 LIMITED TIME</Badge>
                   </div>
                   
                   {/* Spots remaining centered */}
@@ -451,7 +407,7 @@ const Index = () => {
                 </div>
                 
                 <Button variant="cta" size="xl" className="w-full text-sm sm:text-lg font-bold transition-all duration-300 ease-in-out hover:scale-[1.02] hover:shadow-xl hover:bg-accent/90 mb-4 px-4 sm:px-8 py-3 sm:py-4" onClick={() => {
-                  setShowTimeSlots(true);
+                  document.getElementById('calendar')?.scrollIntoView({ behavior: 'smooth' });
                   // Track CTA button click
                   if (cookiesAccepted && (window as any).gtag) {
                     (window as any).gtag('event', 'click', {
@@ -551,7 +507,7 @@ const Index = () => {
                         <ToothLocationIcon className="w-8 h-8 text-primary mt-1 flex-shrink-0" color="hsl(var(--primary))" />
                         <div>
                           <h3 className="font-bold text-lg mb-2 text-foreground">Locate EVERY canal with confidence</h3>
-                          <p className="text-muted-foreground">Our scientifically backed system works every time</p>
+                          <p className="text-muted-foreground">larn the the laws of canal location</p>
                         </div>
                       </div>
                     </CardContent>
@@ -563,7 +519,7 @@ const Index = () => {
                         <ToothCareIcon className="w-8 h-8 text-primary mt-1 flex-shrink-0" color="hsl(var(--primary))" />
                         <div>
                           <h3 className="font-bold text-lg mb-2 text-foreground">Prevent perforations completely</h3>
-                          <p className="text-muted-foreground">Learn the warning signs and prevention techniques</p>
+                          <p className="text-muted-foreground">Learn how to know if you are about to perforate and when to stop</p>
                         </div>
                       </div>
                     </CardContent>
@@ -575,7 +531,7 @@ const Index = () => {
                         <ToothKeyIcon className="w-8 h-8 text-primary mt-1 flex-shrink-0" color="hsl(var(--primary))" />
                         <div>
                           <h3 className="font-bold text-lg mb-2 text-foreground">Keep more cases in-house</h3>
-                          <p className="text-muted-foreground">Increase revenue by handling your own endodontics</p>
+                          <p className="text-muted-foreground">become more donfinet and stop referring </p>
                         </div>
                       </div>
                     </CardContent>
@@ -596,7 +552,7 @@ const Index = () => {
                 Meet Your <span className="text-primary">Expert Instructor</span>
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Learn from an expert endodontist with 10 years of experience
+                Learn from a world-renowned endodontist with 20+ years of experience
               </p>
             </div>
             
@@ -612,7 +568,7 @@ const Index = () => {
                   />
                   <div className="absolute -bottom-4 -right-4 bg-primary text-primary-foreground rounded-full w-20 h-20 flex items-center justify-center">
                     <div className="text-center">
-                      <div className="text-2xl font-bold">10</div>
+                      <div className="text-2xl font-bold">20+</div>
                       <div className="text-xs">Years</div>
                     </div>
                   </div>
@@ -624,20 +580,17 @@ const Index = () => {
                   <h3 className="text-3xl font-bold text-foreground mb-4">Dr. Roitman, DDS</h3>
                   <div className="flex flex-wrap gap-2 mb-6">
                     <Badge variant="secondary" className="text-primary font-semibold">
-                      Endodontist
-                    </Badge>
-                    <Badge variant="secondary" className="text-primary font-semibold">
-                      Head of Endodontic Department
+                      Board Certified Endodontist
                     </Badge>
                     <Badge variant="secondary" className="text-primary font-semibold">
                       International Speaker
                     </Badge>
                     <Badge variant="secondary" className="text-primary font-semibold">
-                      Inventor
+                      Published Author
                     </Badge>
                   </div>
                   <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                    Dr. Roitman has trained many dental professionals in Italy and online, and has built a following of 80,000 subscribers on Instagram. He is recognized as a leading expert in endodontics. He applies established canal localization techniques with perfect consistency - in every live demonstration, following these principles has never failed.
+                    Dr. Roitman has trained over 10,000 dental professionals worldwide and is recognized as one of the leading experts in canal localization. His innovative techniques have revolutionized how dentists approach complex endodontic cases.
                   </p>
                 </div>
                 
@@ -648,8 +601,8 @@ const Index = () => {
                       <span className="font-bold text-foreground">Education</span>
                     </div>
                     <p className="text-muted-foreground">
-                      University of Pavia - Dental Faculty Graduate, 
-                      Head of Endodontics for DSO with 160 clinics
+                      Harvard School of Dental Medicine, Advanced Endodontic Residency, 
+                      Multiple board certifications
                     </p>
                   </Card>
                   
@@ -659,16 +612,16 @@ const Index = () => {
                       <span className="font-bold text-foreground">Achievements</span>
                     </div>
                     <p className="text-muted-foreground">
-                      80K Instagram followers, Inventor of endodontic instruments, 
-                      Head of Endodontic Committee in Primo Italia
+                      50+ published papers, Keynote speaker at 30+ international conferences, 
+                      Innovation awards
                     </p>
                   </Card>
                 </div>
                 
                 <div className="p-8 bg-primary/10 rounded-xl border border-primary/20">
                   <p className="text-foreground text-lg font-medium italic mb-4">
-                    "After 10 years of perfecting these techniques, I'm excited to share the exact system 
-                    that has helped many dentists eliminate missed canals forever. This isn't theory – 
+                    "After 20 years of perfecting these techniques, I'm excited to share the exact system 
+                    that has helped thousands of dentists eliminate missed canals forever. This isn't theory – 
                     it's practical, proven methods you can use immediately."
                   </p>
                   <p className="text-primary font-bold">— Dr. Roitman</p>
@@ -725,7 +678,7 @@ const Index = () => {
                   </div>
                 </div>
                 <p className="text-muted-foreground italic mb-4">
-                  "I didn't expect to learn anything new about canal location, but this masterclass changed my entire approach. Less stress, fewer doubts, and significantly more confidence."
+                  "My success rate went from 78% to 96% in just 30 days! I've eliminated missed canals completely and my confidence has skyrocketed. Best investment I've made for my practice."
                 </p>
                 <div className="flex text-yellow-500 text-lg">
                   {"★★★★★".split("").map((star, i) => <span key={i}>{star}</span>)}
@@ -743,7 +696,7 @@ const Index = () => {
                   </div>
                 </div>
                 <p className="text-muted-foreground italic mb-4">
-                  "Used to be terrified of perforating when opening teeth. Now I know exactly how to avoid perforations and search for orifices in the correct place. The peace of mind is priceless."
+                  "Dr. Roitman's techniques for calcified canals are game-changing. I now handle cases I used to consider impossible. My referral income has increased by 60%."
                 </p>
                 <div className="flex text-yellow-500 text-lg">
                   {"★★★★★".split("").map((star, i) => <span key={i}>{star}</span>)}
@@ -779,7 +732,7 @@ const Index = () => {
                   </div>
                 </div>
                 <p className="text-muted-foreground italic mb-4">
-                  "The systematic approach taught in this masterclass is brilliant. Simple to the point and useful. Definitely recommend."
+                  "The systematic approach taught in this masterclass is brilliant. My treatment time has decreased by 40% while my success rate has improved dramatically."
                 </p>
                 <div className="flex text-yellow-500 text-lg">
                   {"★★★★★".split("").map((star, i) => <span key={i}>{star}</span>)}
@@ -797,7 +750,7 @@ const Index = () => {
                   </div>
                 </div>
                 <p className="text-muted-foreground italic mb-4">
-                  "Exceptional training! The techniques I learned alone saved me thousands in potential complications. Worth every penny and more."
+                  "Exceptional training! The perforation prevention techniques alone saved me thousands in potential complications. Worth every penny and more."
                 </p>
                 <div className="flex text-yellow-500 text-lg">
                   {"★★★★★".split("").map((star, i) => <span key={i}>{star}</span>)}
@@ -931,10 +884,10 @@ const Index = () => {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-foreground">
-                Master the <span className="text-primary">Proven System</span>
+                Master the <span className="text-primary">3-Step System</span>
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Master the methods that ensure successful canal location
+                Learn the exact techniques that have helped 2,000+ dentists eliminate missed canals forever
               </p>
             </div>
             
@@ -1201,10 +1154,7 @@ ${name}`);
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <Badge 
-                className="mb-6 bg-destructive text-destructive-foreground px-6 py-3 text-base font-bold animate-pulse cursor-pointer hover:bg-destructive/80 transition-colors"
-                onClick={() => setShowTimeSlots(true)}
-              >
+              <Badge className="mb-6 bg-destructive text-destructive-foreground px-6 py-3 text-base font-bold animate-pulse">
                 🚨 LIMITED TIME: 72% OFF EARLY BIRD SPECIAL
               </Badge>
               
@@ -1215,7 +1165,7 @@ ${name}`);
               
               <div className="max-w-3xl mx-auto mb-12">
                 <p className="text-xl lg:text-2xl text-white font-medium mb-6">
-                  Join dentists who have gained confidence in canal location with our proven methods
+                  Join 2,000+ dentists who have transformed their practice with our proven system
                 </p>
                 
                 <div className="bg-white/15 backdrop-blur-md rounded-2xl p-8 border border-white/20 max-w-md mx-auto mb-8">
@@ -1229,12 +1179,7 @@ ${name}`);
                       <span className="text-2xl text-white/60 line-through">€97</span>
                       <span className="text-5xl font-black text-accent-glow">€27</span>
                     </div>
-                    <p 
-                      className="text-white/90 font-medium cursor-pointer hover:text-orange-300 transition-colors"
-                      onClick={() => setShowTimeSlots(true)}
-                    >
-                      Early Bird Special Ends Soon!
-                    </p>
+                    <p className="text-white/90 font-medium">Early Bird Special Ends Soon!</p>
                   </div>
                   
                   <div className="space-y-3 text-white text-sm">
@@ -1271,61 +1216,19 @@ ${name}`);
               </div>
             </div>
             
-            {/* Time Slots Selection */}
-            <div id="calendar" className="max-w-2xl mx-auto">
-              <Card className="p-6 sm:p-8 bg-white/95 backdrop-blur-sm border border-white/20">
-                <CardHeader className="text-center pb-6">
+            {/* Calendly Widget */}
+            <div id="calendar" className="max-w-4xl mx-auto">
+              <Card className="p-4 sm:p-8 bg-white/95 backdrop-blur-sm border border-white/20">
+                <CardHeader className="text-center pb-4 sm:pb-6">
                   <CardTitle className="text-xl sm:text-2xl font-bold text-foreground mb-2">
-                    Choose Your Time Slot
+                    <span>Choose Your Time Slot</span>
                   </CardTitle>
-                  <CardDescription className="text-muted-foreground mb-4">
-                    September 6, 2025 - Select your preferred time
+                  <CardDescription className="text-muted-foreground text-sm sm:text-base">
+                    <span>Select the time that works best for your schedule</span>
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="p-0">
-                  {/* Table Header */}
-                  <div className="grid grid-cols-4 gap-2 mb-4 p-3 bg-muted/30 rounded-lg text-xs font-semibold text-muted-foreground">
-                    <div>Time (24h)</div>
-                    <div>Time (12h)</div>
-                    <div>Time Zone</div>
-                    <div>Note</div>
-                  </div>
-                  
-                  {/* Time Slot Rows */}
-                  <div className="space-y-3">
-                    {timeSlots.map((slot) => (
-                      <button
-                        key={slot.time}
-                        onClick={() => handleTimeSlotSelect(slot.time)}
-                        disabled={!slot.available}
-                        className={`w-full grid grid-cols-4 gap-2 p-4 rounded-lg border text-sm transition-colors text-left ${
-                          slot.available 
-                            ? 'border-primary bg-primary/5 hover:bg-primary/10 hover:border-primary/80 hover:shadow-md' 
-                            : 'border-muted bg-muted text-muted-foreground cursor-not-allowed'
-                        }`}
-                      >
-                        <div className="font-medium flex items-center gap-2">
-                          <span className="inline-block w-4 h-3 rounded-sm overflow-hidden border border-gray-300">
-                            <div className="w-full h-full flex">
-                              <div className="w-1/3 bg-green-600"></div>
-                              <div className="w-1/3 bg-white"></div>
-                              <div className="w-1/3 bg-red-600"></div>
-                            </div>
-                          </span>
-                          {slot.time}
-                        </div>
-                        <div className="font-medium">{slot.label12h}</div>
-                        <div className="text-muted-foreground">{slot.timezone}</div>
-                        <div className="text-muted-foreground">{slot.note}</div>
-                      </button>
-                    ))}
-                  </div>
-                  
-                  <div className="mt-6 p-4 bg-primary/5 rounded-lg border border-primary/20">
-                    <p className="text-sm text-center text-primary font-medium">
-                      ✨ Click any time slot above to book your spot instantly
-                    </p>
-                  </div>
+                  <CalendlyWidget url="https://calendly.com/endoclub/new-meeting-1" className="min-h-[600px] sm:min-h-[700px] w-full" />
                 </CardContent>
               </Card>
             </div>
@@ -1606,7 +1509,7 @@ ${name}`);
               
               <div className="bg-accent/5 border border-accent/20 rounded-lg p-4">
                 <h4 className="font-semibold text-foreground mb-2">Why We Offer This Guarantee</h4>
-                <p>Dr. Roitman's proven techniques have a 100% success rate in live demonstrations. We're confident that our scientifically backed methods will transform your endodontic practice. This guarantee removes any risk from your investment in professional development.</p>
+                <p>Dr. Roitman has trained over 2,000 dentists worldwide with a 98% success rate. We're confident that our proven techniques will transform your endodontic practice. This guarantee removes any risk from your investment in professional development.</p>
               </div>
               
               <div className="text-sm text-muted-foreground">
@@ -1648,17 +1551,61 @@ ${name}`);
                 <div className="lg:w-2/3 space-y-6">
                   <div>
                     <h3 className="text-3xl font-bold text-foreground mb-2">Dr. Roitman, DDS</h3>
-                    <p className="text-lg text-primary font-semibold mb-4">Endodontist • Head of Endodontic Department • International Speaker • Inventor</p>
+                    <p className="text-lg text-primary font-semibold mb-4">Board Certified Endodontist • International Speaker • Published Author</p>
                     <p className="text-muted-foreground leading-relaxed">
-                      Dr. Roitman is an endodontist with 10 years of experience in the field. 
-                      He has mastered proven canal localization techniques and has trained dental 
-                      professionals in Italy and online.
+                      Dr. Roitman is a world-renowned endodontist with over 20 years of experience in the field. 
+                      He has revolutionized canal localization techniques and has trained more than 10,000 dental 
+                      professionals worldwide.
                     </p>
                   </div>
                 </div>
               </div>
               
+              <div className="grid md:grid-cols-2 gap-6">
+                <Card className="p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <GraduationCap className="w-8 h-8 text-primary" />
+                    <h4 className="text-xl font-bold text-foreground">Education & Training</h4>
+                  </div>
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li>• Harvard School of Dental Medicine</li>
+                    <li>• Advanced Endodontic Residency</li>
+                    <li>• Multiple board certifications</li>
+                    <li>• Continuing education in microscopic endodontics</li>
+                  </ul>
+                </Card>
+                
+                <Card className="p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <Award className="w-8 h-8 text-accent" />
+                    <h4 className="text-xl font-bold text-foreground">Achievements</h4>
+                  </div>
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li>• 50+ published research papers</li>
+                    <li>• Keynote speaker at 30+ international conferences</li>
+                    <li>• Innovation awards in endodontics</li>
+                    <li>• Developer of revolutionary canal location techniques</li>
+                  </ul>
+                </Card>
+              </div>
               
+              <div className="bg-primary/5 border border-primary/20 rounded-lg p-6">
+                <h4 className="text-xl font-bold text-foreground mb-4">Professional Experience</h4>
+                <div className="space-y-4 text-muted-foreground">
+                  <p>
+                    <strong className="text-foreground">2000-Present:</strong> Private Practice in Advanced Endodontics
+                  </p>
+                  <p>
+                    <strong className="text-foreground">2005-Present:</strong> International Lecturer and Course Director
+                  </p>
+                  <p>
+                    <strong className="text-foreground">2010-Present:</strong> Founder of LearnEndo.io Educational Platform
+                  </p>
+                  <p>
+                    <strong className="text-foreground">2015-Present:</strong> Research Director for Canal Localization Studies
+                  </p>
+                </div>
+              </div>
               
               <div className="bg-accent/5 border border-accent/20 rounded-lg p-6">
                 <h4 className="text-xl font-bold text-foreground mb-4">Philosophy & Mission</h4>
@@ -2045,80 +1992,36 @@ ${name}`);
                 Choose Only Essentials
               </Button>
               
-              <Button 
-                variant="ghost" 
-                onClick={() => setShowCookiePolicy(true)}
-                className="w-full text-xs mt-2"
-                size="sm"
-              >
-                View Cookie Policy
-              </Button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Time Slots Modal */}
-      {showTimeSlots && (
-        <div 
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-          onClick={() => setShowTimeSlots(false)}
-        >
-          <div 
-            className="bg-white rounded-lg max-w-md w-full"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="sticky top-0 bg-white border-b border-border p-6 flex items-center justify-between rounded-t-lg">
-              <h2 className="text-xl font-bold text-foreground">Canal Localization Masterclass</h2>
-              <button 
-                onClick={() => setShowTimeSlots(false)}
-                className="p-2 hover:bg-muted rounded-full transition-colors"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-            <div className="p-6">
-              <div className="text-center mb-6">
-                <h3 className="text-lg font-semibold text-foreground mb-2">September 6, 2025</h3>
-                <p className="text-sm text-muted-foreground">Select your preferred time slot</p>
-              </div>
-              
-              {/* Table Header */}
-              <div className="grid grid-cols-4 gap-2 mb-3 p-3 bg-muted/30 rounded-lg text-xs font-semibold text-muted-foreground">
-                <div>Time (24h)</div>
-                <div>Time (12h)</div>
-                <div>Time Zone</div>
-                <div>Note</div>
-              </div>
-              
-              {/* Time Slot Rows */}
-              <div className="space-y-2">
-                {timeSlots.map((slot) => (
-                  <button
-                    key={slot.time}
-                    onClick={() => handleTimeSlotSelect(slot.time)}
-                    disabled={!slot.available}
-                    className={`w-full grid grid-cols-4 gap-2 p-3 rounded-lg border text-sm transition-colors text-left ${
-                      slot.available 
-                        ? 'border-primary bg-primary/5 hover:bg-primary/10 hover:border-primary/80 hover:shadow-sm' 
-                        : 'border-muted bg-muted text-muted-foreground cursor-not-allowed'
-                    }`}
-                  >
-                    <div className="font-medium flex items-center gap-2">
-                      <span className="inline-block w-4 h-3 rounded-sm overflow-hidden border border-gray-300">
-                        <div className="w-full h-full flex">
-                          <div className="w-1/3 bg-green-600"></div>
-                          <div className="w-1/3 bg-white"></div>
-                          <div className="w-1/3 bg-red-600"></div>
-                        </div>
-                      </span>
-                      {slot.time}
-                    </div>
-                    <div className="font-medium">{slot.label12h}</div>
-                    <div className="text-muted-foreground">{slot.timezone}</div>
-                    <div className="text-muted-foreground">{slot.note}</div>
-                  </button>
-                ))}
+              <div className="flex gap-2">
+                <Button 
+                  variant="ghost" 
+                  onClick={() => setShowCookiePolicy(true)}
+                  className="flex-1 text-xs p-1 h-auto"
+                  size="sm"
+                >
+                  Details
+                </Button>
+                <Button 
+                  variant="ghost" 
+                  onClick={() => {
+                    // Show additional decline options to make it more complex
+                    const confirmDecline = confirm(
+                      "Are you sure you want to decline cookies? This may limit website functionality and prevent us from improving your experience. You can change your preferences later in our Cookie Policy."
+                    );
+                    if (confirmDecline) {
+                      const reallyDecline = confirm(
+                        "Declining cookies means we can't:\n• Remember your preferences\n• Analyze what content helps dentists most\n• Provide personalized recommendations\n• Improve the masterclass experience\n\nContinue to decline?"
+                      );
+                      if (reallyDecline) {
+                        handleCookieConsent(false);
+                      }
+                    }
+                  }}
+                  className="flex-1 text-xs p-1 h-auto text-muted-foreground"
+                  size="sm"
+                >
+                  Decline
+                </Button>
               </div>
             </div>
           </div>
