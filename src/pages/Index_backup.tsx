@@ -11,7 +11,7 @@ import CalendlyWidget from "@/components/CalendlyWidget";
 import { ToothLocationIcon, ToothSettingsIcon, ToothKeyIcon, ToothCareIcon } from "@/components/DentalIcons";
 const Index = () => {
   const [timeLeft, setTimeLeft] = useState({
-    days: 15,
+    days: 25,
     hours: 4,
     minutes: 32,
     seconds: 15
@@ -80,7 +80,7 @@ const Index = () => {
               ONLY 47 SPOTS LEFT
             </Badge>
             <span>•</span>
-            <span className="font-semibold">72% OFF ENDS SOON!</span>
+            <span className="font-semibold">53% OFF ENDS SOON!</span>
           </div>
         </div>
       </div>
@@ -161,7 +161,7 @@ const Index = () => {
                 <div className="text-center mb-6">
                   <div className="flex items-center justify-center gap-2 text-lg font-bold mb-4">
                     <Timer className="w-5 h-5" />
-                    <span className="text-white">🔥 LIMITED TIME OFFER ENDS IN:</span>
+                    <span className="text-white">🔥 EARLY BIRD DISCOUNT ENDS IN:</span>
                   </div>
                   <div className="flex gap-3 text-xl font-black justify-center mb-4">
                     <div className="bg-white/20 px-3 py-2 rounded-lg min-w-[50px]">
@@ -184,7 +184,7 @@ const Index = () => {
                   
                   {/* Limited time badge */}
                   <div className="flex justify-center mb-2">
-                    <Badge className="bg-destructive text-destructive-foreground animate-pulse font-medium">🔥 LIMITED TIME</Badge>
+                    <Badge className="bg-destructive text-destructive-foreground animate-pulse font-medium">🔥 EARLY BIRD DISCOUNT</Badge>
                   </div>
                   
                   {/* Spots remaining centered */}
@@ -198,10 +198,10 @@ const Index = () => {
                 
                 <div className="text-center mb-6">
                   <div className="flex items-center justify-center gap-4 mb-2">
-                    <span className="text-3xl text-red-400 line-through font-bold">€97</span>
+                    <span className="text-3xl text-red-400 line-through font-bold">€57</span>
                     <span className="text-5xl font-black text-accent-glow">€27</span>
                   </div>
-                  <p className="text-white/90 font-semibold">Early Bird Special (Save 72%)</p>
+                  <p className="text-white/90 font-semibold">Early Bird Special (Save 53%)</p>
                 </div>
                 
                 <Button variant="cta" size="xl" className="w-full text-lg font-bold animate-pulse-glow mb-4" onClick={() => document.getElementById('booking')?.scrollIntoView({
@@ -772,15 +772,6 @@ const Index = () => {
                 </AccordionContent>
               </AccordionItem>
               
-              <AccordionItem value="credits" className="border border-border rounded-lg px-6">
-                <AccordionTrigger className="text-left font-semibold text-lg">
-                  <EditableText isEditing={isEditing} as="span">Will I receive CE credits for attending?</EditableText>
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground text-base leading-relaxed">
-                  <EditableText isEditing={isEditing} as="span">Yes! This masterclass provides 1.5 hours of continuing education credits. You'll receive your CE certificate immediately after completing the session. The course is approved by major dental education bodies.</EditableText>
-                </AccordionContent>
-              </AccordionItem>
-              
               <AccordionItem value="recording" className="border border-border rounded-lg px-6">
                 <AccordionTrigger className="text-left font-semibold text-lg">
                   <EditableText isEditing={isEditing} as="span">What if I can't attend the live session?</EditableText>
@@ -828,7 +819,7 @@ const Index = () => {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <Badge className="mb-6 bg-destructive text-destructive-foreground px-6 py-3 text-base font-bold animate-pulse">
-                🚨 LIMITED TIME: 72% OFF EARLY BIRD SPECIAL
+                🚨 EARLY BIRD DISCOUNT: 53% OFF SPECIAL
               </Badge>
               
               <EditableText isEditing={isEditing} as="h2" className="text-4xl lg:text-6xl font-black text-white mb-8 leading-tight">
@@ -849,7 +840,7 @@ const Index = () => {
                     </div>
                     
                     <div className="flex items-center justify-center gap-2 mb-4">
-                      <span className="text-2xl text-white/60 line-through">€97</span>
+                      <span className="text-2xl text-white/60 line-through">€57</span>
                       <span className="text-5xl font-black text-accent-glow">€27</span>
                     </div>
                     <EditableText isEditing={isEditing} as="p" className="text-white/90 font-medium">Early Bird Special Ends Soon!</EditableText>

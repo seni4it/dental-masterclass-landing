@@ -7,12 +7,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Calendar, Clock, Users, Video, RotateCcw, CheckCircle, Award, Target, AlertTriangle, Microscope, GraduationCap, FileText, Phone, Timer, Shield, TrendingUp, Star, ArrowRight, Play, Zap, MessageCircle, Instagram, Send, X } from "lucide-react";
-import CalendlyWidget from "@/components/CalendlyWidget";
 import { ToothLocationIcon, ToothSettingsIcon, ToothKeyIcon, ToothCareIcon } from "@/components/DentalIcons";
+import { MoneyBackGuaranteeBadge } from "@/components/MoneyBackGuaranteeBadge";
 
 const Index = () => {
   const [timeLeft, setTimeLeft] = useState({
-    days: 15,
+    days: 25,
     hours: 4,
     minutes: 32,
     seconds: 15
@@ -25,6 +25,27 @@ const Index = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showCookieConsent, setShowCookieConsent] = useState(false);
   const [cookiesAccepted, setCookiesAccepted] = useState(false);
+  const [showTimeSlots, setShowTimeSlots] = useState(false);
+
+  // Available time slots for September 6, 2025
+  const timeSlots = [
+    { time: "13:00", label12h: "1:00 PM", timezone: "CEST (UTC+2)", note: "Early afternoon", available: true },
+    { time: "20:00", label12h: "8:00 PM", timezone: "CEST (UTC+2)", note: "Evening", available: true },
+  ];
+
+  const handleTimeSlotSelect = (time: string) => {
+    const calendlyUrl = `https://calendly.com/endoclub/new-meeting-1/2025-09-06T${time}:00+02:00?month=2025-09&date=2025-09-06`;
+    window.open(calendlyUrl, '_blank');
+    setShowTimeSlots(false);
+  };
+
+  // Check for URL parameter to auto-open time slots
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('book') === 'true') {
+      setShowTimeSlots(true);
+    }
+  }, []);
 
   // Countdown timer effect
   useEffect(() => {
@@ -101,9 +122,12 @@ const Index = () => {
     setCookiesAccepted(accepted);
     setShowCookieConsent(false);
     
-    // Enable Google Analytics if consent is given
+    // Enable Google Analytics and Meta Pixel if consent is given
     if (accepted && (window as any).enableGoogleAnalytics) {
       (window as any).enableGoogleAnalytics();
+    }
+    if (accepted && (window as any).enableMetaPixel) {
+      (window as any).enableMetaPixel();
     }
   };
 
@@ -112,9 +136,12 @@ const Index = () => {
     setCookiesAccepted(true);
     setShowCookieConsent(false);
     
-    // Enable Google Analytics for essentials + analytics
+    // Enable Google Analytics and Meta Pixel for essentials + analytics
     if ((window as any).enableGoogleAnalytics) {
       (window as any).enableGoogleAnalytics();
+    }
+    if ((window as any).enableMetaPixel) {
+      (window as any).enableMetaPixel();
     }
   };
   
@@ -123,11 +150,19 @@ const Index = () => {
       <div className="bg-destructive text-destructive-foreground text-center py-3 px-4">
         <div className="container mx-auto">
           <div className="flex items-center justify-center gap-4 text-sm">
-            <Badge className="bg-white text-destructive font-bold animate-pulse">
+            <Badge 
+              className="bg-white text-destructive font-bold animate-pulse cursor-pointer hover:bg-gray-100 transition-colors"
+              onClick={() => setShowTimeSlots(true)}
+            >
               ONLY 47 SPOTS LEFT
             </Badge>
             <span>•</span>
-            <span className="font-semibold">72% OFF ENDS SOON!</span>
+            <span 
+              className="font-semibold cursor-pointer hover:text-orange-400 transition-colors"
+              onClick={() => setShowTimeSlots(true)}
+            >
+              53% OFF ENDS SOON!
+            </span>
           </div>
         </div>
       </div>
@@ -187,7 +222,7 @@ const Index = () => {
               <Button 
                 size="sm"
                 onClick={() => {
-                  document.getElementById('calendar')?.scrollIntoView({ behavior: 'smooth' });
+                  setShowTimeSlots(true);
                   if (cookiesAccepted && (window as any).gtag) {
                     (window as any).gtag('event', 'click', {
                       event_category: 'navigation',
@@ -195,7 +230,7 @@ const Index = () => {
                     });
                   }
                 }}
-                className="bg-primary hover:bg-primary/90"
+                className="bg-orange-500 hover:bg-orange-600 text-white font-semibold"
               >
                 Book Now
               </Button>
@@ -214,7 +249,7 @@ const Index = () => {
               <Button 
                 size="sm"
                 onClick={() => {
-                  document.getElementById('calendar')?.scrollIntoView({ behavior: 'smooth' });
+                  setShowTimeSlots(true);
                   if (cookiesAccepted && (window as any).gtag) {
                     (window as any).gtag('event', 'click', {
                       event_category: 'navigation',
@@ -222,7 +257,7 @@ const Index = () => {
                     });
                   }
                 }}
-                className="bg-primary hover:bg-primary/90 h-8 px-3"
+                className="bg-orange-500 hover:bg-orange-600 text-white font-semibold h-8 px-3"
               >
                 Book Now
               </Button>
@@ -298,7 +333,7 @@ const Index = () => {
               </button>
               <button 
                 onClick={() => {
-                  document.getElementById('calendar')?.scrollIntoView({ behavior: 'smooth' });
+                  setShowTimeSlots(true);
                   setShowMobileMenu(false);
                 }}
                 className="text-left text-sm font-medium text-primary hover:text-primary/80 hover:bg-primary/10 transition-colors py-3 px-3 rounded font-semibold flex items-center gap-3"
@@ -325,7 +360,7 @@ const Index = () => {
               <Badge 
                 className="mb-6 bg-accent text-accent-foreground border-accent px-6 py-3 text-base font-bold animate-pulse-glow cursor-pointer hover:bg-accent/90 transition-colors"
                 onClick={() => {
-                  document.getElementById('calendar')?.scrollIntoView({ behavior: 'smooth' });
+                  setShowTimeSlots(true);
                   // Track masterclass button click
                   if (cookiesAccepted && (window as any).gtag) {
                     (window as any).gtag('event', 'click', {
@@ -350,7 +385,7 @@ const Index = () => {
               
               <div className="max-w-4xl mx-auto mb-8">
                 <p className="text-2xl lg:text-3xl text-white font-bold mb-4">
-                  <span className="text-orange-500">STOP</span> fearing <span className="text-orange-500">ENDO</span> Master the canal localization today!!
+                  <span className="text-orange-500">STOP</span> fearing <span className="text-orange-500">ENDO</span>! Master canal localization today!
                 </p>
                 <p className="text-xl text-white/90 mb-6">
                   Eliminate missed canals • Prevent perforations • Boost confidence
@@ -363,7 +398,12 @@ const Index = () => {
                 <div className="text-center mb-6">
                   <div className="flex items-center justify-center gap-2 text-lg font-bold mb-4">
                     <Timer className="w-5 h-5" />
-                    <span className="text-white">🔥 LIMITED TIME OFFER ENDS IN:</span>
+                    <span 
+                      className="text-white cursor-pointer hover:text-orange-300 transition-colors"
+                      onClick={() => setShowTimeSlots(true)}
+                    >
+                      🔥 EARLY BIRD DISCOUNT ENDS IN:
+                    </span>
                   </div>
                   <div className="flex gap-3 text-xl font-black justify-center mb-4">
                     <div className="bg-white/20 px-3 py-2 rounded-lg min-w-[50px]">
@@ -386,7 +426,12 @@ const Index = () => {
                   
                   {/* Limited time badge */}
                   <div className="flex justify-center mb-2">
-                    <Badge className="bg-destructive text-destructive-foreground animate-pulse font-medium">🔥 LIMITED TIME</Badge>
+                    <Badge 
+                      className="bg-destructive text-destructive-foreground animate-pulse font-medium cursor-pointer hover:bg-destructive/80 transition-colors"
+                      onClick={() => setShowTimeSlots(true)}
+                    >
+                      🔥 EARLY BIRD DISCOUNT
+                    </Badge>
                   </div>
                   
                   {/* Spots remaining centered */}
@@ -400,14 +445,14 @@ const Index = () => {
                 
                 <div className="text-center mb-6">
                   <div className="flex items-center justify-center gap-4 mb-2">
-                    <span className="text-3xl text-red-400 line-through font-bold">€97</span>
+                    <span className="text-3xl text-red-400 line-through font-bold">€57</span>
                     <span className="text-5xl font-black text-accent-glow">€27</span>
                   </div>
-                  <p className="text-white/90 font-semibold">Early Bird Special (Save 72%)</p>
+                  <p className="text-white/90 font-semibold">Early Bird Special (Save 53%)</p>
                 </div>
                 
                 <Button variant="cta" size="xl" className="w-full text-sm sm:text-lg font-bold transition-all duration-300 ease-in-out hover:scale-[1.02] hover:shadow-xl hover:bg-accent/90 mb-4 px-4 sm:px-8 py-3 sm:py-4" onClick={() => {
-                  document.getElementById('calendar')?.scrollIntoView({ behavior: 'smooth' });
+                  setShowTimeSlots(true);
                   // Track CTA button click
                   if (cookiesAccepted && (window as any).gtag) {
                     (window as any).gtag('event', 'click', {
@@ -442,6 +487,11 @@ const Index = () => {
                     🎁 BONUS: Can't attend live? No problem! Full HD recording included for lifetime access
                   </p>
                 </div>
+              </div>
+              
+              {/* Money Back Guarantee Badge */}
+              <div className="flex justify-center mt-12">
+                <MoneyBackGuaranteeBadge onBookClick={() => setShowTimeSlots(true)} />
               </div>
             </div>
           </div>
@@ -507,7 +557,7 @@ const Index = () => {
                         <ToothLocationIcon className="w-8 h-8 text-primary mt-1 flex-shrink-0" color="hsl(var(--primary))" />
                         <div>
                           <h3 className="font-bold text-lg mb-2 text-foreground">Locate EVERY canal with confidence</h3>
-                          <p className="text-muted-foreground">larn the the laws of canal location</p>
+                          <p className="text-muted-foreground">Our scientifically backed system works every time</p>
                         </div>
                       </div>
                     </CardContent>
@@ -519,7 +569,7 @@ const Index = () => {
                         <ToothCareIcon className="w-8 h-8 text-primary mt-1 flex-shrink-0" color="hsl(var(--primary))" />
                         <div>
                           <h3 className="font-bold text-lg mb-2 text-foreground">Prevent perforations completely</h3>
-                          <p className="text-muted-foreground">Learn how to know if you are about to perforate and when to stop</p>
+                          <p className="text-muted-foreground">Learn the warning signs and prevention techniques</p>
                         </div>
                       </div>
                     </CardContent>
@@ -531,7 +581,7 @@ const Index = () => {
                         <ToothKeyIcon className="w-8 h-8 text-primary mt-1 flex-shrink-0" color="hsl(var(--primary))" />
                         <div>
                           <h3 className="font-bold text-lg mb-2 text-foreground">Keep more cases in-house</h3>
-                          <p className="text-muted-foreground">become more donfinet and stop referring </p>
+                          <p className="text-muted-foreground">Increase revenue by handling your own endodontics</p>
                         </div>
                       </div>
                     </CardContent>
@@ -552,7 +602,7 @@ const Index = () => {
                 Meet Your <span className="text-primary">Expert Instructor</span>
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Learn from a world-renowned endodontist with 20+ years of experience
+                Learn from an expert endodontist with 10 years of experience
               </p>
             </div>
             
@@ -568,7 +618,7 @@ const Index = () => {
                   />
                   <div className="absolute -bottom-4 -right-4 bg-primary text-primary-foreground rounded-full w-20 h-20 flex items-center justify-center">
                     <div className="text-center">
-                      <div className="text-2xl font-bold">20+</div>
+                      <div className="text-2xl font-bold">10</div>
                       <div className="text-xs">Years</div>
                     </div>
                   </div>
@@ -580,17 +630,20 @@ const Index = () => {
                   <h3 className="text-3xl font-bold text-foreground mb-4">Dr. Roitman, DDS</h3>
                   <div className="flex flex-wrap gap-2 mb-6">
                     <Badge variant="secondary" className="text-primary font-semibold">
-                      Board Certified Endodontist
+                      Endodontist
+                    </Badge>
+                    <Badge variant="secondary" className="text-primary font-semibold">
+                      Head of Endodontic Department
                     </Badge>
                     <Badge variant="secondary" className="text-primary font-semibold">
                       International Speaker
                     </Badge>
                     <Badge variant="secondary" className="text-primary font-semibold">
-                      Published Author
+                      Inventor
                     </Badge>
                   </div>
                   <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                    Dr. Roitman has trained over 10,000 dental professionals worldwide and is recognized as one of the leading experts in canal localization. His innovative techniques have revolutionized how dentists approach complex endodontic cases.
+                    Dr. Roitman has trained many dental professionals in Italy and online, and has built a following of 80,000 subscribers on Instagram. He is recognized as a leading expert in endodontics. He applies established canal localization techniques with perfect consistency - in every live demonstration, following these principles has never failed.
                   </p>
                 </div>
                 
@@ -601,8 +654,8 @@ const Index = () => {
                       <span className="font-bold text-foreground">Education</span>
                     </div>
                     <p className="text-muted-foreground">
-                      Harvard School of Dental Medicine, Advanced Endodontic Residency, 
-                      Multiple board certifications
+                      University of Pavia - Dental Faculty Graduate, 
+                      Head of Endodontics for DSO with 160 clinics
                     </p>
                   </Card>
                   
@@ -612,16 +665,16 @@ const Index = () => {
                       <span className="font-bold text-foreground">Achievements</span>
                     </div>
                     <p className="text-muted-foreground">
-                      50+ published papers, Keynote speaker at 30+ international conferences, 
-                      Innovation awards
+                      80K Instagram followers, Inventor of endodontic instruments, 
+                      Head of Endodontic Committee in Primo Italia
                     </p>
                   </Card>
                 </div>
                 
                 <div className="p-8 bg-primary/10 rounded-xl border border-primary/20">
                   <p className="text-foreground text-lg font-medium italic mb-4">
-                    "After 20 years of perfecting these techniques, I'm excited to share the exact system 
-                    that has helped thousands of dentists eliminate missed canals forever. This isn't theory – 
+                    "After 10 years of perfecting these techniques, I'm excited to share the exact system 
+                    that has helped many dentists eliminate missed canals forever. This isn't theory – 
                     it's practical, proven methods you can use immediately."
                   </p>
                   <p className="text-primary font-bold">— Dr. Roitman</p>
@@ -648,7 +701,7 @@ const Index = () => {
             {/* Stats Row */}
             <div className="grid md:grid-cols-4 gap-8 mb-16">
               <Card className="p-6 text-center brand-shadow hover:scale-105 transition-all duration-300">
-                <div className="text-4xl font-black text-primary mb-2">2,000+</div>
+                <div className="text-4xl font-black text-primary mb-2">100+</div>
                 <p className="text-muted-foreground font-medium">Dentists Trained</p>
               </Card>
               <Card className="p-6 text-center brand-shadow hover:scale-105 transition-all duration-300">
@@ -678,7 +731,7 @@ const Index = () => {
                   </div>
                 </div>
                 <p className="text-muted-foreground italic mb-4">
-                  "My success rate went from 78% to 96% in just 30 days! I've eliminated missed canals completely and my confidence has skyrocketed. Best investment I've made for my practice."
+                  "I didn't expect to learn anything new about canal location, but this masterclass changed my entire approach. Less stress, fewer doubts, and significantly more confidence."
                 </p>
                 <div className="flex text-yellow-500 text-lg">
                   {"★★★★★".split("").map((star, i) => <span key={i}>{star}</span>)}
@@ -696,7 +749,7 @@ const Index = () => {
                   </div>
                 </div>
                 <p className="text-muted-foreground italic mb-4">
-                  "Dr. Roitman's techniques for calcified canals are game-changing. I now handle cases I used to consider impossible. My referral income has increased by 60%."
+                  "Used to be terrified of perforating when opening teeth. Now I know exactly how to avoid perforations and search for orifices in the correct place. The peace of mind is priceless."
                 </p>
                 <div className="flex text-yellow-500 text-lg">
                   {"★★★★★".split("").map((star, i) => <span key={i}>{star}</span>)}
@@ -732,7 +785,7 @@ const Index = () => {
                   </div>
                 </div>
                 <p className="text-muted-foreground italic mb-4">
-                  "The systematic approach taught in this masterclass is brilliant. My treatment time has decreased by 40% while my success rate has improved dramatically."
+                  "The systematic approach taught in this masterclass is brilliant. Simple to the point and useful. Definitely recommend."
                 </p>
                 <div className="flex text-yellow-500 text-lg">
                   {"★★★★★".split("").map((star, i) => <span key={i}>{star}</span>)}
@@ -750,7 +803,7 @@ const Index = () => {
                   </div>
                 </div>
                 <p className="text-muted-foreground italic mb-4">
-                  "Exceptional training! The perforation prevention techniques alone saved me thousands in potential complications. Worth every penny and more."
+                  "Exceptional training! The techniques I learned alone saved me thousands in potential complications. Worth every penny and more."
                 </p>
                 <div className="flex text-yellow-500 text-lg">
                   {"★★★★★".split("").map((star, i) => <span key={i}>{star}</span>)}
@@ -884,10 +937,10 @@ const Index = () => {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-foreground">
-                Master the <span className="text-primary">3-Step System</span>
+                Master the <span className="text-primary">Proven System</span>
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Learn the exact techniques that have helped 2,000+ dentists eliminate missed canals forever
+                Master the methods that ensure successful canal location
               </p>
             </div>
             
@@ -987,15 +1040,6 @@ const Index = () => {
                 </AccordionContent>
               </AccordionItem>
               
-              <AccordionItem value="credits" className="border border-border rounded-lg px-6">
-                <AccordionTrigger className="text-left font-semibold text-lg">
-                  <span>Will I receive CE credits for attending?</span>
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground text-base leading-relaxed">
-                  <span>Yes! This masterclass provides 1.5 hours of continuing education credits. You'll receive your CE certificate immediately after completing the session. The course is approved by major dental education bodies.</span>
-                </AccordionContent>
-              </AccordionItem>
-              
               <AccordionItem value="recording" className="border border-border rounded-lg px-6">
                 <AccordionTrigger className="text-left font-semibold text-lg">
                   <span>What if I can't attend the live session?</span>
@@ -1028,7 +1072,7 @@ const Index = () => {
                   <span>Is there a money-back guarantee?</span>
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground text-base leading-relaxed">
-                  <span>Yes! We offer a 100% satisfaction guarantee. If you're not completely satisfied with the masterclass content, contact us within 30 days for a full refund. We're confident you'll find tremendous value in Dr. Roitman's proven techniques.</span>
+                  <span>Yes! We offer a 30-Day Fair-Use Money-Back Guarantee. If, after active participation and a good-faith attempt to apply at least one taught technique, you believe the programme failed to deliver its stated learning objectives, you may request a full refund within 30 days. Simply provide 3-5 sentences of constructive feedback about why the masterclass fell short for you. We're confident you'll find tremendous value in Dr. Roitman's proven techniques. *Terms and conditions apply.</span>
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
@@ -1154,8 +1198,11 @@ ${name}`);
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <Badge className="mb-6 bg-destructive text-destructive-foreground px-6 py-3 text-base font-bold animate-pulse">
-                🚨 LIMITED TIME: 72% OFF EARLY BIRD SPECIAL
+              <Badge 
+                className="mb-6 bg-destructive text-destructive-foreground px-6 py-3 text-base font-bold animate-pulse cursor-pointer hover:bg-destructive/80 transition-colors"
+                onClick={() => setShowTimeSlots(true)}
+              >
+                🚨 EARLY BIRD DISCOUNT: 53% OFF SPECIAL
               </Badge>
               
               <h2 className="text-4xl lg:text-6xl font-black text-white mb-8 leading-tight">
@@ -1165,7 +1212,7 @@ ${name}`);
               
               <div className="max-w-3xl mx-auto mb-12">
                 <p className="text-xl lg:text-2xl text-white font-medium mb-6">
-                  Join 2,000+ dentists who have transformed their practice with our proven system
+                  Join dentists who have gained confidence in canal location with our proven methods
                 </p>
                 
                 <div className="bg-white/15 backdrop-blur-md rounded-2xl p-8 border border-white/20 max-w-md mx-auto mb-8">
@@ -1176,10 +1223,15 @@ ${name}`);
                     </div>
                     
                     <div className="flex items-center justify-center gap-2 mb-4">
-                      <span className="text-2xl text-white/60 line-through">€97</span>
+                      <span className="text-2xl text-white/60 line-through">€57</span>
                       <span className="text-5xl font-black text-accent-glow">€27</span>
                     </div>
-                    <p className="text-white/90 font-medium">Early Bird Special Ends Soon!</p>
+                    <p 
+                      className="text-white/90 font-medium cursor-pointer hover:text-orange-300 transition-colors"
+                      onClick={() => setShowTimeSlots(true)}
+                    >
+                      Early Bird Special Ends Soon!
+                    </p>
                   </div>
                   
                   <div className="space-y-3 text-white text-sm">
@@ -1216,19 +1268,61 @@ ${name}`);
               </div>
             </div>
             
-            {/* Calendly Widget */}
-            <div id="calendar" className="max-w-4xl mx-auto">
-              <Card className="p-4 sm:p-8 bg-white/95 backdrop-blur-sm border border-white/20">
-                <CardHeader className="text-center pb-4 sm:pb-6">
+            {/* Time Slots Selection */}
+            <div id="calendar" className="max-w-2xl mx-auto">
+              <Card className="p-6 sm:p-8 bg-white/95 backdrop-blur-sm border border-white/20">
+                <CardHeader className="text-center pb-6">
                   <CardTitle className="text-xl sm:text-2xl font-bold text-foreground mb-2">
-                    <span>Choose Your Time Slot</span>
+                    Choose Your Time Slot
                   </CardTitle>
-                  <CardDescription className="text-muted-foreground text-sm sm:text-base">
-                    <span>Select the time that works best for your schedule</span>
+                  <CardDescription className="text-muted-foreground mb-4">
+                    September 6, 2025 - Select your preferred time
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="p-0">
-                  <CalendlyWidget url="https://calendly.com/endoclub/new-meeting-1" className="min-h-[600px] sm:min-h-[700px] w-full" />
+                  {/* Table Header */}
+                  <div className="grid grid-cols-4 gap-2 mb-4 p-3 bg-muted/30 rounded-lg text-xs font-semibold text-muted-foreground">
+                    <div>Time (24h)</div>
+                    <div>Time (12h)</div>
+                    <div>Time Zone</div>
+                    <div>Note</div>
+                  </div>
+                  
+                  {/* Time Slot Rows */}
+                  <div className="space-y-3">
+                    {timeSlots.map((slot) => (
+                      <button
+                        key={slot.time}
+                        onClick={() => handleTimeSlotSelect(slot.time)}
+                        disabled={!slot.available}
+                        className={`w-full grid grid-cols-4 gap-2 p-4 rounded-lg border text-sm transition-colors text-left ${
+                          slot.available 
+                            ? 'border-primary bg-primary/5 hover:bg-primary/10 hover:border-primary/80 hover:shadow-md' 
+                            : 'border-muted bg-muted text-muted-foreground cursor-not-allowed'
+                        }`}
+                      >
+                        <div className="font-medium flex items-center gap-2">
+                          <span className="inline-block w-4 h-3 rounded-sm overflow-hidden border border-gray-300">
+                            <div className="w-full h-full flex">
+                              <div className="w-1/3 bg-green-600"></div>
+                              <div className="w-1/3 bg-white"></div>
+                              <div className="w-1/3 bg-red-600"></div>
+                            </div>
+                          </span>
+                          {slot.time}
+                        </div>
+                        <div className="font-medium">{slot.label12h}</div>
+                        <div className="text-muted-foreground">{slot.timezone}</div>
+                        <div className="text-muted-foreground">{slot.note}</div>
+                      </button>
+                    ))}
+                  </div>
+                  
+                  <div className="mt-6 p-4 bg-primary/5 rounded-lg border border-primary/20">
+                    <p className="text-sm text-center text-primary font-medium">
+                      ✨ Click any time slot above to book your spot instantly
+                    </p>
+                  </div>
                 </CardContent>
               </Card>
             </div>
@@ -1421,7 +1515,7 @@ ${name}`);
             onClick={(e) => e.stopPropagation()}
           >
             <div className="sticky top-0 bg-white border-b border-border p-6 flex items-center justify-between">
-              <h2 className="text-2xl font-bold text-foreground">100% Money-Back Guarantee</h2>
+              <h2 className="text-2xl font-bold text-foreground">30‑Day Fair‑Use Money‑Back Guarantee</h2>
               <button 
                 onClick={() => setShowMoneyBackGuarantee(false)}
                 className="p-2 hover:bg-muted rounded-full transition-colors"
@@ -1429,91 +1523,134 @@ ${name}`);
                 <X className="w-5 h-5" />
               </button>
             </div>
-            <div className="p-6 space-y-6 text-muted-foreground">
-              <div className="bg-primary/5 border border-primary/20 rounded-lg p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <Shield className="w-8 h-8 text-primary" />
-                  <h3 className="text-xl font-bold text-foreground">Our Promise to You</h3>
-                </div>
-                <p className="text-lg text-foreground">We're so confident in the value of our Canal Localization Masterclass that we offer a complete 100% money-back guarantee.</p>
+            <div className="p-6 space-y-6 text-muted-foreground prose prose-sm max-w-none">
+              <p className="text-sm italic text-muted-foreground">Effective 29 July 2025</p>
+              
+              <p>We believe—based on years of live demonstrations—that Dr Roitman's <strong>Canal Localization Masterclass</strong> delivers measurable clinical value. If, after genuine participation and application, you feel the programme has not met its stated learning objectives, you may request a refund under the terms below.</p>
+              
+              <hr className="my-6" />
+              
+              <h3 className="text-lg font-semibold text-foreground">1. Scope of the Guarantee</h3>
+              <div className="overflow-x-auto">
+                <table className="w-full border border-border rounded-lg">
+                  <thead>
+                    <tr className="bg-muted/50">
+                      <th className="border-b border-border p-3 text-left font-semibold text-foreground">Item</th>
+                      <th className="border-b border-border p-3 text-left font-semibold text-foreground">Details</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="border-b border-border p-3 font-semibold">Coverage</td>
+                      <td className="border-b border-border p-3">100% of the masterclass fee (€27 Early‑Bird or €57 standard).</td>
+                    </tr>
+                    <tr>
+                      <td className="border-b border-border p-3 font-semibold">Period</td>
+                      <td className="border-b border-border p-3">30 calendar days from the purchase date ("Guarantee Period").</td>
+                    </tr>
+                    <tr>
+                      <td className="border-b border-border p-3 font-semibold">Format</td>
+                      <td className="border-b border-border p-3">Applies equally to live attendance and recorded replay access.</td>
+                    </tr>
+                    <tr>
+                      <td className="border-b border-border p-3 font-semibold">Legal Framework</td>
+                      <td className="border-b border-border p-3">This policy complements—and does not limit—your statutory rights under the EU Consumer Rights Directive and other applicable consumer‑protection laws.</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
               
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">How It Works</h3>
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <div className="bg-primary text-primary-foreground rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm mt-1">1</div>
-                    <div>
-                      <h4 className="font-semibold text-foreground">Attend the Masterclass</h4>
-                      <p>Participate in the live session or watch the recording within 30 days of purchase.</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="bg-primary text-primary-foreground rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm mt-1">2</div>
-                    <div>
-                      <h4 className="font-semibold text-foreground">Try the Techniques</h4>
-                      <p>Apply what you've learned in your practice and see the results for yourself.</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="bg-primary text-primary-foreground rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm mt-1">3</div>
-                    <div>
-                      <h4 className="font-semibold text-foreground">Not Satisfied? Get Your Money Back</h4>
-                      <p>If you're not completely satisfied within 30 days, contact us for a full refund.</p>
-                    </div>
-                  </div>
-                </div>
+              <hr className="my-6" />
+              
+              <h3 className="text-lg font-semibold text-foreground">2. Eligibility Requirements</h3>
+              
+              <h4 className="font-semibold text-foreground">1. Active Engagement</h4>
+              <ul className="list-disc list-inside space-y-1 ml-4">
+                <li>Attend the live session <strong>or</strong> watch the full recording within the Guarantee Period.</li>
+                <li>Make a reasonable attempt to implement at least one of the techniques taught (e.g., in a clinical simulation or patient case).</li>
+              </ul>
+              
+              <h4 className="font-semibold text-foreground">2. Feedback for Improvement</h4>
+              <ul className="list-disc list-inside space-y-1 ml-4">
+                <li>When requesting a refund, provide concise feedback explaining <strong>why</strong> the masterclass fell short for you. Your insights help us refine the curriculum and guard against misuse.</li>
+              </ul>
+              
+              <h4 className="font-semibold text-foreground">3. Timely Request</h4>
+              <ul className="list-disc list-inside space-y-1 ml-4">
+                <li>Submit your request <strong>within</strong> the 30‑day window. Requests received after that date are not eligible.</li>
+              </ul>
+              
+              <hr className="my-6" />
+              
+              <h3 className="text-lg font-semibold text-foreground">3. How to Request a Refund</h3>
+              <p>Contact us through <strong>one</strong> of the channels below and include:</p>
+              <ul className="list-disc list-inside space-y-1 ml-4">
+                <li>Your full name</li>
+                <li>The e‑mail address you used for registration</li>
+                <li>Order ID or transaction reference</li>
+                <li>Your feedback (3–5 sentences is sufficient)</li>
+              </ul>
+              
+              <div className="overflow-x-auto">
+                <table className="w-full border border-border rounded-lg">
+                  <thead>
+                    <tr className="bg-muted/50">
+                      <th className="border-b border-border p-3 text-left font-semibold text-foreground">Channel</th>
+                      <th className="border-b border-border p-3 text-left font-semibold text-foreground">How to reach us</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="border-b border-border p-3 font-semibold">Website</td>
+                      <td className="border-b border-border p-3">Use the <strong>"Contact Us"</strong> form linked at the bottom of our website.</td>
+                    </tr>
+                    <tr>
+                      <td className="border-b border-border p-3 font-semibold">Instagram</td>
+                      <td className="border-b border-border p-3">Send us a direct message.</td>
+                    </tr>
+                    <tr>
+                      <td className="border-border p-3 font-semibold">Email</td>
+                      <td className="border-border p-3">Write to the support e‑mail address published on our website.</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
               
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">What's Covered</h3>
-                <ul className="space-y-2 list-disc list-inside">
-                  <li>Full refund of the masterclass fee (€27 Early Bird Special or €97 regular price)</li>
-                  <li>No questions asked policy - your satisfaction is our priority</li>
-                  <li>Valid for 30 days from the date of purchase</li>
-                  <li>Applies to both live attendance and recorded access</li>
-                </ul>
-              </div>
+              <hr className="my-6" />
               
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">How to Request a Refund</h3>
-                <div className="bg-muted/50 rounded-lg p-4">
-                  <p className="mb-4">To request your refund, simply contact us using any of these methods:</p>
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-2">
-                      <FileText className="w-4 h-4 text-primary" />
-                      <button 
-                        onClick={() => window.location.href = 'mailto:DRsroitman@gmail.com'} 
-                        className="text-primary hover:underline"
-                      >
-                        Email Support
-                      </button>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Send className="w-4 h-4 text-blue-500" />
-                      <span>Telegram: <a href="https://t.me/drroitman" className="text-primary hover:underline">@drroitman</a></span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Instagram className="w-4 h-4 text-purple-500" />
-                      <span>Instagram: <a href="https://www.instagram.com/dr.roitman/" className="text-primary hover:underline">@dr.roitman</a></span>
-                    </div>
-                  </div>
-                  <p className="mt-4 text-sm">Include your name, email used for registration, and the reason for your refund request (optional).</p>
-                </div>
-              </div>
+              <h3 className="text-lg font-semibold text-foreground">4. Review & Decision Process</h3>
+              <ol className="list-decimal list-inside space-y-2">
+                <li><strong>Acknowledgement</strong> – We'll confirm receipt within <strong>24 hours</strong> (business days).</li>
+                <li><strong>Evaluation</strong> – A clinician from our faculty will review your feedback; we may request a brief video or phone conversation (max 15 minutes) to clarify details.</li>
+                <li><strong>Outcome</strong> – You will receive a written decision within <strong>5 business days</strong> of your complete submission.
+                  <em className="block mt-1 ml-4">If your claim is validated, we will authorise a full refund.</em>
+                </li>
+              </ol>
               
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">Processing Time</h3>
-                <p>Refunds are typically processed within 3-5 business days. You'll receive confirmation once the refund has been issued to your original payment method.</p>
-              </div>
+              <hr className="my-6" />
               
-              <div className="bg-accent/5 border border-accent/20 rounded-lg p-4">
-                <h4 className="font-semibold text-foreground mb-2">Why We Offer This Guarantee</h4>
-                <p>Dr. Roitman has trained over 2,000 dentists worldwide with a 98% success rate. We're confident that our proven techniques will transform your endodontic practice. This guarantee removes any risk from your investment in professional development.</p>
-              </div>
+              <h3 className="text-lg font-semibold text-foreground">5. Refund Execution</h3>
+              <ul className="list-disc list-inside space-y-1">
+                <li>Approved refunds are issued to the original payment method within <strong>3–5 business days</strong> of approval.</li>
+                <li>A confirmation e‑mail will be sent once funds are released.</li>
+              </ul>
               
-              <div className="text-sm text-muted-foreground">
-                <p>Last updated: January 2025</p>
+              <hr className="my-6" />
+              
+              <h3 className="text-lg font-semibold text-foreground">6. Anti‑Abuse Clause</h3>
+              <p>We reserve the right to refuse refunds in cases of:</p>
+              <ul className="list-disc list-inside space-y-1">
+                <li><strong>Evident misuse</strong> (e.g., multiple refund requests across successive cohorts).</li>
+                <li><strong>Failure to engage</strong> with the content (no attendance or view‑through data).</li>
+                <li><strong>Chargebacks</strong> initiated before following the process above.</li>
+              </ul>
+              <p>All decisions are made in good faith and in accordance with EU consumer‑protection standards.</p>
+              
+              <hr className="my-6" />
+              
+              <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
+                <h4 className="font-semibold text-foreground mb-2">Questions?</h4>
+                <p>Please reach out—our goal is to ensure you receive the educational value you expect <strong>and</strong> to learn from your constructive feedback.</p>
               </div>
             </div>
           </div>
@@ -1551,61 +1688,17 @@ ${name}`);
                 <div className="lg:w-2/3 space-y-6">
                   <div>
                     <h3 className="text-3xl font-bold text-foreground mb-2">Dr. Roitman, DDS</h3>
-                    <p className="text-lg text-primary font-semibold mb-4">Board Certified Endodontist • International Speaker • Published Author</p>
+                    <p className="text-lg text-primary font-semibold mb-4">Endodontist • Head of Endodontic Department • International Speaker • Inventor</p>
                     <p className="text-muted-foreground leading-relaxed">
-                      Dr. Roitman is a world-renowned endodontist with over 20 years of experience in the field. 
-                      He has revolutionized canal localization techniques and has trained more than 10,000 dental 
-                      professionals worldwide.
+                      Dr. Roitman is an endodontist with 10 years of experience in the field. 
+                      He has mastered proven canal localization techniques and has trained dental 
+                      professionals in Italy and online.
                     </p>
                   </div>
                 </div>
               </div>
               
-              <div className="grid md:grid-cols-2 gap-6">
-                <Card className="p-6">
-                  <div className="flex items-center gap-3 mb-4">
-                    <GraduationCap className="w-8 h-8 text-primary" />
-                    <h4 className="text-xl font-bold text-foreground">Education & Training</h4>
-                  </div>
-                  <ul className="space-y-2 text-muted-foreground">
-                    <li>• Harvard School of Dental Medicine</li>
-                    <li>• Advanced Endodontic Residency</li>
-                    <li>• Multiple board certifications</li>
-                    <li>• Continuing education in microscopic endodontics</li>
-                  </ul>
-                </Card>
-                
-                <Card className="p-6">
-                  <div className="flex items-center gap-3 mb-4">
-                    <Award className="w-8 h-8 text-accent" />
-                    <h4 className="text-xl font-bold text-foreground">Achievements</h4>
-                  </div>
-                  <ul className="space-y-2 text-muted-foreground">
-                    <li>• 50+ published research papers</li>
-                    <li>• Keynote speaker at 30+ international conferences</li>
-                    <li>• Innovation awards in endodontics</li>
-                    <li>• Developer of revolutionary canal location techniques</li>
-                  </ul>
-                </Card>
-              </div>
               
-              <div className="bg-primary/5 border border-primary/20 rounded-lg p-6">
-                <h4 className="text-xl font-bold text-foreground mb-4">Professional Experience</h4>
-                <div className="space-y-4 text-muted-foreground">
-                  <p>
-                    <strong className="text-foreground">2000-Present:</strong> Private Practice in Advanced Endodontics
-                  </p>
-                  <p>
-                    <strong className="text-foreground">2005-Present:</strong> International Lecturer and Course Director
-                  </p>
-                  <p>
-                    <strong className="text-foreground">2010-Present:</strong> Founder of LearnEndo.io Educational Platform
-                  </p>
-                  <p>
-                    <strong className="text-foreground">2015-Present:</strong> Research Director for Canal Localization Studies
-                  </p>
-                </div>
-              </div>
               
               <div className="bg-accent/5 border border-accent/20 rounded-lg p-6">
                 <h4 className="text-xl font-bold text-foreground mb-4">Philosophy & Mission</h4>
@@ -1661,7 +1754,7 @@ ${name}`);
             onClick={(e) => e.stopPropagation()}
           >
             <div className="sticky top-0 bg-white border-b border-border p-6 flex items-center justify-between">
-              <h2 className="text-2xl font-bold text-foreground">Terms and Conditions</h2>
+              <h2 className="text-2xl font-bold text-foreground">Canal Localization Masterclass - Terms & Conditions</h2>
               <button 
                 onClick={() => setShowTermsConditions(false)}
                 className="p-2 hover:bg-muted rounded-full transition-colors"
@@ -1669,86 +1762,154 @@ ${name}`);
                 <X className="w-5 h-5" />
               </button>
             </div>
-            <div className="p-6 space-y-6 text-muted-foreground">
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">1. Acceptance of Terms</h3>
-                <p>By registering for and attending the Canal Localization Masterclass, you agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, please do not register for the course.</p>
+            <div className="p-6 space-y-6 text-muted-foreground prose prose-sm max-w-none">
+              <p className="text-sm italic text-muted-foreground">Effective 29 July 2025</p>
+              
+              <hr className="my-6" />
+              
+              <h3 className="text-lg font-semibold text-foreground">1  |  Acceptance of Terms</h3>
+              <p>By <strong>registering, purchasing, subscribing to, or attending</strong> the Canal Localization Masterclass ("Course"), you acknowledge that you have read, understood, and <strong>agree to be bound by these Terms & Conditions</strong>. If you disagree with any part of the Terms, <strong>do not proceed with registration or attendance</strong>.</p>
+              
+              <hr className="my-6" />
+              
+              <h3 className="text-lg font-semibold text-foreground">2  |  Registration & Payment</h3>
+              <ol className="list-decimal list-inside space-y-2">
+                <li><strong>Confirmation</strong> – Your seat is secured only after full payment is received.</li>
+                <li><strong>Pricing</strong> – Early‑Bird rates are limited‑time offers and subject to seat availability. All fees are quoted in euros (€); <strong>VAT or other applicable taxes may be added at checkout unless expressly stated otherwise</strong>.</li>
+                <li><strong>Secure Processing</strong> – Payments are handled exclusively by authorised providers; we do not store card details on our servers.</li>
+              </ol>
+              
+              <hr className="my-6" />
+              
+              <h3 className="text-lg font-semibold text-foreground">3  |  Course Content & Access</h3>
+              <ul className="list-disc list-inside space-y-1">
+                <li>Live, instructor‑led masterclass with interactive Q&A.</li>
+                <li><strong>Recording automatically delivered</strong> to all registrants; lifetime streaming access included.</li>
+                <li>Downloadable resources (e.g., slides, checklists).</li>
+                <li>Content is licensed for your personal professional use only; redistribution is prohibited (see Section 4).</li>
+              </ul>
+              
+              <hr className="my-6" />
+              
+              <h3 className="text-lg font-semibold text-foreground">4  |  Intellectual Property</h3>
+              <p>All videos, images, hand‑outs, software, and techniques are the intellectual property of Dr Roitman and LearnEndo.io. Any reproduction, distribution, public display, or commercial exploitation without <strong>prior written consent</strong> is strictly forbidden.</p>
+              
+              <hr className="my-6" />
+              
+              <h3 className="text-lg font-semibold text-foreground">5  |  Professional Use & Disclaimer</h3>
+              <ul className="list-disc list-inside space-y-1">
+                <li>Materials are provided for educational purposes; local laws and professional guidelines take precedence.</li>
+                <li>You remain solely responsible for patient outcomes and clinical decisions.</li>
+                <li>No representation is made that specific clinical results are guaranteed.</li>
+              </ul>
+              
+              <hr className="my-6" />
+              
+              <h3 className="text-lg font-semibold text-foreground">6  |  Anti‑Abuse Clause</h3>
+              <p>We reserve the right to refuse refunds in cases of:</p>
+              <ul className="list-disc list-inside space-y-1">
+                <li><strong>Evident misuse</strong> (e.g., multiple refund requests across successive cohorts).</li>
+                <li><strong>Failure to engage</strong> with the content (no attendance or view‑through data).</li>
+                <li><strong>Chargebacks</strong> initiated before following the refund process described in Section 7.</li>
+              </ul>
+              <p>All decisions are made in good faith and in accordance with EU consumer‑protection standards.</p>
+              
+              <hr className="my-6" />
+              
+              <h3 className="text-lg font-semibold text-foreground">7  |  30‑Day <strong>Fair‑Use Money‑Back Guarantee</strong></h3>
+              <p>We stand behind the Course. If, after <strong>active participation</strong> and a <strong>good‑faith attempt</strong> to apply at least one taught technique, you believe the programme failed to deliver its stated learning objectives, you may request a full refund under the conditions below. <em>(For circumstances that may void eligibility, see Section 6 Anti‑Abuse Clause.)</em></p>
+              
+              <div className="overflow-x-auto">
+                <table className="w-full border border-border rounded-lg">
+                  <thead>
+                    <tr className="bg-muted/50">
+                      <th className="border-b border-border p-3 text-left font-semibold text-foreground">Item</th>
+                      <th className="border-b border-border p-3 text-left font-semibold text-foreground">Guarantee Details</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="border-b border-border p-3 font-semibold">Coverage</td>
+                      <td className="border-b border-border p-3">100% of the Course fee (€27 Early‑Bird / €57 standard).</td>
+                    </tr>
+                    <tr>
+                      <td className="border-b border-border p-3 font-semibold">Window</td>
+                      <td className="border-b border-border p-3">30 calendar days from purchase date.</td>
+                    </tr>
+                    <tr>
+                      <td className="border-b border-border p-3 font-semibold">Process</td>
+                      <td className="border-b border-border p-3">Submit your request via the <strong>Contact Us</strong> form (bottom of our website) <em>or</em> direct message on our official Instagram <em>or</em> the email address listed on the website. Include your name, registration email, order ID, and 3–5 sentences of constructive feedback.</td>
+                    </tr>
+                    <tr>
+                      <td className="border-b border-border p-3 font-semibold">Review</td>
+                      <td className="border-b border-border p-3">We acknowledge within 24 business hours and issue a written decision within 5 business days.</td>
+                    </tr>
+                    <tr>
+                      <td className="border-border p-3 font-semibold">Payment of Refund</td>
+                      <td className="border-border p-3">Approved refunds are returned to the original payment method within 3–5 business days of approval.</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
               
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">2. Course Registration and Payment</h3>
-                <ul className="space-y-2 list-disc list-inside">
-                  <li>Registration is confirmed upon receipt of payment</li>
-                  <li>Early Bird pricing is subject to availability and time limits</li>
-                  <li>All prices are in Euros and include applicable taxes</li>
-                  <li>Payment is processed securely through our authorized payment providers</li>
-                </ul>
+              <p>This guarantee supplements—without limiting—your statutory rights under EU consumer‑protection law.</p>
+              
+              <hr className="my-6" />
+              
+              <h3 className="text-lg font-semibold text-foreground">8  |  Cancellation, Rescheduling & Force Majeure</h3>
+              
+              <div className="overflow-x-auto">
+                <table className="w-full border border-border rounded-lg">
+                  <thead>
+                    <tr className="bg-muted/50">
+                      <th className="border-b border-border p-3 text-left font-semibold text-foreground">Scenario</th>
+                      <th className="border-b border-border p-3 text-left font-semibold text-foreground">Policy</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="border-b border-border p-3 font-semibold">Learner‑initiated cancellation</td>
+                      <td className="border-b border-border p-3">You may cancel <strong>no later than 24 hours before</strong> the scheduled start time of the live session ("Cancellation Window"). Cancellations received after this window are treated as attended enrolments: you will still receive the recording and all materials, but <strong>no refund is issued for late cancellations</strong>. (You may still claim under the Fair‑Use Money‑Back Guarantee in Section 7 if you meet its conditions and are not excluded under Section 6.)</td>
+                    </tr>
+                    <tr>
+                      <td className="border-b border-border p-3 font-semibold">Rescheduling or force majeure</td>
+                      <td className="border-b border-border p-3">We may reschedule or modify delivery due to events beyond our control (e.g., platform outages, instructor illness, natural disasters). If rescheduling is not feasible, a full refund will be provided.</td>
+                    </tr>
+                    <tr>
+                      <td className="border-border p-3 font-semibold">Technical failures on our side</td>
+                      <td className="border-border p-3">Documented technical issues that prevent your access will be remedied promptly or refunded in full.</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
               
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">3. Course Content and Access</h3>
-                <ul className="space-y-2 list-disc list-inside">
-                  <li>The masterclass includes live instruction and Q&A session</li>
-                  <li>Recorded version provided for lifetime access</li>
-                  <li>Downloadable resources and materials included</li>
-                  <li>CE credits provided upon completion</li>
-                  <li>Content is for personal professional use only</li>
-                </ul>
-              </div>
+              <hr className="my-6" />
               
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">4. Intellectual Property</h3>
-                <p>All course materials, including but not limited to videos, presentations, handouts, and techniques, are the intellectual property of Dr. Roitman and LearnEndo.io. Reproduction, distribution, or commercial use without written permission is prohibited.</p>
-              </div>
+              <h3 className="text-lg font-semibold text-foreground">9  |  Privacy & Data Protection</h3>
+              <p>We collect only the data necessary for course delivery, certification, and compliance. Data are never sold. Third‑party processors (e.g., payment gateways, scheduling tools) receive only the information required to perform their contracted services, subject to EU GDPR.</p>
               
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">5. Professional Use and Disclaimer</h3>
-                <ul className="space-y-2 list-disc list-inside">
-                  <li>Course content is for educational purposes only</li>
-                  <li>Participants are responsible for ensuring techniques comply with local regulations</li>
-                  <li>Professional judgment should always be exercised in clinical situations</li>
-                  <li>No guarantee of specific clinical outcomes</li>
-                </ul>
-              </div>
+              <hr className="my-6" />
               
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">6. Cancellation and Refund Policy</h3>
-                <ul className="space-y-2 list-disc list-inside">
-                  <li>100% money-back guarantee within 30 days of purchase</li>
-                  <li>Refunds processed within 3-5 business days</li>
-                  <li>Force majeure events may result in course rescheduling</li>
-                  <li>Technical issues will be resolved or full refunds provided</li>
-                </ul>
-              </div>
+              <h3 className="text-lg font-semibold text-foreground">10  |  Technical Requirements</h3>
+              <ul className="list-disc list-inside space-y-1">
+                <li>Stable internet (≥ 3 Mbps down / 1 Mbps up) and a modern browser (Chrome, Edge, Safari, Firefox) are required.</li>
+                <li>If technical problems prevent live attendance, you will still receive the full recording and support.</li>
+              </ul>
               
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">7. Privacy and Data Protection</h3>
-                <p>We are committed to protecting your privacy. Registration information is used solely for course delivery and communication. We do not sell or share personal data with third parties except as necessary for course delivery (e.g., Calendly for scheduling).</p>
-              </div>
+              <hr className="my-6" />
               
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">8. Technical Requirements</h3>
-                <ul className="space-y-2 list-disc list-inside">
-                  <li>Stable internet connection required for live session</li>
-                  <li>Compatible with major browsers and devices</li>
-                  <li>Technical support provided for access issues</li>
-                  <li>Recording available if technical problems prevent live attendance</li>
-                </ul>
-              </div>
+              <h3 className="text-lg font-semibold text-foreground">11  |  Limitation of Liability</h3>
+              <p>To the maximum extent permitted by law, LearnEndo.io and Dr Roitman shall not be liable for indirect, incidental, or consequential damages arising from Course participation. Aggregate liability is capped at the amount you paid for the Course.</p>
               
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">9. Limitation of Liability</h3>
-                <p>LearnEndo.io and Dr. Roitman shall not be liable for any indirect, incidental, special, or consequential damages arising from course participation. Total liability is limited to the course registration fee.</p>
-              </div>
+              <hr className="my-6" />
               
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">10. Contact Information</h3>
-                <p>For questions about these terms or the course, please use our contact form or reach out through our official social media channels. Contact information is available in the Contact Us section of our website.</p>
-              </div>
+              <h3 className="text-lg font-semibold text-foreground">12  |  Contact</h3>
+              <p>Questions about these Terms or the Course? Please use the <strong>Contact Us</strong> form located at the bottom of our website or message us through our verified social media channels. We aim to respond within one business day.</p>
               
-              <div className="text-sm text-muted-foreground border-t border-border pt-4">
-                <p>Last updated: January 2025</p>
-                <p>These terms are governed by applicable law and any disputes shall be resolved through appropriate legal channels.</p>
+              <hr className="my-6" />
+              
+              <div className="text-sm text-muted-foreground border-t border-border pt-4 italic">
+                <p><em>These Terms & Conditions are governed by, and construed in accordance with, the laws of Italy and the European Union.</em></p>
               </div>
             </div>
           </div>
@@ -1992,36 +2153,80 @@ ${name}`);
                 Choose Only Essentials
               </Button>
               
-              <div className="flex gap-2">
-                <Button 
-                  variant="ghost" 
-                  onClick={() => setShowCookiePolicy(true)}
-                  className="flex-1 text-xs p-1 h-auto"
-                  size="sm"
-                >
-                  Details
-                </Button>
-                <Button 
-                  variant="ghost" 
-                  onClick={() => {
-                    // Show additional decline options to make it more complex
-                    const confirmDecline = confirm(
-                      "Are you sure you want to decline cookies? This may limit website functionality and prevent us from improving your experience. You can change your preferences later in our Cookie Policy."
-                    );
-                    if (confirmDecline) {
-                      const reallyDecline = confirm(
-                        "Declining cookies means we can't:\n• Remember your preferences\n• Analyze what content helps dentists most\n• Provide personalized recommendations\n• Improve the masterclass experience\n\nContinue to decline?"
-                      );
-                      if (reallyDecline) {
-                        handleCookieConsent(false);
-                      }
-                    }
-                  }}
-                  className="flex-1 text-xs p-1 h-auto text-muted-foreground"
-                  size="sm"
-                >
-                  Decline
-                </Button>
+              <Button 
+                variant="ghost" 
+                onClick={() => setShowCookiePolicy(true)}
+                className="w-full text-xs mt-2"
+                size="sm"
+              >
+                View Cookie Policy
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Time Slots Modal */}
+      {showTimeSlots && (
+        <div 
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          onClick={() => setShowTimeSlots(false)}
+        >
+          <div 
+            className="bg-white rounded-lg max-w-md w-full"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="sticky top-0 bg-white border-b border-border p-6 flex items-center justify-between rounded-t-lg">
+              <h2 className="text-xl font-bold text-foreground">Canal Localization Masterclass</h2>
+              <button 
+                onClick={() => setShowTimeSlots(false)}
+                className="p-2 hover:bg-muted rounded-full transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <div className="p-6">
+              <div className="text-center mb-6">
+                <h3 className="text-lg font-semibold text-foreground mb-2">September 6, 2025</h3>
+                <p className="text-sm text-muted-foreground">Select your preferred time slot</p>
+              </div>
+              
+              {/* Table Header */}
+              <div className="grid grid-cols-4 gap-2 mb-3 p-3 bg-muted/30 rounded-lg text-xs font-semibold text-muted-foreground">
+                <div>Time (24h)</div>
+                <div>Time (12h)</div>
+                <div>Time Zone</div>
+                <div>Note</div>
+              </div>
+              
+              {/* Time Slot Rows */}
+              <div className="space-y-2">
+                {timeSlots.map((slot) => (
+                  <button
+                    key={slot.time}
+                    onClick={() => handleTimeSlotSelect(slot.time)}
+                    disabled={!slot.available}
+                    className={`w-full grid grid-cols-4 gap-2 p-3 rounded-lg border text-sm transition-colors text-left ${
+                      slot.available 
+                        ? 'border-primary bg-primary/5 hover:bg-primary/10 hover:border-primary/80 hover:shadow-sm' 
+                        : 'border-muted bg-muted text-muted-foreground cursor-not-allowed'
+                    }`}
+                  >
+                    <div className="font-medium flex items-center gap-2">
+                      <span className="inline-block w-4 h-3 rounded-sm overflow-hidden border border-gray-300">
+                        <div className="w-full h-full flex">
+                          <div className="w-1/3 bg-green-600"></div>
+                          <div className="w-1/3 bg-white"></div>
+                          <div className="w-1/3 bg-red-600"></div>
+                        </div>
+                      </span>
+                      {slot.time}
+                    </div>
+                    <div className="font-medium">{slot.label12h}</div>
+                    <div className="text-muted-foreground">{slot.timezone}</div>
+                    <div className="text-muted-foreground">{slot.note}</div>
+                  </button>
+                ))}
               </div>
             </div>
           </div>
@@ -2063,6 +2268,15 @@ ${name}`);
               <div className="text-center text-muted-foreground">
                 <p className="mb-2">© 2025 LearnEndo.io. All rights reserved.</p>
                 <p className="text-sm">Transforming dental education worldwide</p>
+              </div>
+              
+              {/* Educational Disclaimer for Meta Pixel */}
+              <div className="mt-8 pt-8 border-t border-border text-center">
+                <p className="text-xs text-muted-foreground max-w-3xl mx-auto">
+                  <strong>Educational Disclaimer:</strong> This website provides professional dental education and training content exclusively for licensed dental professionals. 
+                  No patient data is collected or processed. All content is for educational purposes only and does not constitute medical advice. 
+                  This is a professional development platform for continuing dental education.
+                </p>
               </div>
             </div>
           </div>
