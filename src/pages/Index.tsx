@@ -12,9 +12,15 @@ import { MoneyBackGuaranteeBadge } from "@/components/MoneyBackGuaranteeBadge";
 import { getVariant } from "@/lib/ab-testing";
 import { HeroVariantA } from "@/components/variants/HeroVariantA";
 import { HeroVariantB } from "@/components/variants/HeroVariantB";
+import { HeroVariantBEnhanced } from "@/components/variants/HeroVariantB-Enhanced";
+import { BookingVariantA } from "@/components/variants/BookingVariantA";
+import { BookingVariantB } from "@/components/variants/BookingVariantB";
+import { useABTestEnhanced } from "@/hooks/useABTestEnhanced";
 
 const Index = () => {
-  const [variant] = useState(() => getVariant());
+  const { variant, trackConversion } = useABTestEnhanced({ 
+    experimentId: 'dental_masterclass_main' 
+  });
   const [timeLeft, setTimeLeft] = useState({
     days: 25,
     hours: 4,
@@ -335,13 +341,8 @@ const Index = () => {
       {variant === 'A' ? (
         <HeroVariantA 
           onCtaClick={() => {
+            trackConversion('variant_a_cta_click');
             setShowTimeSlots(true);
-            if (cookiesAccepted && (window as any).gtag) {
-              (window as any).gtag('event', 'click', {
-                event_category: 'conversion',
-                event_label: 'variant_a_cta'
-              });
-            }
           }}
           timeLeft={timeLeft}
           setShowTimeSlots={setShowTimeSlots}
@@ -349,13 +350,8 @@ const Index = () => {
       ) : (
         <HeroVariantB 
           onCtaClick={() => {
+            trackConversion('variant_b_cta_click');
             setShowTimeSlots(true);
-            if (cookiesAccepted && (window as any).gtag) {
-              (window as any).gtag('event', 'click', {
-                event_category: 'conversion',
-                event_label: 'variant_b_cta'
-              });
-            }
           }}
           timeLeft={timeLeft}
           setShowTimeSlots={setShowTimeSlots}
@@ -795,18 +791,19 @@ const Index = () => {
         </div>
       </section>
 
-      {/* What You'll Learn - Redesigned */}
-      <section id="what-youll-learn" className="py-20 bg-muted/50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-foreground">
-                Master the <span className="text-primary">Proven System</span>
-              </h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Master the methods that ensure successful canal location
-              </p>
-            </div>
+      {/* What You'll Learn - Redesigned - Only for Variant A */}
+      {variant === 'A' && (
+        <section id="what-youll-learn" className="py-20 bg-muted/50">
+          <div className="container mx-auto px-4">
+            <div className="max-w-6xl mx-auto">
+              <div className="text-center mb-16">
+                <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-foreground">
+                  Master the <span className="text-primary">Proven System</span>
+                </h2>
+                <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                  Master the methods that ensure successful canal location
+                </p>
+              </div>
             
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div className="space-y-8">
@@ -880,6 +877,7 @@ const Index = () => {
           </div>
         </div>
       </section>
+      )}
 
       {/* FAQ Section - Enhanced */}
       <section id="faq" className="py-20 bg-gradient-to-b from-background to-muted/30">
@@ -1056,143 +1054,17 @@ ${name}`);
         </div>
       </section>
 
-      {/* Final CTA Section with Booking */}
-      <section id="booking" className="py-20 gradient-hero relative overflow-hidden">
-        <div className="absolute inset-0 bg-black/10"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <Badge 
-                className="mb-6 bg-destructive text-destructive-foreground px-6 py-3 text-base font-bold animate-pulse cursor-pointer hover:bg-destructive/80 transition-colors"
-                onClick={() => setShowTimeSlots(true)}
-              >
-                🚨 EARLY BIRD DISCOUNT: 53% OFF SPECIAL
-              </Badge>
-              
-              <h2 className="text-4xl lg:text-6xl font-black text-white mb-8 leading-tight">
-                Don't Miss This
-                <span className="block text-accent-glow">Opportunity!</span>
-              </h2>
-              
-              <div className="max-w-3xl mx-auto mb-12">
-                <p className="text-xl lg:text-2xl text-white font-medium mb-6">
-                  Join dentists who have gained confidence in canal location with our proven methods
-                </p>
-                
-                <div className="bg-white/15 backdrop-blur-md rounded-2xl p-8 border border-white/20 max-w-md mx-auto mb-8">
-                  <div className="text-center mb-6">
-                    <div className="flex items-center justify-center gap-2 mb-4">
-                      <Timer className="w-6 h-6 text-accent" />
-                      <span className="text-white font-bold">Only 47 spots remaining!</span>
-                    </div>
-                    
-                    <div className="flex items-center justify-center gap-2 mb-4">
-                      <span className="text-2xl text-white/60 line-through">€57</span>
-                      <span className="text-5xl font-black text-accent-glow">€27</span>
-                    </div>
-                    <p 
-                      className="text-white/90 font-medium cursor-pointer hover:text-orange-300 transition-colors"
-                      onClick={() => setShowTimeSlots(true)}
-                    >
-                      Early Bird Special Ends Soon!
-                    </p>
-                  </div>
-                  
-                  <div className="space-y-3 text-white text-sm">
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-accent flex-shrink-0" />
-                      <span>60-minute live masterclass</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-accent flex-shrink-0" />
-                      <span>30-minute Q&A session</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-accent flex-shrink-0" />
-                      <span>Lifetime access to recording</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-accent flex-shrink-0" />
-                      <span>Downloadable resources</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-accent flex-shrink-0" />
-                      <span>CE credits included</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Shield className="w-4 h-4 text-accent flex-shrink-0" />
-                      <span>100% money-back guarantee</span>
-                    </div>
-                  </div>
-                </div>
-                
-                <p className="text-2xl lg:text-3xl text-white font-bold">
-                  Select your preferred time slot below and secure your spot now!
-                </p>
-              </div>
-            </div>
-            
-            {/* Time Slots Selection */}
-            <div id="calendar" className="max-w-2xl mx-auto">
-              <Card className="p-6 sm:p-8 bg-white/95 backdrop-blur-sm border border-white/20">
-                <CardHeader className="text-center pb-6">
-                  <CardTitle className="text-xl sm:text-2xl font-bold text-foreground mb-2">
-                    Choose Your Time Slot
-                  </CardTitle>
-                  <CardDescription className="text-muted-foreground mb-4">
-                    September 6, 2025 - Select your preferred time
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="p-0">
-                  {/* Table Header */}
-                  <div className="grid grid-cols-4 gap-2 mb-4 p-3 bg-muted/30 rounded-lg text-xs font-semibold text-muted-foreground">
-                    <div>Time (24h)</div>
-                    <div>Time (12h)</div>
-                    <div>Time Zone</div>
-                    <div>Note</div>
-                  </div>
-                  
-                  {/* Time Slot Rows */}
-                  <div className="space-y-3">
-                    {timeSlots.map((slot) => (
-                      <button
-                        key={slot.time}
-                        onClick={() => handleTimeSlotSelect(slot.time)}
-                        disabled={!slot.available}
-                        className={`w-full grid grid-cols-4 gap-2 p-4 rounded-lg border text-sm transition-colors text-left ${
-                          slot.available 
-                            ? 'border-primary bg-primary/5 hover:bg-primary/10 hover:border-primary/80 hover:shadow-md' 
-                            : 'border-muted bg-muted text-muted-foreground cursor-not-allowed'
-                        }`}
-                      >
-                        <div className="font-medium flex items-center gap-2">
-                          <span className="inline-block w-4 h-3 rounded-sm overflow-hidden border border-gray-300">
-                            <div className="w-full h-full flex">
-                              <div className="w-1/3 bg-green-600"></div>
-                              <div className="w-1/3 bg-white"></div>
-                              <div className="w-1/3 bg-red-600"></div>
-                            </div>
-                          </span>
-                          {slot.time}
-                        </div>
-                        <div className="font-medium">{slot.label12h}</div>
-                        <div className="text-muted-foreground">{slot.timezone}</div>
-                        <div className="text-muted-foreground">{slot.note}</div>
-                      </button>
-                    ))}
-                  </div>
-                  
-                  <div className="mt-6 p-4 bg-primary/5 rounded-lg border border-primary/20">
-                    <p className="text-sm text-center text-primary font-medium">
-                      ✨ Click any time slot above to book your spot instantly
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* A/B Testing: Different Booking Sections */}
+      {variant === 'A' ? (
+        <BookingVariantA />
+      ) : (
+        <BookingVariantB 
+          timeLeft={timeLeft}
+          setShowTimeSlots={setShowTimeSlots}
+          showTimeSlots={showTimeSlots}
+          handleTimeSlotSelect={handleTimeSlotSelect}
+        />
+      )}
 
       {/* Cookie Policy Modal */}
       {showCookiePolicy && (
@@ -2146,6 +2018,8 @@ ${name}`);
           </div>
         </div>
       </footer>
+      
+      {/* A/B Testing Controls (Development/Debug Only) */}
     </div>;
 };
 
