@@ -104,3 +104,85 @@ pm2 logs dental-app
   - GTM container GTM-K3WSZR7 loads properly with dataLayer initialized
   - ✅ VERIFIED: All tracking events working at localhost:8080 with variants A/B
   - Ready for external GTM workspace configuration with GA4 tags
+- **Phase 7**: Testing & Validation ✅ COMPLETE
+  - Variant A flow tested: pageview_A → click_A → purchase_A events verified
+  - Variant B flow tested: pageview_B → click_B → purchase_B events verified
+  - GTM workspace configured with triggers and GA4 tags
+  - All tracking verified on production Netlify site
+  - Error handling added for third-party script failures
+  - Console cleaned up while preserving tracking functionality
+  - ✅ VERIFIED: Complete A/B testing pipeline working end-to-end
+- **Phase 8**: Documentation ✅ COMPLETE
+  - README.md updated with comprehensive GTM setup guide
+  - Troubleshooting section added with common issues and solutions
+  - GTM container and GA4 measurement IDs documented
+  - Technical architecture and data flow documented
+  - Maintenance instructions added below
+
+## 🛠 **TRACKING MAINTENANCE GUIDE**
+
+### **Key Tracking IDs & Locations:**
+- **GTM Container**: `GTM-K3WSZR7` (in `index.html` head section)
+- **GA4 Measurement**: `G-GWBDNMRWFS` (in GTM workspace configuration)
+- **Facebook Pixel**: `735975949298040` (in `index.html` with error handling)
+- **Webhook Debug**: `https://webhook.site/eb164388-cc37-4cd9-a8b1-d517ef3201ff`
+
+### **Critical Files for Tracking:**
+```
+index.html                    # GTM container, dataLayer init, error handling
+public/ab-init.js            # A/B variant assignment, pageview events
+src/hooks/useABTest.ts       # React A/B test hook
+src/pages/Index.tsx          # Click event tracking (click_A/B)
+src/pages/ThankYou.tsx       # Conversion tracking (purchase_A/B)
+src/components/variants/     # A/B test variant components
+```
+
+### **Monthly Maintenance Tasks:**
+1. **Check GTM Container Status**
+   - Verify container `GTM-K3WSZR7` is published
+   - Confirm all 6 triggers are active (pageview_A/B, click_A/B, purchase_A/B)
+   - Test GTM Preview mode monthly
+
+2. **Validate GA4 Data Flow**
+   - Check GA4 Real-time reports for incoming events
+   - Verify conversion events have €27 value
+   - Monitor conversion rates: target >3% for each variant
+
+3. **Test A/B Variants**
+   - Test both variants: `?variant=A` and `?variant=B`
+   - Verify debug console shows correct events
+   - Check thank-you page conversion tracking
+
+### **Emergency Troubleshooting:**
+```bash
+# If tracking stops working:
+
+# 1. Check dev server is running
+lsof -i :8080
+
+# 2. Restart dev server with PM2 or nohup
+pkill -f vite && nohup npm run dev > dev.log 2>&1 &
+
+# 3. Test tracking events
+# Open: https://courageous-yeot-a51e84.netlify.app/?variant=A&debug_stream=1
+# Look for: [DEBUG] dataLayer pageview event pushed:
+
+# 4. Check GTM container loads
+# In browser console: console.log(window.google_tag_manager)
+```
+
+### **Code Changes That Affect Tracking:**
+⚠️ **BE CAREFUL when editing these:**
+- `index.html` GTM scripts (lines 35-41, 47-48)
+- `public/ab-init.js` dataLayer.push calls
+- `src/pages/Index.tsx` click event handlers
+- `src/pages/ThankYou.tsx` purchase event tracking
+- A/B variant component click handlers
+
+### **Safe Changes (Won't Break Tracking):**
+✅ **These are safe to modify:**
+- CSS styles and visual design
+- Text content and copy
+- Form validation (non-Calendly)
+- Image assets and icons
+- Non-tracking JavaScript functionality

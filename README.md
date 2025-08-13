@@ -71,3 +71,167 @@ Yes, you can!
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
 Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+
+## 📊 GTM & GA4 Tracking Implementation
+
+This project includes a **complete A/B testing pipeline** with Google Tag Manager and Google Analytics 4 integration.
+
+### 🎯 **Project Overview**
+- **Live Site**: https://courageous-yeot-a51e84.netlify.app/
+- **A/B Test**: Hero section variants (Calendly embed vs time slots)
+- **Tracking**: Complete funnel from pageview → click → conversion
+- **Purpose**: Optimize dental masterclass landing page conversions
+
+---
+
+## 📋 **Implementation Status: ALL PHASES COMPLETE ✅**
+
+### **Phase 1-3: Foundation** ✅ 
+- A/B testing system implemented in `src/lib/ab-testing.ts`
+- GTM Container `GTM-K3WSZR7` installed in `index.html`
+- dataLayer initialization and event tracking working
+
+### **Phase 4-5: Event Tracking** ✅
+- **Variant A**: Calendly widget embed → `click_A` event  
+- **Variant B**: Time slot buttons → `click_B` event
+- **Conversions**: Thank-you page → `purchase_A/B` events
+- All events include `experiment_id`, `variant_id`, metadata
+
+### **Phase 6-7: GTM & Validation** ✅
+- GTM workspace configured with triggers and GA4 tags
+- GA4 Measurement ID: `G-GWBDNMRWFS` 
+- End-to-end pipeline tested and verified on production
+- Error handling added for third-party script failures
+
+---
+
+## 🧪 **Testing Your Implementation**
+
+### **Quick Test URLs:**
+```bash
+# Variant A (Calendly embed)
+https://courageous-yeot-a51e84.netlify.app/?variant=A&debug_stream=1
+
+# Variant B (Time slots) 
+https://courageous-yeot-a51e84.netlify.app/?variant=B&debug_stream=1
+
+# Conversion tracking
+https://courageous-yeot-a51e84.netlify.app/thank-you?variant=A
+```
+
+### **Expected Console Output:**
+```javascript
+// Page Load
+[DEBUG] AB_VARIANT set to: A
+[DEBUG] Added CSS class: variant-a
+[DEBUG] dataLayer pageview event pushed: {event: 'pageview_A', ...}
+
+// Click Tracking
+[DEBUG] dataLayer click_A event pushed: {event: 'click_A', ...}
+
+// Conversion 
+[DEBUG] dataLayer purchase_A event pushed: {event: 'purchase_A', value: 27, ...}
+```
+
+---
+
+## 🛠 **Development Setup**
+
+### **Local Development:**
+```bash
+# Install dependencies
+npm install
+
+# Start dev server
+npm run dev
+# Server runs at http://localhost:8080
+
+# Test variants locally
+http://localhost:8080/?variant=A&debug_stream=1
+http://localhost:8080/?variant=B&debug_stream=1
+```
+
+### **Production Build:**
+```bash
+npm run build
+# Deploy dist/ folder to your hosting service
+```
+
+---
+
+## 🔧 **GTM Configuration Guide**
+
+### **Required GTM Setup:**
+
+1. **Create Triggers** in GTM workspace:
+   - `pageview_A` (Custom Event)
+   - `pageview_B` (Custom Event)  
+   - `click_A` (Custom Event)
+   - `click_B` (Custom Event)
+   - `purchase_A` (Custom Event)
+   - `purchase_B` (Custom Event)
+
+2. **Create GA4 Tags:**
+   - GA4 Configuration Tag (Measurement ID: `G-GWBDNMRWFS`)
+   - GA4 Event Tags for each custom event above
+
+3. **Publish Changes** in GTM workspace
+
+### **Verification Steps:**
+- Use GTM Preview mode to test trigger firing
+- Check GA4 Real-time reports for incoming events
+- Use GA4 DebugView for detailed event analysis
+
+---
+
+## 🚨 **Troubleshooting Common Issues**
+
+### **"No events in GA4"**
+- ✅ Check GTM Preview mode shows triggers firing
+- ✅ Verify GA4 tags are connected to triggers  
+- ✅ Confirm GTM workspace changes are published
+
+### **"Console errors"**
+- ✅ Facebook Pixel blocked: Normal with ad blockers
+- ✅ CORS webhook errors: Debug feature, doesn't affect tracking
+- ✅ Browser extension errors: External, ignore safely
+
+### **"Variant not working"**
+- ✅ Check URL parameter: `?variant=A` or `?variant=B`
+- ✅ Clear localStorage and reload page
+- ✅ Verify `window.AB_VARIANT` in browser console
+
+### **"Click events not firing"**
+- ✅ Variant A: Click embedded Calendly widget
+- ✅ Variant B: Click time slot buttons, not other CTAs
+- ✅ Check console for `[DEBUG] dataLayer click_X event pushed:`
+
+---
+
+## 📊 **Key Performance Indicators**
+
+Track these metrics in GA4 to measure A/B test success:
+
+- **Page Views**: `pageview_A` vs `pageview_B` 
+- **Click Rate**: `click_A/B` ÷ `pageview_A/B`
+- **Conversion Rate**: `purchase_A/B` ÷ `pageview_A/B` 
+- **Revenue**: Track €27 value per conversion
+
+---
+
+## 🏗 **Technical Architecture**
+
+### **Key Files:**
+- `index.html`: GTM container, dataLayer initialization
+- `public/ab-init.js`: A/B variant assignment, pageview tracking
+- `src/hooks/useABTest.ts`: React hook for A/B test state
+- `src/pages/Index.tsx`: Main page with variant rendering
+- `src/pages/ThankYou.tsx`: Conversion tracking
+- `src/components/variants/`: A/B test variant components
+
+### **Data Flow:**
+1. **Page Load** → `ab-init.js` assigns variant → `pageview_A/B` fires
+2. **User Click** → Variant component → `click_A/B` fires  
+3. **Conversion** → Thank-you page → `purchase_A/B` fires
+4. **GTM** → Receives events → Forwards to GA4
+5. **GA4** → Records events → Available for analysis
