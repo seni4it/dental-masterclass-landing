@@ -6,6 +6,16 @@ import { Badge } from "@/components/ui/badge";
 import { CheckCircle, Calendar, Video, Gift, Mail, Star, ArrowRight, Home } from "lucide-react";
 import { useNavigate } from 'react-router-dom';
 
+// Declare global types
+declare global {
+  interface Window {
+    dataLayer: any[];
+    ABTesting?: {
+      trackConversion: (action: string, value: number) => void;
+    };
+  }
+}
+
 const ThankYou = () => {
   const [windowDimensions, setWindowDimensions] = useState({
     width: window.innerWidth,
@@ -13,6 +23,14 @@ const ThankYou = () => {
   });
   const [showConfetti, setShowConfetti] = useState(true);
   const navigate = useNavigate();
+  
+  // Get variant from URL parameters - prioritize URL over stored variant
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlVariant = urlParams.get('variant');
+  const variant = urlVariant || window.localStorage.getItem('ab-variant') || 'unknown';
+  
+  console.log('[DEBUG] Thank-you page - URL variant:', urlVariant);
+  console.log('[DEBUG] Thank-you page - Final variant used:', variant);
 
   // Get window dimensions for confetti
   useEffect(() => {
@@ -35,6 +53,35 @@ const ThankYou = () => {
     
     return () => clearTimeout(timer);
   }, []);
+  
+  // Track conversion on page load
+  useEffect(() => {
+    if (variant === 'A' || variant === 'B') {
+      // Push purchase event to dataLayer
+      if (window.dataLayer) {
+        const purchaseEvent = {
+          event: `purchase_${variant}`,
+          experiment_id: 'dental_masterclass_hero',
+          variant_id: variant,
+          transaction_id: `${Date.now()}_${variant}`,
+          value: 27,
+          currency: 'EUR',
+          page_path: '/thank-you',
+          timestamp: new Date().toISOString()
+        };
+        window.dataLayer.push(purchaseEvent);
+        console.log(`[DEBUG] dataLayer purchase_${variant} event pushed:`, purchaseEvent);
+      }
+      
+      // Also track with ABTesting if available
+      if (window.ABTesting && window.ABTesting.trackConversion) {
+        window.ABTesting.trackConversion('purchase', 27);
+        console.log(`[DEBUG] ABTesting conversion tracked for variant ${variant}`);
+      }
+    } else {
+      console.warn('[DEBUG] No variant parameter found in URL - conversion not tracked');
+    }
+  }, [variant]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-accent/5 relative overflow-hidden">

@@ -42,7 +42,21 @@ const Index = () => {
   ];
 
   const handleTimeSlotSelect = (time: string) => {
-    const calendlyUrl = `https://calendly.com/endoclub/new-meeting-1/2025-09-06T${time}:00+02:00?month=2025-09&date=2025-09-06`;
+    const calendlyUrl = `https://calendly.com/endoclub/new-meeting-1/2025-09-06T${time}:00+02:00?month=2025-09&date=2025-09-06&variant=B`;
+    
+    // Track Calendly click for Variant B
+    if (window.dataLayer) {
+      const clickEvent = {
+        event: 'click_B',
+        experiment_id: 'dental_masterclass_hero',
+        variant_id: 'B',
+        calendly_url: calendlyUrl,
+        time_slot: time
+      };
+      window.dataLayer.push(clickEvent);
+      console.log('[DEBUG] dataLayer click_B event pushed:', clickEvent);
+    }
+    
     window.open(calendlyUrl, '_blank');
     setShowTimeSlots(false);
   };

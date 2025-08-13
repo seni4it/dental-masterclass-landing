@@ -14,7 +14,20 @@ const CalendlyWidget = ({ url, className = "" }: CalendlyWidgetProps) => {
       script.async = true;
       document.body.appendChild(script);
     }
-  }, []);
+    
+    // Track Calendly widget load for Variant A
+    if (url.includes('variant=A') && window.dataLayer) {
+      const clickEvent = {
+        event: 'click_A',
+        experiment_id: 'dental_masterclass_hero',
+        variant_id: 'A',
+        calendly_url: url,
+        interaction_type: 'widget_load'
+      };
+      window.dataLayer.push(clickEvent);
+      console.log('[DEBUG] dataLayer click_A event pushed:', clickEvent);
+    }
+  }, [url]);
 
   return (
     <div 

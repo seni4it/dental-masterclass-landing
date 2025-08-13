@@ -27,6 +27,11 @@
     fbq('track', 'PageView');
     </script>
     
+    <!-- Initialize dataLayer before GTM -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+    </script>
+    
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -37,8 +42,7 @@
     
     <!-- Google Analytics - Conditional Loading -->
     <script>
-      // Initialize dataLayer and gtag function regardless of consent
-      window.dataLayer = window.dataLayer || [];
+      // gtag function for conditional loading
       function gtag(){dataLayer.push(arguments);}
       
       // Function to load Google Analytics
@@ -98,6 +102,44 @@
     <meta name="twitter:title" content="Canal Localization Masterclass - Master Endodontics with Dr. Roitman" />
     <meta name="twitter:description" content="Join Dr. Roitman's exclusive masterclass and learn advanced canal localization techniques. Transform your endodontic practice today." />
     <meta name="twitter:image" content="YOUR_CUSTOM_IMAGE_URL_HERE" />
+    
+    <!-- Debug Stream for Live Monitoring -->
+    <script>
+    (function () {
+      const enabled = /\bdebug_stream=1\b/.test(location.search) || localStorage.getItem('DEBUG_STREAM') === '1';
+      if (!enabled) return;
+
+      const ENDPOINT = 'https://webhook.site/eb164388-cc37-4cd9-a8b1-d517ef3201ff';
+      const queue = [];
+      let timer = null;
+
+      function flush() {
+        if (!queue.length) return;
+        const batch = queue.splice(0, queue.length);
+        fetch(ENDPOINT, {
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({ source:'ab-debug', ts: Date.now(), entries: batch }),
+          keepalive: true
+        }).catch(()=>{}); // fire-and-forget
+      }
+      function add(entry){ queue.push(entry); if (!timer) timer = setTimeout(()=>{timer=null; flush();}, 1000); }
+
+      function safe(v){ try { return typeof v==='object' ? JSON.stringify(v) : String(v); } catch { return '(unserializable)'; } }
+
+      const olog = console.log.bind(console);
+      console.log = (...args)=>{ add({t:Date.now(), type:'console.log', msg: args.map(safe).join(' ')}); olog(...args); };
+
+      window.dataLayer = window.dataLayer || [];
+      const dp = window.dataLayer.push ? window.dataLayer.push.bind(window.dataLayer) : Array.prototype.push.bind(window.dataLayer);
+      window.dataLayer.push = function (obj) {
+        add({t:Date.now(), type:'dataLayer.push', payload: obj});
+        return dp(obj);
+      };
+
+      window.__ABlog = (label, payload)=> add({t:Date.now(), type:`AB:${label}`, payload});
+    })();
+    </script>
     
     <!-- A/B Testing - MUST load before React -->
     <script src="/ab-init.js"></script>

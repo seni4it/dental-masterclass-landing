@@ -71,7 +71,7 @@ export const BookingVariantA = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent className="p-6">
-                <CalendlyWidget url="https://calendly.com/endoclub/new-meeting-1" className="min-h-[700px] w-full" />
+                <CalendlyWidget url="https://calendly.com/endoclub/new-meeting-1?variant=A" className="min-h-[700px] w-full" />
               </CardContent>
             </Card>
           </div>
