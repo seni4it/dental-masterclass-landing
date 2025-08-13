@@ -13,7 +13,7 @@
     <link rel="icon" type="image/x-icon" href="https://d1yei2z3i6k35z.cloudfront.net/11922468/67ec02d73e2cb_459061577_884924966845685_6646581295662297536_n.jpg" />
     <link rel="apple-touch-icon" href="https://d1yei2z3i6k35z.cloudfront.net/11922468/67ec02d73e2cb_459061577_884924966845685_6646581295662297536_n.jpg" />
     
-    <!-- Meta Pixel Code -->
+    <!-- Meta Pixel Code with Error Handling -->
     <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -21,10 +21,26 @@
     if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
     n.queue=[];t=b.createElement(e);t.async=!0;
     t.src=v;s=b.getElementsByTagName(e)[0];
+    
+    // Add error handler for blocked/failed loads
+    t.onerror = function() {
+      console.log('[INFO] Facebook Pixel blocked or failed to load (common with ad blockers)');
+      // Create fallback fbq function to prevent errors
+      window.fbq = window.fbq || function() { 
+        console.log('[INFO] Facebook Pixel call intercepted:', arguments);
+      };
+    };
+    
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '735975949298040');
-    fbq('track', 'PageView');
+    
+    // Wrap fbq calls in try-catch
+    try {
+      fbq('init', '735975949298040');
+      fbq('track', 'PageView');
+    } catch (e) {
+      console.log('[INFO] Facebook Pixel not available:', e.message);
+    }
     </script>
     
     <!-- Initialize dataLayer before GTM -->
@@ -103,6 +119,42 @@
     <meta name="twitter:description" content="Join Dr. Roitman's exclusive masterclass and learn advanced canal localization techniques. Transform your endodontic practice today." />
     <meta name="twitter:image" content="YOUR_CUSTOM_IMAGE_URL_HERE" />
     
+    <!-- Global Error Handler for Network Issues -->
+    <script>
+    // Suppress common third-party script errors
+    window.addEventListener('error', function(e) {
+      const errorMsg = e.message || '';
+      const errorSrc = e.filename || '';
+      
+      // Suppress specific known errors that don't affect functionality
+      if (
+        errorSrc.includes('stripe') ||
+        errorSrc.includes('fbevents') ||
+        errorMsg.includes('ERR_INTERNET_DISCONNECTED') ||
+        errorMsg.includes('ERR_BLOCKED_BY_CLIENT')
+      ) {
+        console.log('[INFO] Third-party script unavailable:', errorMsg);
+        e.preventDefault();
+        return false;
+      }
+    });
+    
+    // Suppress unhandled promise rejections from external scripts
+    window.addEventListener('unhandledrejection', function(e) {
+      const reason = e.reason || {};
+      if (
+        reason.message && (
+          reason.message.includes('stripe') ||
+          reason.message.includes('ERR_INTERNET_DISCONNECTED') ||
+          reason.message.includes('ERR_BLOCKED_BY_CLIENT')
+        )
+      ) {
+        console.log('[INFO] Third-party service unavailable:', reason.message);
+        e.preventDefault();
+      }
+    });
+    </script>
+
     <!-- Debug Stream for Live Monitoring -->
     <script>
     (function () {
@@ -121,7 +173,12 @@
           headers:{'Content-Type':'application/json'},
           body: JSON.stringify({ source:'ab-debug', ts: Date.now(), entries: batch }),
           keepalive: true
-        }).catch(()=>{}); // fire-and-forget
+        }).catch((error) => {
+          // Suppress CORS errors - debug streaming is optional
+          if (error.name !== 'TypeError' || !error.message.includes('CORS')) {
+            console.log('[INFO] Debug stream unavailable:', error.message);
+          }
+        }); // fire-and-forget with better error handling
       }
       function add(entry){ queue.push(entry); if (!timer) timer = setTimeout(()=>{timer=null; flush();}, 1000); }
 
