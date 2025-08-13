@@ -60,8 +60,8 @@ export const BookingVariantA = () => {
           </div>
           
           {/* Calendly Widget - GitHub Version */}
-          <div className="max-w-4xl mx-auto px-4">
-            <Card className="p-4 sm:p-6 md:p-8 bg-white/95 backdrop-blur-sm border border-white/20">
+          <div className="max-w-5xl mx-auto px-4 flex justify-center">
+            <Card className="w-full max-w-4xl bg-white/95 backdrop-blur-sm border border-white/20">
               <CardHeader className="text-center pb-6">
                 <CardTitle className="text-lg sm:text-xl md:text-2xl font-bold text-foreground mb-2">
                   Choose Your Time Slot
@@ -70,7 +70,7 @@ export const BookingVariantA = () => {
                   Select the time that works best for your schedule
                 </CardDescription>
               </CardHeader>
-              <CardContent className="p-0">
+              <CardContent className="p-6">
                 <CalendlyWidget url="https://calendly.com/endoclub/new-meeting-1" className="min-h-[700px] w-full" />
               </CardContent>
             </Card>
