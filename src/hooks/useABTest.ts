@@ -5,7 +5,19 @@ export function useABTest() {
   // Get variant from window object (set by ab-init.js)
   const [variant, setVariant] = useState<'A' | 'B'>(() => {
     // @ts-ignore
-    return window.AB_VARIANT || 'A';
+    const windowVariant = window.AB_VARIANT;
+    console.log('[useABTest] Window variant:', windowVariant);
+    
+    // Fallback: check URL directly if window.AB_VARIANT not set
+    if (!windowVariant) {
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlVariant = urlParams.get('variant');
+      const fallbackVariant = urlVariant?.toUpperCase() === 'B' ? 'B' : 'A';
+      console.log('[useABTest] Using URL fallback:', fallbackVariant);
+      return fallbackVariant;
+    }
+    
+    return windowVariant || 'A';
   });
 
   useEffect(() => {
