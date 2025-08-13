@@ -1,8 +1,44 @@
-# Welcome to your Lovable project
+# Canal Localization Masterclass - A/B Testing Platform
+
+## Project Overview
+
+A complete A/B testing platform for Dr. Roitman's Canal Localization Masterclass with integrated Google Analytics 4 tracking, GTM container management, and conversion optimization.
+
+## 🚀 Live Deployment
+
+**Production URL**: https://courageous-yeot-a51e84.netlify.app/
+
+### A/B Testing URLs:
+- **Variant A (Calendly Widget)**: https://courageous-yeot-a51e84.netlify.app/?variant=A
+- **Variant B (Time Slot Selection)**: https://courageous-yeot-a51e84.netlify.app/?variant=B
+- **Debug Mode**: Add `&debug_stream=1` to any URL for console tracking
+
+## 📊 Tracking Implementation
+
+### **Analytics Setup:**
+- **GTM Container**: GTM-K3WSZR7 
+- **GA4 Measurement ID**: G-GWBDNMRWFS
+- **Facebook Pixel**: 735975949298040
+- **Webhook Debug**: https://webhook.site/eb164388-cc37-4cd9-a8b1-d517ef3201ff
+
+### **Tracked Events:**
+- `pageview_A` / `pageview_B` - Initial page load by variant
+- `click_A` / `click_B` - Calendly interactions by variant  
+- `purchase_A` / `purchase_B` - Conversion tracking with €27 value
+
+## 🎨 Recent UI/UX Improvements (January 2025)
+
+### **Latest Updates:**
+- ✅ **Logo Removal**: Cleaned up hero sections by removing company logos
+- ✅ **Typography Optimization**: Improved readability with smaller, non-bold benefit text
+- ✅ **Mobile Responsiveness**: Fixed Calendly calendar centering on mobile devices
+- ✅ **Navigation Simplification**: Streamlined header to show only centered "Book Now" button
+- ✅ **About Section Migration**: Moved Dr. Roitman bio to footer popup modal
+- ✅ **Layout Optimization**: Reorganized page structure with FAQ section at end
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/20280e59-4e7f-4139-8b18-5eeffaf1e33e
+**Lovable URL**: https://lovable.dev/projects/20280e59-4e7f-4139-8b18-5eeffaf1e33e
 
 ## How can I edit this code?
 
