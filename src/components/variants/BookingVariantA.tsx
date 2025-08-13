@@ -70,8 +70,8 @@ export const BookingVariantA = () => {
                   Select the time that works best for your schedule
                 </CardDescription>
               </CardHeader>
-              <CardContent className="p-0 sm:p-6">
-                <CalendlyWidget url="https://calendly.com/endoclub/new-meeting-1" className="min-h-[500px] sm:min-h-[600px] md:min-h-[700px] w-full" />
+              <CardContent>
+                <CalendlyWidget url="https://calendly.com/endoclub/new-meeting-1" className="min-h-[700px] w-full" />
               </CardContent>
             </Card>
           </div>
