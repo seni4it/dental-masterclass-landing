@@ -1,9 +1,11 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Timer, Zap, ArrowRight, Shield, Video, RotateCcw } from "lucide-react";
+import { Calendar, Timer, Video, Shield, ArrowRight, Zap, MonitorSmartphone, RotateCcw, Target, AlertTriangle, Microscope } from "lucide-react";
 import toothQuestion from "/lovable-uploads/78edbdfc-906b-4b3f-b44f-5bcedbf2144c.png";
 import { MoneyBackGuaranteeBadge } from "@/components/MoneyBackGuaranteeBadge";
+import { EditableText } from "@/components/EditableText";
+import { Card, CardContent } from "@/components/ui/card";
 
 interface HeroVariantBProps {
   onCtaClick: () => void;
@@ -16,34 +18,21 @@ interface HeroVariantBProps {
   setShowTimeSlots: (show: boolean) => void;
 }
 
-// Version B: Bold/Energetic Design (Current Design)
+// Version B: Same design as A, but shows time slot buttons
 export const HeroVariantB = ({ onCtaClick, timeLeft, setShowTimeSlots }: HeroVariantBProps) => {
+  const isEditing = false; // Editing disabled for production
+
   return (
     <>
-      {/* Urgency Banner - Simplified */}
-      <div className="bg-destructive text-destructive-foreground text-center py-3 px-4">
-        <div className="container mx-auto">
-          <div className="flex items-center justify-center gap-4 text-sm">
-            <Badge 
-              className="bg-white text-destructive font-bold animate-pulse cursor-pointer hover:bg-gray-100 transition-colors"
-              onClick={() => setShowTimeSlots(true)}
-            >
-              ONLY 47 SPOTS LEFT
-            </Badge>
-            <span>•</span>
-            <span 
-              className="font-semibold cursor-pointer hover:text-orange-400 transition-colors"
-              onClick={() => setShowTimeSlots(true)}
-            >
-              53% OFF ENDS SOON!
-            </span>
-          </div>
-        </div>
-      </div>
-
-      {/* Hero Section - Completely Redesigned */}
+      {/* Hero Section - Same as Variant A */}
       <section className="gradient-hero py-20 lg:py-32 relative overflow-hidden">
         <div className="absolute inset-0 bg-black/10"></div>
+        
+        
+        {/* Logo Right */}
+        <div className="absolute top-8 right-8 z-20">
+          <img src="/lovable-uploads/711d1ae8-8371-4a6b-bb15-341475f9ccff.png" alt="Company Logo" className="h-16 w-auto" />
+        </div>
         
         {/* Floating Elements */}
         <div className="absolute top-20 left-10 w-32 h-32 bg-accent/10 rounded-full blur-3xl animate-pulse-glow"></div>
@@ -56,7 +45,7 @@ export const HeroVariantB = ({ onCtaClick, timeLeft, setShowTimeSlots }: HeroVar
                 className="mb-6 bg-accent text-accent-foreground border-accent px-6 py-3 text-base font-bold animate-pulse-glow cursor-pointer hover:bg-accent/90 transition-colors"
                 onClick={() => setShowTimeSlots(true)}
               >
-                <span>🔥 LIVE MASTERCLASS • SEPTEMBER 6, 2025</span>
+                🔥 LIVE MASTERCLASS • SEPTEMBER 6, 2025
               </Badge>
               
               {/* Tooth with Question Mark Icon - Bigger and No Bounce */}
@@ -65,116 +54,59 @@ export const HeroVariantB = ({ onCtaClick, timeLeft, setShowTimeSlots }: HeroVar
               </div>
               
               <h1 className="text-5xl lg:text-7xl font-black text-white mb-8 leading-tight">
-                <span>NEVER MISS A</span>
-                <span className="block text-accent-glow animate-pulse-glow">CANAL AGAIN</span>
+                <EditableText isEditing={isEditing} as="span">CANAL LOCALIZATION</EditableText>
+                <EditableText isEditing={isEditing} as="span" className="block text-accent-glow animate-pulse-glow">MADE SIMPLE!</EditableText>
               </h1>
               
               <div className="max-w-4xl mx-auto mb-8">
-                <p className="text-2xl lg:text-3xl text-white font-bold mb-4">
-                  <span className="text-orange-500">STOP</span> fearing <span className="text-orange-500">ENDO</span>! Master canal localization today!
-                </p>
-                <p className="text-xl text-white/90 mb-6">
-                  Eliminate missed canals • Prevent perforations • Boost confidence
-                </p>
+                <EditableText isEditing={isEditing} as="p" className="text-2xl lg:text-3xl text-white font-bold mb-4">Learn how to never miss a canal again!</EditableText>
+                <EditableText isEditing={isEditing} as="p" className="text-xl text-white/90 mb-6">
+                  If you're tired of missed canals and constant second‑guessing, join this masterclass to learn step‑by‑step localization methods that will turn your frustration into predictable success!
+                </EditableText>
               </div>
               
-              {/* Main CTA Section - Enhanced */}
-              <div className="bg-white/15 backdrop-blur-md rounded-2xl p-8 border border-white/20 max-w-2xl mx-auto mb-8">
-                {/* Countdown Timer */}
-                <div className="text-center mb-6">
-                  <div className="flex items-center justify-center gap-2 text-lg font-bold mb-4">
-                    <Timer className="w-5 h-5" />
-                    <span 
-                      className="text-white cursor-pointer hover:text-orange-300 transition-colors"
-                      onClick={() => setShowTimeSlots(true)}
-                    >
-                      🔥 EARLY BIRD DISCOUNT ENDS IN:
-                    </span>
-                  </div>
-                  <div className="flex gap-3 text-xl font-black justify-center mb-4">
-                    <div className="bg-white/20 px-3 py-2 rounded-lg min-w-[50px]">
-                      <div>{timeLeft.days}</div>
-                      <div className="text-xs font-normal">DAYS</div>
-                    </div>
-                    <div className="bg-white/20 px-3 py-2 rounded-lg min-w-[50px]">
-                      <div>{timeLeft.hours}</div>
-                      <div className="text-xs font-normal">HRS</div>
-                    </div>
-                    <div className="bg-white/20 px-3 py-2 rounded-lg min-w-[50px]">
-                      <div>{timeLeft.minutes}</div>
-                      <div className="text-xs font-normal">MIN</div>
-                    </div>
-                    <div className="bg-white/20 px-3 py-2 rounded-lg min-w-[50px]">
-                      <div>{timeLeft.seconds}</div>
-                      <div className="text-xs font-normal">SEC</div>
-                    </div>
-                  </div>
-                  
-                  {/* Limited time badge */}
-                  <div className="flex justify-center mb-2">
-                    <Badge 
-                      className="bg-destructive text-destructive-foreground animate-pulse font-medium cursor-pointer hover:bg-destructive/80 transition-colors"
-                      onClick={() => setShowTimeSlots(true)}
-                    >
-                      🔥 EARLY BIRD DISCOUNT
-                    </Badge>
-                  </div>
-                  
-                  {/* Spots remaining centered */}
-                  <div className="flex justify-center mb-6">
-                    <span className="text-white font-medium">Only 47 spots remaining</span>
-                  </div>
-                  
-                  {/* Divider line */}
-                  <div className="w-full h-px bg-white/30 mb-6"></div>
-                </div>
+              {/* Main CTA Section - Enhanced (GitHub Style) */}
+              <div className="bg-white/15 backdrop-blur-md rounded-2xl p-8 border border-white/20 max-w-2xl mx-auto mb-12">
                 
                 <div className="text-center mb-6">
-                  <div className="flex items-center justify-center gap-4 mb-2">
-                    <span className="text-3xl text-red-400 line-through font-bold">€57</span>
-                    <span className="text-5xl font-black text-accent-glow">€27</span>
+                  <div className="flex items-center justify-center mb-2">
+                    <span className="text-4xl font-black text-accent-glow">€27</span>
                   </div>
-                  <p className="text-white/90 font-semibold">Early Bird Special (Save 53%)</p>
                 </div>
                 
-                <Button 
-                  variant="cta" 
-                  size="xl" 
-                  className="w-full text-sm sm:text-lg font-bold transition-all duration-300 ease-in-out hover:scale-[1.02] hover:shadow-xl hover:bg-accent/90 mb-4 px-4 sm:px-8 py-3 sm:py-4" 
-                  onClick={onCtaClick}
-                >
-                  <Zap className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" />
-                  <span className="flex-1 text-center">SECURE YOUR SPOT NOW</span>
-                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-1 sm:ml-2" />
+                <Button variant="cta" size="xl" className="w-full font-bold animate-pulse-glow mb-4" style={{ fontSize: '35px' }} onClick={() => setShowTimeSlots(true)}>
+                  BOOK NOW
                 </Button>
-                
-                {/* Enhanced Benefits */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm text-white/90">
-                  <div className="flex items-center gap-2 justify-center p-3 bg-white/10 rounded-lg">
-                    <Shield className="w-6 h-6 text-accent" />
-                    <span className="font-semibold">100% Money-Back Guarantee</span>
-                  </div>
-                  <div className="flex items-center gap-2 justify-center p-3 bg-accent/20 rounded-lg border border-accent/30">
-                    <Video className="w-6 h-6 text-accent" />
-                    <span className="font-bold">RECORDING INCLUDED</span>
-                  </div>
-                  <div className="flex items-center gap-2 justify-center p-3 bg-white/10 rounded-lg">
-                    <RotateCcw className="w-6 h-6 text-accent" />
-                    <span className="font-semibold">Lifetime Access</span>
-                  </div>
-                </div>
-                
-                <div className="mt-4 p-3 bg-white/10 rounded-lg border border-white/20 text-center">
-                  <p className="text-white font-bold text-sm">
-                    🎁 BONUS: Can't attend live? No problem! Full HD recording included for lifetime access
-                  </p>
-                </div>
               </div>
               
-              {/* Money Back Guarantee Badge */}
-              <div className="flex justify-center mt-12">
-                <MoneyBackGuaranteeBadge onBookClick={() => setShowTimeSlots(true)} />
+              {/* Value Proposition Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-12 max-w-6xl mx-auto">
+                <Card className="bg-white/10 backdrop-blur-sm border-white/20 text-white">
+                  <CardContent className="p-6 text-center">
+                    <Calendar className="w-12 h-12 text-accent mx-auto mb-3" />
+                    <EditableText isEditing={isEditing} as="p" className="font-bold text-lg">Multiple time slots available</EditableText>
+                  </CardContent>
+                </Card>
+                <Card className="bg-white/10 backdrop-blur-sm border-white/20 text-white">
+                  <CardContent className="p-6 text-center">
+                    <Timer className="w-12 h-12 text-accent mx-auto mb-3" />
+                    <EditableText isEditing={isEditing} as="p" className="font-bold text-lg">One Hour + Q&A</EditableText>
+                  </CardContent>
+                </Card>
+                <Card className="bg-white/10 backdrop-blur-sm border-white/20 text-white">
+                  <CardContent className="p-6 text-center">
+                    <MonitorSmartphone className="w-12 h-12 text-accent mx-auto mb-3" />
+                    <EditableText isEditing={isEditing} as="p" className="font-bold text-lg">Format: Live on Zoom</EditableText>
+                  </CardContent>
+                </Card>
+                <Card className="bg-white/10 backdrop-blur-sm border-white/20 text-white">
+                  <CardContent className="p-6 text-center">
+                    <RotateCcw className="w-12 h-12 text-accent mx-auto mb-3" />
+                    <EditableText isEditing={isEditing} as="p" className="font-bold text-lg">Replay available</EditableText>
+                  </CardContent>
+                </Card>
               </div>
+              
             </div>
           </div>
         </div>

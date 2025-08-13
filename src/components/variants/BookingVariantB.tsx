@@ -29,12 +29,6 @@ export const BookingVariantB = ({ timeLeft, setShowTimeSlots, showTimeSlots, han
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <Badge 
-              className="mb-6 bg-destructive text-destructive-foreground px-6 py-3 text-base font-bold animate-pulse cursor-pointer hover:bg-destructive/80 transition-colors"
-              onClick={() => setShowTimeSlots(true)}
-            >
-              🚨 EARLY BIRD DISCOUNT: 53% OFF SPECIAL
-            </Badge>
             
             <h2 className="text-4xl lg:text-6xl font-black text-white mb-8 leading-tight">
               Don't Miss This
@@ -43,24 +37,17 @@ export const BookingVariantB = ({ timeLeft, setShowTimeSlots, showTimeSlots, han
             
             <div className="max-w-3xl mx-auto mb-12">
               <p className="text-xl lg:text-2xl text-white font-medium mb-6">
-                Join thousands of dentists who've mastered canal localization
+                Join 2,000+ dentists who have transformed their practice with our proven system
               </p>
               
               <div className="bg-white/15 backdrop-blur-md rounded-2xl p-8 border border-white/20 max-w-md mx-auto mb-8">
-                <div className="flex items-center justify-center gap-2 mb-4">
-                  <Badge className="bg-destructive text-destructive-foreground animate-pulse">🔥 LIMITED TIME</Badge>
-                  <span className="text-white font-medium">Only 47 spots remaining</span>
-                </div>
-                
                 <div className="text-center mb-6">
-                  <div className="flex items-center justify-center gap-2 mb-2">
-                    <span className="text-2xl text-white/60 line-through">€97</span>
+                  <div className="flex items-center justify-center mb-4">
                     <span className="text-5xl font-black text-accent-glow">€27</span>
                   </div>
-                  <p className="text-white/90 font-semibold">Early Bird Special (Save 72%)</p>
                 </div>
                 
-                <div className="space-y-3 text-white text-sm">
+                <div className="space-y-3 text-white font-bold" style={{fontSize: '25px'}}>
                   <div className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-accent flex-shrink-0" />
                     <span>60-minute live masterclass</span>
@@ -85,7 +72,7 @@ export const BookingVariantB = ({ timeLeft, setShowTimeSlots, showTimeSlots, han
               </div>
               
               <p className="text-2xl lg:text-3xl text-white font-bold">
-                Choose your time slot and secure your spot now!
+                Select your preferred time slot below and secure your spot now!
               </p>
             </div>
           </div>

@@ -6,7 +6,7 @@ import toothQuestion from "/lovable-uploads/78edbdfc-906b-4b3f-b44f-5bcedbf2144c
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Calendar, Clock, Users, Video, RotateCcw, CheckCircle, Award, Target, AlertTriangle, Microscope, GraduationCap, FileText, Phone, Timer, Shield, TrendingUp, Star, ArrowRight, Play, Zap, MessageCircle, Instagram, Send, X } from "lucide-react";
+import { Calendar, Clock, Users, Video, RotateCcw, CheckCircle, Award, Target, AlertTriangle, Microscope, GraduationCap, FileText, Phone, Timer, Shield, TrendingUp, Star, ArrowRight, Play, Zap, MessageCircle, Instagram, Send, X, Check } from "lucide-react";
 import { ToothLocationIcon, ToothSettingsIcon, ToothKeyIcon, ToothCareIcon } from "@/components/DentalIcons";
 import { MoneyBackGuaranteeBadge } from "@/components/MoneyBackGuaranteeBadge";
 import { getVariant } from "@/lib/ab-testing";
@@ -15,12 +15,10 @@ import { HeroVariantB } from "@/components/variants/HeroVariantB";
 import { HeroVariantBEnhanced } from "@/components/variants/HeroVariantB-Enhanced";
 import { BookingVariantA } from "@/components/variants/BookingVariantA";
 import { BookingVariantB } from "@/components/variants/BookingVariantB";
-import { useABTestEnhanced } from "@/hooks/useABTestEnhanced";
+import { useABTest } from "@/hooks/useABTest";
 
 const Index = () => {
-  const { variant, trackConversion } = useABTestEnhanced({ 
-    experimentId: 'dental_masterclass_main' 
-  });
+  const { variant, trackConversion } = useABTest();
   const [timeLeft, setTimeLeft] = useState({
     days: 25,
     hours: 4,
@@ -181,22 +179,10 @@ const Index = () => {
                 About Dr. Roitman
               </button>
               <button 
-                onClick={() => document.getElementById('who-is-this-for')?.scrollIntoView({ behavior: 'smooth' })}
-                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors whitespace-nowrap"
-              >
-                Who Is This For
-              </button>
-              <button 
                 onClick={() => document.getElementById('what-youll-learn')?.scrollIntoView({ behavior: 'smooth' })}
                 className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors whitespace-nowrap"
               >
                 What You'll Learn
-              </button>
-              <button 
-                onClick={() => document.getElementById('testimonials')?.scrollIntoView({ behavior: 'smooth' })}
-                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors whitespace-nowrap"
-              >
-                Testimonials
               </button>
               <button 
                 onClick={() => document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' })}
@@ -213,7 +199,21 @@ const Index = () => {
               <Button 
                 size="sm"
                 onClick={() => {
-                  setShowTimeSlots(true);
+                  if (variant === 'A') {
+                    // Variant A: Scroll to booking section with 800px offset
+                    const element = document.getElementById('booking');
+                    if (element) {
+                      const elementPosition = element.offsetTop;
+                      const offsetPosition = elementPosition + 800;
+                      window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                      });
+                    }
+                  } else {
+                    // Variant B: Show time slots
+                    setShowTimeSlots(true);
+                  }
                   if (cookiesAccepted && (window as any).gtag) {
                     (window as any).gtag('event', 'click', {
                       event_category: 'navigation',
@@ -240,7 +240,21 @@ const Index = () => {
               <Button 
                 size="sm"
                 onClick={() => {
-                  setShowTimeSlots(true);
+                  if (variant === 'A') {
+                    // Variant A: Scroll to booking section with 800px offset
+                    const element = document.getElementById('booking');
+                    if (element) {
+                      const elementPosition = element.offsetTop;
+                      const offsetPosition = elementPosition + 800;
+                      window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                      });
+                    }
+                  } else {
+                    // Variant B: Show time slots
+                    setShowTimeSlots(true);
+                  }
                   if (cookiesAccepted && (window as any).gtag) {
                     (window as any).gtag('event', 'click', {
                       event_category: 'navigation',
@@ -274,16 +288,6 @@ const Index = () => {
               </button>
               <button 
                 onClick={() => {
-                  document.getElementById('who-is-this-for')?.scrollIntoView({ behavior: 'smooth' });
-                  setShowMobileMenu(false);
-                }}
-                className="text-left text-sm font-medium text-muted-foreground hover:text-primary hover:bg-muted/50 transition-colors py-3 px-3 rounded flex items-center gap-3"
-              >
-                <Users className="w-4 h-4 text-primary" />
-                Who Is This For
-              </button>
-              <button 
-                onClick={() => {
                   document.getElementById('what-youll-learn')?.scrollIntoView({ behavior: 'smooth' });
                   setShowMobileMenu(false);
                 }}
@@ -291,16 +295,6 @@ const Index = () => {
               >
                 <Award className="w-4 h-4 text-primary" />
                 What You'll Learn
-              </button>
-              <button 
-                onClick={() => {
-                  document.getElementById('testimonials')?.scrollIntoView({ behavior: 'smooth' });
-                  setShowMobileMenu(false);
-                }}
-                className="text-left text-sm font-medium text-muted-foreground hover:text-primary hover:bg-muted/50 transition-colors py-3 px-3 rounded flex items-center gap-3"
-              >
-                <Star className="w-4 h-4 text-primary" />
-                Testimonials
               </button>
               <button 
                 onClick={() => {
@@ -358,95 +352,66 @@ const Index = () => {
         />
       )}
 
-      {/* Problem/Solution Section - NEW */}
-      <section className="py-20 bg-gradient-to-b from-background to-muted/30">
+      {/* What You Will Learn Section - Separate White Section */}
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <div className="scroll-animate">
-               <h2 className="text-4xl lg:text-5xl font-bold mb-8 text-foreground">
-                 Are You Tired of...
-               </h2>
+              
+              {/* Left Column - Learning Points */}
+              <div className="space-y-8">
+                <div className="text-center lg:text-left mb-8">
+                  <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
+                    What you will learn in this <span className="text-primary">Masterclass</span>
+                  </h2>
+                </div>
+                
                 <div className="space-y-6">
-                  <Card className="border-l-4 border-l-destructive bg-destructive/5">
-                    <CardContent className="p-6">
-                      <div className="flex items-start gap-4">
-                        <AlertTriangle className="w-6 h-6 text-destructive mt-1 flex-shrink-0" />
-                        <div>
-                           <h3 className="font-bold text-lg mb-2 text-foreground">Missing canals during treatment?</h3>
-                           <p className="text-muted-foreground">Leading to failed treatments and unhappy patients</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
+                  {/* Learning Point 1 */}
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-2">
+                      <Check className="w-7 h-7 text-white stroke-[3]" />
+                    </div>
+                    <div>
+                      <p className="text-gray-900 leading-relaxed text-4xl font-bold">
+                        How to locate every canal in any tooth, including the MB2
+                      </p>
+                    </div>
+                  </div>
                   
-                  <Card className="border-l-4 border-l-destructive bg-destructive/5">
-                    <CardContent className="p-6">
-                      <div className="flex items-start gap-4">
-                        <AlertTriangle className="w-6 h-6 text-destructive mt-1 flex-shrink-0" />
-                        <div>
-                           <h3 className="font-bold text-lg mb-2 text-foreground">Fear of perforations?</h3>
-                           <p className="text-muted-foreground">Hesitating during canal exploration due to perforation anxiety</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
+                  {/* Learning Point 2 */}
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-2">
+                      <Check className="w-7 h-7 text-white stroke-[3]" />
+                    </div>
+                    <div>
+                      <p className="text-gray-900 leading-relaxed text-4xl font-bold">
+                        Early warning signs of perforations and practical ways to prevent them
+                      </p>
+                    </div>
+                  </div>
                   
-                  <Card className="border-l-4 border-l-destructive bg-destructive/5">
-                    <CardContent className="p-6">
-                      <div className="flex items-start gap-4">
-                        <AlertTriangle className="w-6 h-6 text-destructive mt-1 flex-shrink-0" />
-                        <div>
-                          <h3 className="font-bold text-lg mb-2 text-foreground">Referring easy cases?</h3>
-                          <p className="text-muted-foreground">Lost revenue from referring cases you could handle yourself</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
+                  {/* Learning Point 3 */}
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-2">
+                      <Check className="w-7 h-7 text-white stroke-[3]" />
+                    </div>
+                    <div>
+                      <p className="text-gray-900 leading-relaxed text-4xl font-bold">
+                        How to deal with calcifications
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
               
-              <div className="scroll-animate">
-                 <h2 className="text-4xl lg:text-5xl font-bold mb-8 text-primary">
-                   Here's the Solution!
-                 </h2>
-                <div className="space-y-6">
-                  <Card className="border-l-4 border-l-primary bg-primary/5">
-                    <CardContent className="p-6">
-                      <div className="flex items-start gap-4">
-                        <ToothLocationIcon className="w-8 h-8 text-primary mt-1 flex-shrink-0" color="hsl(var(--primary))" />
-                        <div>
-                          <h3 className="font-bold text-lg mb-2 text-foreground">Locate EVERY canal with confidence</h3>
-                          <p className="text-muted-foreground">Our scientifically backed system works every time</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                  
-                  <Card className="border-l-4 border-l-primary bg-primary/5">
-                    <CardContent className="p-6">
-                      <div className="flex items-start gap-4">
-                        <ToothCareIcon className="w-8 h-8 text-primary mt-1 flex-shrink-0" color="hsl(var(--primary))" />
-                        <div>
-                          <h3 className="font-bold text-lg mb-2 text-foreground">Prevent perforations completely</h3>
-                          <p className="text-muted-foreground">Learn the warning signs and prevention techniques</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                  
-                  <Card className="border-l-4 border-l-primary bg-primary/5">
-                    <CardContent className="p-6">
-                      <div className="flex items-start gap-4">
-                        <ToothKeyIcon className="w-8 h-8 text-primary mt-1 flex-shrink-0" color="hsl(var(--primary))" />
-                        <div>
-                          <h3 className="font-bold text-lg mb-2 text-foreground">Keep more cases in-house</h3>
-                          <p className="text-muted-foreground">Increase revenue by handling your own endodontics</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
+              {/* Right Column - Image */}
+              <div className="flex justify-center lg:justify-end">
+                <img 
+                  src="https://d1yei2z3i6k35z.cloudfront.net/11922468/687672e4434d1_version4-min.png" 
+                  alt="Endodontic procedures and techniques" 
+                  className="w-full max-w-md lg:w-96 h-auto rounded-lg shadow-lg"
+                />
               </div>
             </div>
           </div>
@@ -545,339 +510,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Social Proof - Enhanced Testimonials */}
-      <section id="testimonials" className="py-20 bg-gradient-to-b from-background to-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-foreground">
-                Success Stories from <span className="text-primary">Real Dentists</span>
-              </h2>
-              <p className="text-xl text-muted-foreground">
-                See how our masterclass has transformed dental practices worldwide
-              </p>
-            </div>
-            
-            {/* Stats Row */}
-            <div className="grid md:grid-cols-4 gap-8 mb-16">
-              <Card className="p-6 text-center brand-shadow hover:scale-105 transition-all duration-300">
-                <div className="text-4xl font-black text-primary mb-2">100+</div>
-                <p className="text-muted-foreground font-medium">Dentists Trained</p>
-              </Card>
-              <Card className="p-6 text-center brand-shadow hover:scale-105 transition-all duration-300">
-                <div className="text-4xl font-black text-primary mb-2">98%</div>
-                <p className="text-muted-foreground font-medium">Success Rate</p>
-              </Card>
-              <Card className="p-6 text-center brand-shadow hover:scale-105 transition-all duration-300">
-                <div className="text-4xl font-black text-primary mb-2">15+</div>
-                <p className="text-muted-foreground font-medium">Countries</p>
-              </Card>
-              <Card className="p-6 text-center brand-shadow hover:scale-105 transition-all duration-300">
-                <div className="text-4xl font-black text-primary mb-2">4.9/5</div>
-                <p className="text-muted-foreground font-medium">Average Rating</p>
-              </Card>
-            </div>
-            
-            {/* Testimonials Grid */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <Card className="p-6 brand-shadow hover:scale-105 transition-all duration-300">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                    <span className="text-primary font-bold text-lg">SM</span>
-                  </div>
-                  <div>
-                    <p className="font-bold text-foreground">Dr. Sarah Martinez</p>
-                    <p className="text-sm text-muted-foreground">General Dentist, Spain</p>
-                  </div>
-                </div>
-                <p className="text-muted-foreground italic mb-4">
-                  "I didn't expect to learn anything new about canal location, but this masterclass changed my entire approach. Less stress, fewer doubts, and significantly more confidence."
-                </p>
-                <div className="flex text-yellow-500 text-lg">
-                  {"★★★★★".split("").map((star, i) => <span key={i}>{star}</span>)}
-                </div>
-              </Card>
-              
-              <Card className="p-6 brand-shadow hover:scale-105 transition-all duration-300">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                    <span className="text-primary font-bold text-lg">MW</span>
-                  </div>
-                  <div>
-                    <p className="font-bold text-foreground">Dr. Michael Wong</p>
-                    <p className="text-sm text-muted-foreground">Endodontist, Canada</p>
-                  </div>
-                </div>
-                <p className="text-muted-foreground italic mb-4">
-                  "Used to be terrified of perforating when opening teeth. Now I know exactly how to avoid perforations and search for orifices in the correct place. The peace of mind is priceless."
-                </p>
-                <div className="flex text-yellow-500 text-lg">
-                  {"★★★★★".split("").map((star, i) => <span key={i}>{star}</span>)}
-                </div>
-              </Card>
-              
-              <Card className="p-6 brand-shadow hover:scale-105 transition-all duration-300">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                    <span className="text-primary font-bold text-lg">LP</span>
-                  </div>
-                  <div>
-                    <p className="font-bold text-foreground">Dr. Lisa Patel</p>
-                    <p className="text-sm text-muted-foreground">General Dentist, Australia</p>
-                  </div>
-                </div>
-                <p className="text-muted-foreground italic mb-4">
-                  "I was nervous about endodontics before this course. Now I confidently locate MB2 canals and haven't had a single perforation in 6 months. Patients notice the difference!"
-                </p>
-                <div className="flex text-yellow-500 text-lg">
-                  {"★★★★★".split("").map((star, i) => <span key={i}>{star}</span>)}
-                </div>
-              </Card>
-              
-              <Card className="p-6 brand-shadow hover:scale-105 transition-all duration-300">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                    <span className="text-primary font-bold text-lg">AR</span>
-                  </div>
-                  <div>
-                    <p className="font-bold text-foreground">Dr. Ahmed Rahman</p>
-                    <p className="text-sm text-muted-foreground">Endodontist, India</p>
-                  </div>
-                </div>
-                <p className="text-muted-foreground italic mb-4">
-                  "The systematic approach taught in this masterclass is brilliant. Simple to the point and useful. Definitely recommend."
-                </p>
-                <div className="flex text-yellow-500 text-lg">
-                  {"★★★★★".split("").map((star, i) => <span key={i}>{star}</span>)}
-                </div>
-              </Card>
-              
-              <Card className="p-6 brand-shadow hover:scale-105 transition-all duration-300">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                    <span className="text-primary font-bold text-lg">GR</span>
-                  </div>
-                  <div>
-                    <p className="font-bold text-foreground">Dr. Giovanni Rossi</p>
-                    <p className="text-sm text-muted-foreground">General Dentist, Italy</p>
-                  </div>
-                </div>
-                <p className="text-muted-foreground italic mb-4">
-                  "Exceptional training! The techniques I learned alone saved me thousands in potential complications. Worth every penny and more."
-                </p>
-                <div className="flex text-yellow-500 text-lg">
-                  {"★★★★★".split("").map((star, i) => <span key={i}>{star}</span>)}
-                </div>
-              </Card>
-              
-              <Card className="p-6 brand-shadow hover:scale-105 transition-all duration-300">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                    <span className="text-primary font-bold text-lg">EJ</span>
-                  </div>
-                  <div>
-                    <p className="font-bold text-foreground">Dr. Emma Johnson</p>
-                    <p className="text-sm text-muted-foreground">Dental Resident, UK</p>
-                  </div>
-                </div>
-                <p className="text-muted-foreground italic mb-4">
-                  "As a recent graduate, this masterclass gave me the confidence I needed. The techniques are clear, practical, and immediately applicable. Highly recommended!"
-                </p>
-                <div className="flex text-yellow-500 text-lg">
-                  {"★★★★★".split("").map((star, i) => <span key={i}>{star}</span>)}
-                </div>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Who Is This Course For Section - NEW */}
-      <section id="who-is-this-for" className="py-20 bg-muted/50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-foreground">
-                Who Is This <span className="text-primary">Course For?</span>
-              </h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Our proven system works for dentists at every stage of their career
-              </p>
-            </div>
-            
-            <div className="grid lg:grid-cols-3 gap-8 mb-16">
-              {/* Dental Students */}
-              <Card className="p-8 text-center hover:scale-105 transition-all duration-300 brand-shadow bg-gradient-to-b from-primary/5 to-primary/10">
-                <div className="mb-6">
-                  <div className="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <GraduationCap className="w-10 h-10 text-primary" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-foreground mb-4">Dental Students</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    About to start practicing and want to build confidence in endodontics from day one. Get the foundation you need to succeed.
-                  </p>
-                </div>
-                <div className="space-y-3 text-sm">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                    <span>Build confidence early</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                    <span>Learn proper techniques</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                    <span>Avoid common mistakes</span>
-                  </div>
-                </div>
-              </Card>
 
-              {/* Beginner Dentists */}
-              <Card className="p-8 text-center hover:scale-105 transition-all duration-300 brand-shadow bg-gradient-to-b from-accent/5 to-accent/10">
-                <div className="mb-6">
-                  <div className="w-20 h-20 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Target className="w-10 h-10 text-accent" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-foreground mb-4">Beginner Dentists</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    In your first 5 years of practice and want to master endodontics quickly. Perfect your technique and boost your confidence.
-                  </p>
-                </div>
-                <div className="space-y-3 text-sm">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-accent flex-shrink-0" />
-                    <span>Accelerate your learning</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-accent flex-shrink-0" />
-                    <span>Reduce treatment time</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-accent flex-shrink-0" />
-                    <span>Increase success rates</span>
-                  </div>
-                </div>
-              </Card>
-
-              {/* Experienced Dentists */}
-              <Card className="p-8 text-center hover:scale-105 transition-all duration-300 brand-shadow bg-gradient-to-b from-primary/5 to-primary/10">
-                <div className="mb-6">
-                  <div className="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Award className="w-10 h-10 text-primary" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-foreground mb-4">Experienced Dentists</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Many years of experience but using older techniques. Ready to modernize your approach and reduce stress in your practice.
-                  </p>
-                </div>
-                <div className="space-y-3 text-sm">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                    <span>Modern techniques</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                    <span>Reduce stress</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                    <span>Stay current</span>
-                  </div>
-                </div>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* What You'll Learn - Redesigned - Only for Variant A */}
-      {variant === 'A' && (
-        <section id="what-youll-learn" className="py-20 bg-muted/50">
-          <div className="container mx-auto px-4">
-            <div className="max-w-6xl mx-auto">
-              <div className="text-center mb-16">
-                <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-foreground">
-                  Master the <span className="text-primary">Proven System</span>
-                </h2>
-                <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                  Master the methods that ensure successful canal location
-                </p>
-              </div>
-            
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <div className="space-y-8">
-                <Card className="p-8 border-l-4 border-l-primary bg-primary/5 hover:scale-105 transition-all duration-300">
-                  <div className="flex items-start gap-6">
-                    <div className="bg-primary text-primary-foreground rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl">
-                      1
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold mb-3 text-foreground">Systematic Canal Location</h3>
-                      <p className="text-muted-foreground leading-relaxed">
-                        Master the proven 3-step approach to locate every canal, including the challenging MB2. Never miss a canal again with our systematic methodology.
-                      </p>
-                    </div>
-                  </div>
-                </Card>
-                
-                <Card className="p-8 border-l-4 border-l-accent bg-accent/5 hover:scale-105 transition-all duration-300">
-                  <div className="flex items-start gap-6">
-                    <div className="bg-accent text-accent-foreground rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl">
-                      2
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold mb-3 text-foreground">Perforation Prevention</h3>
-                      <p className="text-muted-foreground leading-relaxed">
-                        Learn to recognize early warning signs and implement proven prevention strategies. Eliminate the fear of perforations once and for all.
-                      </p>
-                    </div>
-                  </div>
-                </Card>
-                
-                <Card className="p-8 border-l-4 border-l-primary bg-primary/5 hover:scale-105 transition-all duration-300">
-                  <div className="flex items-start gap-6">
-                    <div className="bg-primary text-primary-foreground rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl">
-                      3
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold mb-3 text-foreground">Calcification Management</h3>
-                      <p className="text-muted-foreground leading-relaxed">
-                        Advanced techniques for navigating the most challenging calcified canals and complex anatomical variations with confidence.
-                      </p>
-                    </div>
-                  </div>
-                </Card>
-              </div>
-              
-              <div className="text-center">
-                <div className="relative">
-                  <img src="https://d1yei2z3i6k35z.cloudfront.net/11922468/687672e4434d1_version4-min.png" alt="Dr. Roitman teaching endodontics" className="rounded-2xl brand-shadow max-w-full h-auto" />
-                  
-                  
-                  {/* Instructor Badge */}
-                  <div className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-sm rounded-xl p-4 brand-shadow">
-                    <div className="flex items-center gap-3">
-                      <img 
-                        src="https://d1yei2z3i6k35z.cloudfront.net/11922468/67ec02d73e2cb_459061577_884924966845685_6646581295662297536_n.jpg" 
-                        alt="Dr. Roitman" 
-                        className="w-12 h-12 rounded-full cursor-pointer hover:scale-110 transition-transform duration-300" 
-                        onClick={() => setShowAboutMe(true)}
-                        title="Click to learn more about Dr. Roitman"
-                      />
-                      <div>
-                        <p className="font-bold text-foreground">Dr. Roitman</p>
-                        <p className="text-sm text-primary">Live Training</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      )}
 
       {/* FAQ Section - Enhanced */}
       <section id="faq" className="py-20 bg-gradient-to-b from-background to-muted/30">

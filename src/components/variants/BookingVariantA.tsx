@@ -29,7 +29,7 @@ export const BookingVariantA = () => {
                   </div>
                 </div>
                 
-                <div className="space-y-3 text-white text-sm">
+                <div className="space-y-3 text-white font-bold" style={{fontSize: '25px'}}>
                   <div className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-accent flex-shrink-0" />
                     <span>60-minute live masterclass</span>
@@ -45,10 +45,6 @@ export const BookingVariantA = () => {
                   <div className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-accent flex-shrink-0" />
                     <span>Downloadable resources</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-accent flex-shrink-0" />
-                    <span>CE credits included</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Shield className="w-4 h-4 text-accent flex-shrink-0" />
