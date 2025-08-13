@@ -33,12 +33,17 @@
       }
       
       // Track initial assignment
-      if (window.gtag) {
-        window.gtag('event', 'ab_test_assignment', {
+      if (window.dataLayer) {
+        const assignmentEvent = {
+          event: 'ab_test_assignment',
           experiment_id: 'dental_masterclass_hero',
           variant_id: variant,
           timestamp: new Date().toISOString()
-        });
+        };
+        window.dataLayer.push(assignmentEvent);
+        console.log('[DEBUG] dataLayer assignment event pushed:', assignmentEvent);
+      } else {
+        console.error('[DEBUG] dataLayer not available for assignment tracking!');
       }
     }
     
@@ -47,17 +52,24 @@
   
   // Set variant globally before React loads
   window.AB_VARIANT = getVariant();
+  console.log('[DEBUG] AB_VARIANT set to:', window.AB_VARIANT);
   
   // Add variant as a class to body for CSS targeting
   document.documentElement.classList.add('variant-' + window.AB_VARIANT.toLowerCase());
+  console.log('[DEBUG] Added CSS class: variant-' + window.AB_VARIANT.toLowerCase());
   
   // Track page view with variant
-  if (window.gtag) {
-    window.gtag('event', 'experiment_impression', {
+  if (window.dataLayer) {
+    const pageviewEvent = {
+      event: 'pageview_' + window.AB_VARIANT,
       experiment_id: 'dental_masterclass_hero',
       variant_id: window.AB_VARIANT,
       page_path: window.location.pathname
-    });
+    };
+    window.dataLayer.push(pageviewEvent);
+    console.log('[DEBUG] dataLayer pageview event pushed:', pageviewEvent);
+  } else {
+    console.error('[DEBUG] dataLayer not available!');
   }
   
   // Expose functions for React to use
@@ -67,14 +79,19 @@
     },
     
     trackConversion: function(action, value) {
-      if (window.gtag) {
-        window.gtag('event', 'experiment_conversion', {
+      if (window.dataLayer) {
+        const conversionEvent = {
+          event: 'experiment_conversion',
           experiment_id: 'dental_masterclass_hero',
           variant_id: window.AB_VARIANT,
           action: action,
           value: value || 0,
           currency: 'EUR'
-        });
+        };
+        window.dataLayer.push(conversionEvent);
+        console.log('[DEBUG] dataLayer conversion event pushed:', conversionEvent);
+      } else {
+        console.error('[DEBUG] dataLayer not available for conversion tracking!');
       }
     },
     

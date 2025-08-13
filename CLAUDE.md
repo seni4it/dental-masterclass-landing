@@ -209,3 +209,44 @@ pkill -f vite && nohup npm run dev > dev.log 2>&1 &
 - Form validation (non-Calendly)
 - Image assets and icons
 - Non-tracking JavaScript functionality
+
+## Recent UI/UX Improvements ✅ COMPLETE
+
+### **🎨 Latest Design Updates (January 2025):**
+- **Logo Removal**: Removed company logos from both A/B test hero variants for cleaner design
+- **Typography Optimization**: Reduced benefit text from 4xl bold to xl regular for better readability
+- **Icon Alignment**: Resized checkmarks from 12x12 to 8x8, improved text alignment
+- **Mobile Responsiveness**: Fixed Calendly calendar centering on mobile for Variant A using CSS grid
+- **Page Structure**: Reorganized layout by moving FAQ section to end of page for better user flow
+- **Navigation Simplification**: Streamlined header to show only centered "Book Now" button
+- **About Section Migration**: Moved Dr. Roitman bio from main page to footer popup modal
+
+### **📱 Mobile Optimization Details:**
+- **Calendly Widget**: Added CSS grid centering with `grid place-items-center`
+- **Responsive Cards**: Updated max-widths for mobile compatibility (`max-w-[680px] sm:max-w-2xl`)
+- **CSS Fixes**: Added `.calendly-inline-widget { max-width: 100% !important; }` for mobile
+
+### **🔧 Technical Implementation:**
+```jsx
+// Navigation simplification:
+<div className="flex-1 flex justify-center">
+  <Button className="bg-orange-500 hover:bg-orange-600 px-8 sm:px-12 md:px-16">
+    Book Now
+  </Button>
+</div>
+
+// Mobile calendar centering:
+<div className="grid place-items-center">
+  <Card className="w-full max-w-[680px] sm:max-w-2xl md:max-w-4xl mx-auto">
+    <CalendlyWidget />
+  </Card>
+</div>
+```
+
+### **📋 Files Modified:**
+- `src/pages/Index.tsx` - Main layout, navigation, about section removal
+- `src/components/variants/HeroVariantA.tsx` - Logo removal  
+- `src/components/variants/HeroVariantB.tsx` - Logo removal
+- `src/components/variants/BookingVariantA.tsx` - Mobile calendar centering
+- `src/components/CalendlyWidget.tsx` - Responsive improvements
+- `src/index.css` - Mobile CSS fixes

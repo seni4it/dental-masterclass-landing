@@ -184,34 +184,10 @@ const Index = () => {
               <span className="text-base sm:text-lg font-bold text-foreground">LearnEndo.io</span>
             </div>
             
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-4 xl:gap-6">
-              <button 
-                onClick={() => document.getElementById('about-instructor')?.scrollIntoView({ behavior: 'smooth' })}
-                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors whitespace-nowrap"
-              >
-                About Dr. Roitman
-              </button>
-              <button 
-                onClick={() => document.getElementById('what-youll-learn')?.scrollIntoView({ behavior: 'smooth' })}
-                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors whitespace-nowrap"
-              >
-                What You'll Learn
-              </button>
-              <button 
-                onClick={() => document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' })}
-                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors whitespace-nowrap"
-              >
-                FAQ
-              </button>
-              <button 
-                onClick={() => setShowContactUs(true)}
-                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors whitespace-nowrap"
-              >
-                Contact
-              </button>
+            {/* Centered Book Now Button */}
+            <div className="flex-1 flex justify-center">
               <Button 
-                size="sm"
+                size="lg"
                 onClick={() => {
                   if (variant === 'A') {
                     // Variant A: Scroll to booking section with 800px offset
@@ -235,51 +211,15 @@ const Index = () => {
                     });
                   }
                 }}
-                className="bg-orange-500 hover:bg-orange-600 text-white font-semibold"
+                className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-8 sm:px-12 md:px-16 text-sm sm:text-base"
               >
                 Book Now
               </Button>
             </div>
             
-            {/* Mobile Menu Button */}
-            <div className="flex lg:hidden items-center gap-2">
-              <Button 
-                variant="outline"
-                size="sm"
-                onClick={() => setShowMobileMenu(!showMobileMenu)}
-                className="h-8 px-3"
-              >
-                Menu
-              </Button>
-              <Button 
-                size="sm"
-                onClick={() => {
-                  if (variant === 'A') {
-                    // Variant A: Scroll to booking section with 800px offset
-                    const element = document.getElementById('booking');
-                    if (element) {
-                      const elementPosition = element.offsetTop;
-                      const offsetPosition = elementPosition + 800;
-                      window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                      });
-                    }
-                  } else {
-                    // Variant B: Show time slots
-                    setShowTimeSlots(true);
-                  }
-                  if (cookiesAccepted && (window as any).gtag) {
-                    (window as any).gtag('event', 'click', {
-                      event_category: 'navigation',
-                      event_label: 'mobile_book_now'
-                    });
-                  }
-                }}
-                className="bg-orange-500 hover:bg-orange-600 text-white font-semibold h-8 px-3"
-              >
-                Book Now
-              </Button>
+            {/* Empty div to balance the layout */}
+            <div className="w-[120px]">
+              {/* This empty div balances the layout to keep Book Now centered */}
             </div>
           </div>
         </div>
@@ -383,11 +323,11 @@ const Index = () => {
                 <div className="space-y-6">
                   {/* Learning Point 1 */}
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-2">
-                      <Check className="w-7 h-7 text-white stroke-[3]" />
+                    <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Check className="w-5 h-5 text-white stroke-[3]" />
                     </div>
                     <div>
-                      <p className="text-gray-900 leading-relaxed text-4xl font-bold">
+                      <p className="text-gray-900 leading-relaxed text-xl">
                         How to locate every canal in any tooth, including the MB2
                       </p>
                     </div>
@@ -395,11 +335,11 @@ const Index = () => {
                   
                   {/* Learning Point 2 */}
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-2">
-                      <Check className="w-7 h-7 text-white stroke-[3]" />
+                    <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Check className="w-5 h-5 text-white stroke-[3]" />
                     </div>
                     <div>
-                      <p className="text-gray-900 leading-relaxed text-4xl font-bold">
+                      <p className="text-gray-900 leading-relaxed text-xl">
                         Early warning signs of perforations and practical ways to prevent them
                       </p>
                     </div>
@@ -407,11 +347,11 @@ const Index = () => {
                   
                   {/* Learning Point 3 */}
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-2">
-                      <Check className="w-7 h-7 text-white stroke-[3]" />
+                    <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Check className="w-5 h-5 text-white stroke-[3]" />
                     </div>
                     <div>
-                      <p className="text-gray-900 leading-relaxed text-4xl font-bold">
+                      <p className="text-gray-900 leading-relaxed text-xl">
                         How to deal with calcifications
                       </p>
                     </div>
@@ -432,100 +372,21 @@ const Index = () => {
         </div>
       </section>
 
-      {/* About Dr. Roitman - Redesigned */}
-      <section id="about-instructor" className="py-20 bg-muted/50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-foreground">
-                Meet Your <span className="text-primary">Expert Instructor</span>
-              </h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Learn from an expert endodontist with 10 years of experience
-              </p>
-            </div>
-            
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <div className="text-center lg:text-left">
-                <div className="relative inline-block">
-                  <img 
-                    src="https://d1yei2z3i6k35z.cloudfront.net/11922468/67ec02d73e2cb_459061577_884924966845685_6646581295662297536_n.jpg" 
-                    alt="Dr. Roitman - Expert Endodontist" 
-                    className="w-80 h-80 rounded-2xl mx-auto lg:mx-0 brand-shadow object-cover cursor-pointer hover:scale-105 transition-transform duration-300" 
-                    onClick={() => setShowAboutMe(true)}
-                    title="Click to learn more about Dr. Roitman"
-                  />
-                  <div className="absolute -bottom-4 -right-4 bg-primary text-primary-foreground rounded-full w-20 h-20 flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="text-2xl font-bold">10</div>
-                      <div className="text-xs">Years</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="space-y-8">
-                <div>
-                  <h3 className="text-3xl font-bold text-foreground mb-4">Dr. Roitman, DDS</h3>
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    <Badge variant="secondary" className="text-primary font-semibold">
-                      Endodontist
-                    </Badge>
-                    <Badge variant="secondary" className="text-primary font-semibold">
-                      Head of Endodontic Department
-                    </Badge>
-                    <Badge variant="secondary" className="text-primary font-semibold">
-                      International Speaker
-                    </Badge>
-                    <Badge variant="secondary" className="text-primary font-semibold">
-                      Inventor
-                    </Badge>
-                  </div>
-                  <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                    Dr. Roitman has trained many dental professionals in Italy and online, and has built a following of 80,000 subscribers on Instagram. He is recognized as a leading expert in endodontics. He applies established canal localization techniques with perfect consistency - in every live demonstration, following these principles has never failed.
-                  </p>
-                </div>
-                
-                <div className="grid md:grid-cols-2 gap-6">
-                  <Card className="p-6 border-l-4 border-l-primary">
-                    <div className="flex items-center gap-3 mb-3">
-                      <GraduationCap className="w-6 h-6 text-primary" />
-                      <span className="font-bold text-foreground">Education</span>
-                    </div>
-                    <p className="text-muted-foreground">
-                      University of Pavia - Dental Faculty Graduate, 
-                      Head of Endodontics for DSO with 160 clinics
-                    </p>
-                  </Card>
-                  
-                  <Card className="p-6 border-l-4 border-l-accent">
-                    <div className="flex items-center gap-3 mb-3">
-                      <Award className="w-6 h-6 text-accent" />
-                      <span className="font-bold text-foreground">Achievements</span>
-                    </div>
-                    <p className="text-muted-foreground">
-                      80K Instagram followers, Inventor of endodontic instruments, 
-                      Head of Endodontic Committee in Primo Italia
-                    </p>
-                  </Card>
-                </div>
-                
-                <div className="p-8 bg-primary/10 rounded-xl border border-primary/20">
-                  <p className="text-foreground text-lg font-medium italic mb-4">
-                    "After 10 years of perfecting these techniques, I'm excited to share the exact system 
-                    that has helped many dentists eliminate missed canals forever. This isn't theory – 
-                    it's practical, proven methods you can use immediately."
-                  </p>
-                  <p className="text-primary font-bold">— Dr. Roitman</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
 
 
+
+      {/* A/B Testing: Different Booking Sections */}
+      {variant === 'A' ? (
+        <BookingVariantA />
+      ) : (
+        <BookingVariantB 
+          timeLeft={timeLeft}
+          setShowTimeSlots={setShowTimeSlots}
+          showTimeSlots={showTimeSlots}
+          handleTimeSlotSelect={handleTimeSlotSelect}
+        />
+      )}
 
       {/* FAQ Section - Enhanced */}
       <section id="faq" className="py-20 bg-gradient-to-b from-background to-muted/30">
@@ -701,18 +562,6 @@ ${name}`);
           </div>
         </div>
       </section>
-
-      {/* A/B Testing: Different Booking Sections */}
-      {variant === 'A' ? (
-        <BookingVariantA />
-      ) : (
-        <BookingVariantB 
-          timeLeft={timeLeft}
-          setShowTimeSlots={setShowTimeSlots}
-          showTimeSlots={showTimeSlots}
-          handleTimeSlotSelect={handleTimeSlotSelect}
-        />
-      )}
 
       {/* Cookie Policy Modal */}
       {showCookiePolicy && (

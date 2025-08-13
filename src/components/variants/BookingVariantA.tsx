@@ -60,8 +60,8 @@ export const BookingVariantA = () => {
           </div>
           
           {/* Calendly Widget - GitHub Version */}
-          <div className="max-w-5xl mx-auto px-4 flex justify-center">
-            <Card className="w-full max-w-4xl bg-white/95 backdrop-blur-sm border border-white/20">
+          <div className="max-w-5xl mx-auto px-4 grid place-items-center">
+            <Card className="w-full max-w-[680px] sm:max-w-2xl md:max-w-4xl mx-auto bg-white/95 backdrop-blur-sm border border-white/20">
               <CardHeader className="text-center pb-6">
                 <CardTitle className="text-lg sm:text-xl md:text-2xl font-bold text-foreground mb-2">
                   Choose Your Time Slot

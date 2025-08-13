@@ -31,12 +31,12 @@ const CalendlyWidget = ({ url, className = "" }: CalendlyWidgetProps) => {
 
   return (
     <div 
-      className={`calendly-inline-widget ${className}`}
+      className={`calendly-inline-widget block w-full min-h-[700px] mx-auto ${className}`}
       data-url={url}
       style={{ 
         minWidth: '320px', 
         height: '700px',
-        width: '100%'
+        maxWidth: '100%'
       }}
     />
   );

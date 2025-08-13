@@ -27,13 +27,6 @@ export const HeroVariantB = ({ onCtaClick, timeLeft, setShowTimeSlots }: HeroVar
       {/* Hero Section - Same as Variant A */}
       <section className="gradient-hero py-20 lg:py-32 relative overflow-hidden">
         <div className="absolute inset-0 bg-black/10"></div>
-        
-        
-        {/* Logo Right */}
-        <div className="absolute top-8 right-8 z-20">
-          <img src="/lovable-uploads/711d1ae8-8371-4a6b-bb15-341475f9ccff.png" alt="Company Logo" className="h-16 w-auto" />
-        </div>
-        
         {/* Floating Elements */}
         <div className="absolute top-20 left-10 w-32 h-32 bg-accent/10 rounded-full blur-3xl animate-pulse-glow"></div>
         <div className="absolute bottom-20 right-10 w-48 h-48 bg-primary/10 rounded-full blur-3xl animate-pulse-glow delay-1000"></div>

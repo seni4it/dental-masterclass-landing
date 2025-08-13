@@ -27,6 +27,11 @@
     fbq('track', 'PageView');
     </script>
     
+    <!-- Initialize dataLayer before GTM -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+    </script>
+    
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -37,8 +42,7 @@
     
     <!-- Google Analytics - Conditional Loading -->
     <script>
-      // Initialize dataLayer and gtag function regardless of consent
-      window.dataLayer = window.dataLayer || [];
+      // gtag function for conditional loading
       function gtag(){dataLayer.push(arguments);}
       
       // Function to load Google Analytics
@@ -101,7 +105,7 @@
     
     <!-- A/B Testing - MUST load before React -->
     <script src="/ab-init.js"></script>
-    <script type="module" crossorigin src="/assets/index--MwpRSK1.js"></script>
+    <script type="module" crossorigin src="/assets/index-BonAMtcg.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-Cs3n312U.css">
   </head>
 

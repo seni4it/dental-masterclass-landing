@@ -278,3 +278,9 @@ All colors MUST be HSL.
 .animate-fade-in {
   animation: fade-in 0.8s ease-out forwards;
 }
+
+/* Calendly Widget Mobile Centering Fix */
+.calendly-inline-widget,
+.calendly-inline-widget iframe {
+  max-width: 100% !important;
+}
