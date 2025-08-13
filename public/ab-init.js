@@ -14,13 +14,23 @@
       return variant;
     }
     
-    // Check localStorage for existing assignment
-    let variant = localStorage.getItem('ab-variant');
+    // Check localStorage for existing assignment (with fallback)
+    let variant;
+    try {
+      variant = localStorage.getItem('ab-variant');
+    } catch (e) {
+      console.warn('[A/B Test] localStorage blocked, using URL/random fallback');
+      variant = null;
+    }
     
     if (!variant || !['A', 'B'].includes(variant)) {
       // Random assignment for new users (true 50/50 split)
       variant = Math.random() < 0.5 ? 'A' : 'B';
-      localStorage.setItem('ab-variant', variant);
+      try {
+        localStorage.setItem('ab-variant', variant);
+      } catch (e) {
+        console.warn('[A/B Test] Cannot store variant, will re-assign on refresh');
+      }
       
       // Track initial assignment
       if (window.gtag) {
@@ -69,7 +79,11 @@
     },
     
     reset: function() {
-      localStorage.removeItem('ab-variant');
+      try {
+        localStorage.removeItem('ab-variant');
+      } catch (e) {
+        console.warn('[A/B Test] Cannot access localStorage for reset');
+      }
       window.location.reload();
     }
   };
