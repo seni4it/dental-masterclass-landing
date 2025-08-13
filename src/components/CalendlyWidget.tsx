@@ -21,9 +21,10 @@ const CalendlyWidget = ({ url, className = "" }: CalendlyWidgetProps) => {
       className={`calendly-inline-widget ${className}`}
       data-url={url}
       style={{ 
-        minWidth: '320px', 
-        height: '700px',
-        width: '100%'
+        minWidth: '300px', 
+        height: 'clamp(500px, 80vh, 700px)',
+        width: '100%',
+        maxWidth: '100%'
       }}
     />
   );
