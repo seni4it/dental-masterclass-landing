@@ -34,9 +34,7 @@ const CalendlyWidget = ({ url, className = "" }: CalendlyWidgetProps) => {
       className={`calendly-inline-widget block w-full min-h-[700px] mx-auto ${className}`}
       data-url={url}
       style={{ 
-        minWidth: '320px', 
-        height: '700px',
-        maxWidth: '100%'
+        height: '700px'
       }}
     />
   );

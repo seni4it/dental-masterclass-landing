@@ -216,37 +216,59 @@ pkill -f vite && nohup npm run dev > dev.log 2>&1 &
 - **Logo Removal**: Removed company logos from both A/B test hero variants for cleaner design
 - **Typography Optimization**: Reduced benefit text from 4xl bold to xl regular for better readability
 - **Icon Alignment**: Resized checkmarks from 12x12 to 8x8, improved text alignment
-- **Mobile Responsiveness**: Fixed Calendly calendar centering on mobile for Variant A using CSS grid
+- **Mobile Responsiveness**: Fixed Calendly calendar centering on mobile for Variant A
 - **Page Structure**: Reorganized layout by moving FAQ section to end of page for better user flow
-- **Navigation Simplification**: Streamlined header to show only centered "Book Now" button
+- **Navigation Updates**: Moved "Book Now" button to right side with original size
 - **About Section Migration**: Moved Dr. Roitman bio from main page to footer popup modal
 
-### **📱 Mobile Optimization Details:**
-- **Calendly Widget**: Added CSS grid centering with `grid place-items-center`
-- **Responsive Cards**: Updated max-widths for mobile compatibility (`max-w-[680px] sm:max-w-2xl`)
-- **CSS Fixes**: Added `.calendly-inline-widget { max-width: 100% !important; }` for mobile
+### **📱 Mobile Calendar Centering Fix (Final Solution):**
+- **Removed problematic min-width**: Eliminated `minWidth: 320px` inline style causing overflow
+- **Narrower responsive wrapper**: Using `max-w-[420px] sm:max-w-[560px]` for better mobile fit
+- **Simplified CSS centering**: Changed to `margin: 0 auto !important` for cleaner centering
+- **Solved overflow issue**: Calendar now stays perfectly centered without right-side drift
 
 ### **🔧 Technical Implementation:**
 ```jsx
-// Navigation simplification:
-<div className="flex-1 flex justify-center">
-  <Button className="bg-orange-500 hover:bg-orange-600 px-8 sm:px-12 md:px-16">
+// Navigation - Button moved to right, original size:
+<div className="flex items-center justify-between py-3">
+  <div className="flex items-center gap-2">
+    {/* Logo */}
+  </div>
+  <Button className="bg-orange-500 hover:bg-orange-600 text-white font-semibold">
     Book Now
   </Button>
 </div>
 
-// Mobile calendar centering:
-<div className="grid place-items-center">
-  <Card className="w-full max-w-[680px] sm:max-w-2xl md:max-w-4xl mx-auto">
-    <CalendlyWidget />
-  </Card>
-</div>
+// Mobile calendar centering (BookingVariantA.tsx):
+<CardContent className="p-6">
+  <div className="mx-auto w-full max-w-[420px] sm:max-w-[560px]">
+    <CalendlyWidget url="..." />
+  </div>
+</CardContent>
+
+// CalendlyWidget.tsx - No min-width:
+<div 
+  className="calendly-inline-widget block w-full min-h-[700px] mx-auto"
+  style={{ height: '700px' }}  // Removed minWidth
+/>
+```
+
+### **🎯 CSS Rules for Perfect Mobile Centering:**
+```css
+/* src/index.css */
+.calendly-inline-widget,
+.calendly-inline-widget iframe {
+  display: block !important;
+  margin: 0 auto !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
 ```
 
 ### **📋 Files Modified:**
-- `src/pages/Index.tsx` - Main layout, navigation, about section removal
+- `src/pages/Index.tsx` - Navigation layout, button positioning, about section removal
 - `src/components/variants/HeroVariantA.tsx` - Logo removal  
 - `src/components/variants/HeroVariantB.tsx` - Logo removal
-- `src/components/variants/BookingVariantA.tsx` - Mobile calendar centering
-- `src/components/CalendlyWidget.tsx` - Responsive improvements
-- `src/index.css` - Mobile CSS fixes
+- `src/components/variants/BookingVariantA.tsx` - Mobile calendar centering with narrower wrapper
+- `src/components/CalendlyWidget.tsx` - Removed inline min-width style
+- `src/index.css` - Updated CSS for perfect mobile centering

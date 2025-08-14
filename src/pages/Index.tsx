@@ -184,43 +184,35 @@ const Index = () => {
               <span className="text-base sm:text-lg font-bold text-foreground">LearnEndo.io</span>
             </div>
             
-            {/* Centered Book Now Button */}
-            <div className="flex-1 flex justify-center">
-              <Button 
-                size="lg"
-                onClick={() => {
-                  if (variant === 'A') {
-                    // Variant A: Scroll to booking section with 800px offset
-                    const element = document.getElementById('booking');
-                    if (element) {
-                      const elementPosition = element.offsetTop;
-                      const offsetPosition = elementPosition + 800;
-                      window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                      });
-                    }
-                  } else {
-                    // Variant B: Show time slots
-                    setShowTimeSlots(true);
-                  }
-                  if (cookiesAccepted && (window as any).gtag) {
-                    (window as any).gtag('event', 'click', {
-                      event_category: 'navigation',
-                      event_label: 'nav_book_now'
+            {/* Right-aligned Book Now Button */}
+            <Button 
+              onClick={() => {
+                if (variant === 'A') {
+                  // Variant A: Scroll to booking section with 800px offset
+                  const element = document.getElementById('booking');
+                  if (element) {
+                    const elementPosition = element.offsetTop;
+                    const offsetPosition = elementPosition + 800;
+                    window.scrollTo({
+                      top: offsetPosition,
+                      behavior: 'smooth'
                     });
                   }
-                }}
-                className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-8 sm:px-12 md:px-16 text-sm sm:text-base"
-              >
-                Book Now
-              </Button>
-            </div>
-            
-            {/* Empty div to balance the layout */}
-            <div className="w-[120px]">
-              {/* This empty div balances the layout to keep Book Now centered */}
-            </div>
+                } else {
+                  // Variant B: Show time slots
+                  setShowTimeSlots(true);
+                }
+                if (cookiesAccepted && (window as any).gtag) {
+                  (window as any).gtag('event', 'click', {
+                    event_category: 'navigation',
+                    event_label: 'nav_book_now'
+                  });
+                }
+              }}
+              className="bg-orange-500 hover:bg-orange-600 text-white font-semibold"
+            >
+              Book Now
+            </Button>
           </div>
         </div>
       </nav>
