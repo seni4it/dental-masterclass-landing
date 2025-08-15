@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Timer, Video, Shield, ArrowRight, Zap, MonitorSmartphone, RotateCcw, Target, AlertTriangle, Microscope } from "lucide-react";
-import toothQuestion from "/lovable-uploads/78edbdfc-906b-4b3f-b44f-5bcedbf2144c.png";
+import toothQuestion from "/lovable-uploads/tooth-question-optimized.png";
 import { MoneyBackGuaranteeBadge } from "@/components/MoneyBackGuaranteeBadge";
 import { EditableText } from "@/components/EditableText";
 
