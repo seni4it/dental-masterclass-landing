@@ -17,15 +17,16 @@ const CalendlyWidget = ({ url, className = "" }: CalendlyWidgetProps) => {
     
     // Track Calendly widget load for Variant A
     if (url.includes('variant=A') && window.dataLayer) {
-      const clickEvent = {
-        event: 'click_A',
+      const bookingEvent = {
+        event: 'book_now_A',
         experiment_id: 'dental_masterclass_hero',
         variant_id: 'A',
-        calendly_url: url,
-        interaction_type: 'widget_load'
+        button_location: 'calendly_widget',
+        interaction_type: 'widget_load',
+        calendly_url: url
       };
-      window.dataLayer.push(clickEvent);
-      console.log('[DEBUG] dataLayer click_A event pushed:', clickEvent);
+      window.dataLayer.push(bookingEvent);
+      console.log('[DEBUG] dataLayer book_now_A event pushed:', bookingEvent);
     }
   }, [url]);
 

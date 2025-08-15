@@ -44,17 +44,19 @@ const Index = () => {
   const handleTimeSlotSelect = (time: string) => {
     const calendlyUrl = `https://calendly.com/endoclub/new-meeting-1/2025-09-06T${time}:00+02:00?month=2025-09&date=2025-09-06&variant=B`;
     
-    // Track Calendly click for Variant B
+    // Track booking event for Variant B time slot selection
     if (window.dataLayer) {
-      const clickEvent = {
-        event: 'click_B',
+      const bookingEvent = {
+        event: 'book_now_B',
         experiment_id: 'dental_masterclass_hero',
         variant_id: 'B',
+        button_location: 'time_slot',
+        interaction_type: 'time_slot_select',
         calendly_url: calendlyUrl,
         time_slot: time
       };
-      window.dataLayer.push(clickEvent);
-      console.log('[DEBUG] dataLayer click_B event pushed:', clickEvent);
+      window.dataLayer.push(bookingEvent);
+      console.log('[DEBUG] dataLayer book_now_B event pushed:', bookingEvent);
     }
     
     window.open(calendlyUrl, '_blank');
@@ -187,6 +189,19 @@ const Index = () => {
             {/* Right-aligned Book Now Button */}
             <Button 
               onClick={() => {
+                // Track booking event based on variant
+                if (window.dataLayer) {
+                  const bookingEvent = {
+                    event: variant === 'A' ? 'book_now_A' : 'book_now_B',
+                    experiment_id: 'dental_masterclass_hero',
+                    variant_id: variant,
+                    button_location: 'navigation',
+                    interaction_type: 'nav_book_now'
+                  };
+                  window.dataLayer.push(bookingEvent);
+                  console.log('[DEBUG] dataLayer booking event pushed:', bookingEvent);
+                }
+
                 if (variant === 'A') {
                   // Variant A: Scroll to booking section with 800px offset
                   const element = document.getElementById('booking');
@@ -201,12 +216,6 @@ const Index = () => {
                 } else {
                   // Variant B: Show time slots
                   setShowTimeSlots(true);
-                }
-                if (cookiesAccepted && (window as any).gtag) {
-                  (window as any).gtag('event', 'click', {
-                    event_category: 'navigation',
-                    event_label: 'nav_book_now'
-                  });
                 }
               }}
               className="bg-orange-500 hover:bg-orange-600 text-white font-semibold"

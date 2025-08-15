@@ -37,6 +37,19 @@ export const HeroVariantA = ({ onCtaClick, timeLeft, setShowTimeSlots }: HeroVar
               <Badge 
                 className="mb-6 bg-accent text-accent-foreground border-accent px-6 py-3 text-base font-bold animate-pulse-glow cursor-pointer hover:bg-accent/90 transition-colors"
                 onClick={() => {
+                  // Track booking event for badge click
+                  if (window.dataLayer) {
+                    const bookingEvent = {
+                      event: 'book_now_A',
+                      experiment_id: 'dental_masterclass_hero',
+                      variant_id: 'A',
+                      button_location: 'hero_badge',
+                      interaction_type: 'live_masterclass_badge'
+                    };
+                    window.dataLayer.push(bookingEvent);
+                    console.log('[DEBUG] dataLayer book_now_A event pushed:', bookingEvent);
+                  }
+
                   const element = document.getElementById('booking');
                   if (element) {
                     const elementPosition = element.offsetTop;
@@ -71,13 +84,21 @@ export const HeroVariantA = ({ onCtaClick, timeLeft, setShowTimeSlots }: HeroVar
               {/* Main CTA Section - Enhanced (GitHub Style) */}
               <div className="bg-white/15 backdrop-blur-md rounded-2xl p-4 sm:p-6 md:p-8 border border-white/20 max-w-2xl mx-auto mb-12 mx-4">
                 
-                <div className="text-center mb-6">
-                  <div className="flex items-center justify-center mb-2">
-                    <span className="text-4xl font-black text-accent-glow">€27</span>
-                  </div>
-                </div>
                 
                 <Button variant="cta" size="xl" className="w-full font-bold animate-pulse-glow mb-4 text-lg sm:text-xl md:text-2xl lg:text-3xl" style={{ fontSize: 'clamp(18px, 5vw, 35px)' }} onClick={() => {
+                  // Track booking event for main button click
+                  if (window.dataLayer) {
+                    const bookingEvent = {
+                      event: 'book_now_A',
+                      experiment_id: 'dental_masterclass_hero',
+                      variant_id: 'A',
+                      button_location: 'hero_main',
+                      interaction_type: 'main_book_now'
+                    };
+                    window.dataLayer.push(bookingEvent);
+                    console.log('[DEBUG] dataLayer book_now_A event pushed:', bookingEvent);
+                  }
+
                   const element = document.getElementById('booking');
                   if (element) {
                     const elementPosition = element.offsetTop;
