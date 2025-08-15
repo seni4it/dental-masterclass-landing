@@ -61,6 +61,28 @@ pm2 logs dental-app
 - **GA4 Measurement ID**: G-GWBDNMRWFS
 - **Calendly URL**: https://calendly.com/endoclub/new-meeting-1
 
+## 🎯 Unified Booking Tracking (January 2025)
+All booking interactions are now unified under two events for simple A/B comparison:
+
+### **book_now_A Event** (All Variant A booking actions)
+- Navigation "Book Now" button click
+- Hero "🔥 LIVE MASTERCLASS" badge click
+- Hero main "BOOK NOW" button click
+- Calendly widget load event
+
+### **book_now_B Event** (All Variant B booking actions)
+- Navigation "Book Now" button click
+- Hero "🔥 LIVE MASTERCLASS" badge click
+- Hero main "BOOK NOW" button click
+- Time slot selection (13:00 or 20:00)
+
+### **Event Parameters**
+Each booking event includes:
+- `button_location`: Where the click originated (navigation/hero_badge/hero_main/time_slot/calendly_widget)
+- `variant_id`: A or B
+- `interaction_type`: Specific action type
+- `time_slot`: Selected time (Variant B only)
+
 ## Live Debug Streaming System
 - **Webhook URL**: https://webhook.site/eb164388-cc37-4cd9-a8b1-d517ef3201ff
 - **Email Address**: eb164388-cc37-4cd9-a8b1-d517ef3201ff@emailhook.site
@@ -83,14 +105,20 @@ pm2 logs dental-app
   - pageview_A/pageview_B events fire on page load
   - Debug logging added and verified working
   - Tested with MAMP server setup
-- **Phase 4**: Calendly Click Tracking ✅ COMPLETE
-  - Variant A: Added ?variant=A to Calendly widget URL
-  - Variant B: Added &variant=B to Calendly time slot URLs
-  - click_A event fires when Calendly widget loads
-  - click_B event fires when time slot button clicked
-  - All click events include variant_id and calendly_url
-  - Fully tested and debugged - working correctly
-  - ✅ VERIFIED: Both pageview_A/B and click_A/B events firing correctly
+- **Phase 4**: Unified Booking Tracking ✅ COMPLETE (Updated: January 2025)
+  - **RENAMED**: All booking events unified as `book_now_A` and `book_now_B`
+  - **Variant A Tracking** (all fire `book_now_A`):
+    - Navigation "Book Now" button
+    - Hero "🔥 LIVE MASTERCLASS" badge click
+    - Hero main "BOOK NOW" button
+    - Calendly widget load
+  - **Variant B Tracking** (all fire `book_now_B`):
+    - Navigation "Book Now" button
+    - Hero "🔥 LIVE MASTERCLASS" badge click
+    - Hero main "BOOK NOW" button
+    - Time slot selections (13:00, 20:00)
+  - All events include `button_location` parameter for source identification
+  - ✅ VERIFIED: Complete unified tracking across all booking paths
 - **Phase 5**: Conversion Tracking ✅ COMPLETE
   - ThankYou.tsx reads variant from URL parameters with fallback to localStorage
   - purchase_A/purchase_B events fire correctly on thank-you page load
@@ -99,14 +127,14 @@ pm2 logs dental-app
 - **Phase 6**: GTM Configuration ✅ COMPLETE
   - All dataLayer events verified working in dev tools console
   - pageview_A/pageview_B events fire correctly on page load
-  - click_A/click_B events fire correctly on Calendly interactions
+  - book_now_A/book_now_B events fire correctly on ALL booking interactions
   - purchase_A/purchase_B events fire correctly on thank-you page
   - GTM container GTM-K3WSZR7 loads properly with dataLayer initialized
   - ✅ VERIFIED: All tracking events working at localhost:8080 with variants A/B
   - Ready for external GTM workspace configuration with GA4 tags
 - **Phase 7**: Testing & Validation ✅ COMPLETE
-  - Variant A flow tested: pageview_A → click_A → purchase_A events verified
-  - Variant B flow tested: pageview_B → click_B → purchase_B events verified
+  - Variant A flow tested: pageview_A → book_now_A → purchase_A events verified
+  - Variant B flow tested: pageview_B → book_now_B → purchase_B events verified
   - GTM workspace configured with triggers and GA4 tags
   - All tracking verified on production Netlify site
   - Error handling added for third-party script failures
@@ -135,7 +163,7 @@ pm2 logs dental-app
 ### **📊 TRACKING IMPLEMENTATION:**
 - **GTM Container**: GTM-K3WSZR7 ✅ Active
 - **GA4 Property**: G-GWBDNMRWFS ✅ Configured
-- **Events Tracked**: pageview_A/B, click_A/B, purchase_A/B ✅ Working
+- **Events Tracked**: pageview_A/B, book_now_A/B, purchase_A/B ✅ Working
 - **Error Handling**: Third-party script failures ✅ Implemented
 - **Documentation**: Complete setup & maintenance guides ✅ Ready
 
@@ -155,15 +183,16 @@ Your dental masterclass A/B testing system is fully deployed and ready for conve
 index.html                    # GTM container, dataLayer init, error handling
 public/ab-init.js            # A/B variant assignment, pageview events
 src/hooks/useABTest.ts       # React A/B test hook
-src/pages/Index.tsx          # Click event tracking (click_A/B)
+src/pages/Index.tsx          # Unified booking tracking (book_now_A/B)
 src/pages/ThankYou.tsx       # Conversion tracking (purchase_A/B)
-src/components/variants/     # A/B test variant components
+src/components/variants/     # A/B test variant components with booking tracking
+src/components/CalendlyWidget.tsx # Widget tracking (book_now_A)
 ```
 
 ### **Monthly Maintenance Tasks:**
 1. **Check GTM Container Status**
    - Verify container `GTM-K3WSZR7` is published
-   - Confirm all 6 triggers are active (pageview_A/B, click_A/B, purchase_A/B)
+   - Confirm all 6 triggers are active (pageview_A/B, book_now_A/B, purchase_A/B)
    - Test GTM Preview mode monthly
 
 2. **Validate GA4 Data Flow**
