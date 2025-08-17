@@ -1,10 +1,10 @@
-# Static assets should be served directly
+# Static files should be served directly (must come before catch-all)
 [[redirects]]
   from = "/lovable-uploads/*"
   to = "/lovable-uploads/:splat"
   status = 200
 
-# All other routes go to index.html for SPA
+# Catch-all for SPA routing
 [[redirects]]
   from = "/*"
   to = "/index.html"
