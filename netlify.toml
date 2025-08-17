@@ -1,3 +1,10 @@
+# Static assets should be served directly
+[[redirects]]
+  from = "/lovable-uploads/*"
+  to = "/lovable-uploads/:splat"
+  status = 200
+
+# All other routes go to index.html for SPA
 [[redirects]]
   from = "/*"
   to = "/index.html"
