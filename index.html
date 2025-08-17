@@ -9,6 +9,14 @@
     <meta name="keywords" content="dental education, professional development, continuing education, dental training, endodontics course" />
     <meta property="og:site_name" content="LearnEndo.io - Professional Dental Education" />
     
+    <!-- Performance Hints -->
+    <link rel="preconnect" href="https://assets.calendly.com" crossorigin />
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
+    <link rel="preconnect" href="https://connect.facebook.net" crossorigin />
+    <link rel="dns-prefetch" href="https://calendly.com" />
+    <link rel="dns-prefetch" href="https://d1yei2z3i6k35z.cloudfront.net" />
+    
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="https://d1yei2z3i6k35z.cloudfront.net/11922468/67ec02d73e2cb_459061577_884924966845685_6646581295662297536_n.jpg" />
     <link rel="apple-touch-icon" href="https://d1yei2z3i6k35z.cloudfront.net/11922468/67ec02d73e2cb_459061577_884924966845685_6646581295662297536_n.jpg" />
@@ -198,8 +206,8 @@
     })();
     </script>
     
-    <!-- A/B Testing - MUST load before React -->
-    <script src="/ab-init.js"></script>
+    <!-- A/B Testing - Load early but non-blocking -->
+    <script src="/ab-init.js" defer></script>
   </head>
 
   <body>

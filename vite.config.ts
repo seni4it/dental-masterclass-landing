@@ -26,9 +26,16 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       output: {
         manualChunks: {
-          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+          'react-vendor': ['react', 'react-dom'],
+          'router-vendor': ['react-router-dom'],
           'ui-vendor': ['@radix-ui/react-dialog', '@radix-ui/react-slot', '@radix-ui/react-toast'],
+          'icons-vendor': ['lucide-react'],
+          'utils-vendor': ['clsx', 'tailwind-merge', 'class-variance-authority'],
         },
+        // Optimize chunk names for better caching
+        chunkFileNames: 'assets/[name]-[hash].js',
+        entryFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]',
       },
     },
     // Reduce chunk size warning limit

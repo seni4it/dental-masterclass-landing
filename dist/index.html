@@ -9,11 +9,19 @@
     <meta name="keywords" content="dental education, professional development, continuing education, dental training, endodontics course" />
     <meta property="og:site_name" content="LearnEndo.io - Professional Dental Education" />
     
+    <!-- Performance Hints -->
+    <link rel="preconnect" href="https://assets.calendly.com" crossorigin />
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
+    <link rel="preconnect" href="https://connect.facebook.net" crossorigin />
+    <link rel="dns-prefetch" href="https://calendly.com" />
+    <link rel="dns-prefetch" href="https://d1yei2z3i6k35z.cloudfront.net" />
+    
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="https://d1yei2z3i6k35z.cloudfront.net/11922468/67ec02d73e2cb_459061577_884924966845685_6646581295662297536_n.jpg" />
     <link rel="apple-touch-icon" href="https://d1yei2z3i6k35z.cloudfront.net/11922468/67ec02d73e2cb_459061577_884924966845685_6646581295662297536_n.jpg" />
     
-    <!-- Meta Pixel Code -->
+    <!-- Meta Pixel Code with Error Handling -->
     <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -21,10 +29,26 @@
     if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
     n.queue=[];t=b.createElement(e);t.async=!0;
     t.src=v;s=b.getElementsByTagName(e)[0];
+    
+    // Add error handler for blocked/failed loads
+    t.onerror = function() {
+      console.log('[INFO] Facebook Pixel blocked or failed to load (common with ad blockers)');
+      // Create fallback fbq function to prevent errors
+      window.fbq = window.fbq || function() { 
+        console.log('[INFO] Facebook Pixel call intercepted:', arguments);
+      };
+    };
+    
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '735975949298040');
-    fbq('track', 'PageView');
+    
+    // Wrap fbq calls in try-catch
+    try {
+      fbq('init', '735975949298040');
+      fbq('track', 'PageView');
+    } catch (e) {
+      console.log('[INFO] Facebook Pixel not available:', e.message);
+    }
     </script>
     
     <!-- Initialize dataLayer before GTM -->
@@ -103,10 +127,94 @@
     <meta name="twitter:description" content="Join Dr. Roitman's exclusive masterclass and learn advanced canal localization techniques. Transform your endodontic practice today." />
     <meta name="twitter:image" content="YOUR_CUSTOM_IMAGE_URL_HERE" />
     
-    <!-- A/B Testing - MUST load before React -->
-    <script src="/ab-init.js"></script>
-    <script type="module" crossorigin src="/assets/index-BonAMtcg.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-Cs3n312U.css">
+    <!-- Global Error Handler for Network Issues -->
+    <script>
+    // Suppress common third-party script errors
+    window.addEventListener('error', function(e) {
+      const errorMsg = e.message || '';
+      const errorSrc = e.filename || '';
+      
+      // Suppress specific known errors that don't affect functionality
+      if (
+        errorSrc.includes('stripe') ||
+        errorSrc.includes('fbevents') ||
+        errorMsg.includes('ERR_INTERNET_DISCONNECTED') ||
+        errorMsg.includes('ERR_BLOCKED_BY_CLIENT')
+      ) {
+        console.log('[INFO] Third-party script unavailable:', errorMsg);
+        e.preventDefault();
+        return false;
+      }
+    });
+    
+    // Suppress unhandled promise rejections from external scripts
+    window.addEventListener('unhandledrejection', function(e) {
+      const reason = e.reason || {};
+      if (
+        reason.message && (
+          reason.message.includes('stripe') ||
+          reason.message.includes('ERR_INTERNET_DISCONNECTED') ||
+          reason.message.includes('ERR_BLOCKED_BY_CLIENT')
+        )
+      ) {
+        console.log('[INFO] Third-party service unavailable:', reason.message);
+        e.preventDefault();
+      }
+    });
+    </script>
+
+    <!-- Debug Stream for Live Monitoring -->
+    <script>
+    (function () {
+      const enabled = /\bdebug_stream=1\b/.test(location.search) || localStorage.getItem('DEBUG_STREAM') === '1';
+      if (!enabled) return;
+
+      const ENDPOINT = 'https://webhook.site/eb164388-cc37-4cd9-a8b1-d517ef3201ff';
+      const queue = [];
+      let timer = null;
+
+      function flush() {
+        if (!queue.length) return;
+        const batch = queue.splice(0, queue.length);
+        fetch(ENDPOINT, {
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({ source:'ab-debug', ts: Date.now(), entries: batch }),
+          keepalive: true
+        }).catch((error) => {
+          // Suppress CORS errors - debug streaming is optional
+          if (error.name !== 'TypeError' || !error.message.includes('CORS')) {
+            console.log('[INFO] Debug stream unavailable:', error.message);
+          }
+        }); // fire-and-forget with better error handling
+      }
+      function add(entry){ queue.push(entry); if (!timer) timer = setTimeout(()=>{timer=null; flush();}, 1000); }
+
+      function safe(v){ try { return typeof v==='object' ? JSON.stringify(v) : String(v); } catch { return '(unserializable)'; } }
+
+      const olog = console.log.bind(console);
+      console.log = (...args)=>{ add({t:Date.now(), type:'console.log', msg: args.map(safe).join(' ')}); olog(...args); };
+
+      window.dataLayer = window.dataLayer || [];
+      const dp = window.dataLayer.push ? window.dataLayer.push.bind(window.dataLayer) : Array.prototype.push.bind(window.dataLayer);
+      window.dataLayer.push = function (obj) {
+        add({t:Date.now(), type:'dataLayer.push', payload: obj});
+        return dp(obj);
+      };
+
+      window.__ABlog = (label, payload)=> add({t:Date.now(), type:`AB:${label}`, payload});
+    })();
+    </script>
+    
+    <!-- A/B Testing - Load early but non-blocking -->
+    <script src="/ab-init.js" defer></script>
+    <script type="module" crossorigin src="/assets/index-D9l-5mIZ.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/react-vendor-B23LvuPX.js">
+    <link rel="modulepreload" crossorigin href="/assets/ui-vendor-CRanwG7j.js">
+    <link rel="modulepreload" crossorigin href="/assets/utils-vendor-CYC2HZ_g.js">
+    <link rel="modulepreload" crossorigin href="/assets/icons-vendor-DPbfh41S.js">
+    <link rel="modulepreload" crossorigin href="/assets/router-vendor-DMdsrwtX.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-gdYsnI9d.css">
   </head>
 
   <body>
