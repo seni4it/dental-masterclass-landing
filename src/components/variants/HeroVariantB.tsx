@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Timer, Video, Shield, ArrowRight, Zap, MonitorSmartphone, RotateCcw, Target, AlertTriangle, Microscope } from "lucide-react";
-import toothQuestion from "/lovable-uploads/tooth-question-optimized.png";
+import toothQuestion from "/lovable-uploads/tooth-question-optimized.jpg";
 import { MoneyBackGuaranteeBadge } from "@/components/MoneyBackGuaranteeBadge";
 import { EditableText } from "@/components/EditableText";
 import { Card, CardContent } from "@/components/ui/card";
@@ -57,7 +57,7 @@ export const HeroVariantB = ({ onCtaClick, timeLeft, setShowTimeSlots }: HeroVar
               
               {/* Tooth with Question Mark Icon - Bigger and No Bounce */}
               <div className="flex justify-center mb-8">
-                <img src={toothQuestion} alt="Tooth with Question Mark" className="w-40 h-40" />
+                <img src={toothQuestion} alt="Tooth with Question Mark" className="w-40 h-40" loading="eager" />
               </div>
               
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-white mb-8 leading-tight text-center">

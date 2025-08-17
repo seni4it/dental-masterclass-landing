@@ -182,6 +182,7 @@ const Index = () => {
                 src="https://d1yei2z3i6k35z.cloudfront.net/11922468/67ec02d73e2cb_459061577_884924966845685_6646581295662297536_n.jpg" 
                 alt="LearnEndo.io" 
                 className="w-7 h-7 sm:w-8 sm:h-8 rounded-full"
+                loading="eager"
               />
               <span className="text-base sm:text-lg font-bold text-foreground">LearnEndo.io</span>
             </div>

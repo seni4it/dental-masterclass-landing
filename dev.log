@@ -1,0 +1,45 @@
+
+> vite_react_shadcn_ts@0.0.0 dev
+> vite
+
+
+  VITE v5.4.19  ready in 181 ms
+
+  ➜  Local:   http://localhost:8080/
+  ➜  Network: http://192.168.18.42:8080/
+8:01:11 PM [vite] page reload index.html
+8:01:11 PM [vite] page reload index.html
+8:01:44 PM [vite] page reload index.html
+8:02:09 PM [vite] page reload index.html
+8:16:58 PM [vite] page reload index.html
+8:16:58 PM [vite] hmr update /src/components/CalendlyWidget.tsx, /src/index.css
+8:16:58 PM [vite] hmr update /src/components/variants/BookingVariantA.tsx, /src/index.css
+8:16:59 PM [vite] hmr update /src/pages/Index.tsx, /src/index.css
+8:16:59 PM [vite] hmr update /src/pages/ThankYou.tsx, /src/index.css
+8:16:59 PM [vite] page reload index.html
+8:16:59 PM [vite] hmr update /src/components/CalendlyWidget.tsx, /src/index.css
+8:16:59 PM [vite] hmr update /src/components/variants/BookingVariantA.tsx, /src/index.css
+8:16:59 PM [vite] hmr update /src/pages/Index.tsx, /src/index.css
+8:16:59 PM [vite] hmr update /src/pages/ThankYou.tsx, /src/index.css
+8:17:24 PM [vite] page reload index.html
+8:17:24 PM [vite] hmr update /src/components/CalendlyWidget.tsx, /src/index.css
+8:17:24 PM [vite] hmr update /src/components/variants/BookingVariantA.tsx, /src/index.css
+8:17:24 PM [vite] hmr update /src/pages/Index.tsx, /src/index.css
+8:17:24 PM [vite] hmr update /src/pages/ThankYou.tsx, /src/index.css
+11:33:19 PM [vite] hmr update /src/components/variants/HeroVariantA.tsx, /src/index.css
+11:33:31 PM [vite] hmr update /src/components/variants/HeroVariantB.tsx, /src/index.css
+11:36:36 PM [vite] hmr update /src/pages/Index.tsx, /src/index.css
+11:39:41 PM [vite] hmr update /src/pages/Index.tsx, /src/index.css
+11:41:29 PM [vite] hmr update /src/components/variants/BookingVariantA.tsx, /src/index.css
+11:41:52 PM [vite] hmr update /src/components/CalendlyWidget.tsx, /src/index.css
+11:42:13 PM [vite] hmr update /src/index.css
+11:46:50 PM [vite] hmr update /src/pages/Index.tsx, /src/index.css
+11:49:34 PM [vite] hmr update /src/pages/Index.tsx, /src/index.css
+11:49:56 PM [vite] hmr update /src/pages/Index.tsx, /src/index.css
+11:53:38 PM [vite] hmr update /src/pages/Index.tsx, /src/index.css
+8:14:29 AM [vite] hmr update /src/pages/Index.tsx, /src/index.css
+8:17:40 AM [vite] hmr update /src/components/variants/BookingVariantA.tsx, /src/index.css
+8:17:57 AM [vite] hmr update /src/components/CalendlyWidget.tsx, /src/index.css
+8:18:16 AM [vite] hmr update /src/index.css
+8:21:35 AM [vite] hmr update /src/components/variants/BookingVariantA.tsx, /src/index.css
+8:21:58 AM [vite] hmr update /src/index.css
