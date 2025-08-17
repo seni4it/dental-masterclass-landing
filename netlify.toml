@@ -39,7 +39,10 @@
         https://www.googletagmanager.com 
         https://www.facebook.com 
         https://calendly.com 
-        https://*.calendly.com;
+        https://*.calendly.com
+        https://d1yei2z3i6k35z.cloudfront.net
+        https://courageous-yeot-a51e84.netlify.app
+        https://*.netlify.app;
       font-src 'self' data: 
         https://fonts.gstatic.com;
       connect-src 'self' 
